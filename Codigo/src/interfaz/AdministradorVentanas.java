@@ -10,12 +10,14 @@ import interfaz.sismos.MenuSismos;
 public class AdministradorVentanas{
     private static JFrame frame = new JFrame();
     private static JPanel ultimaVentanaAbierta;
+    private ImageIcon icono = new ImageIcon(getClass().getResource("imagenes/earthquake.png"));
+
 
     private static MenuSismos menuSismos = new MenuSismos();
     private static Menu menu = new Menu();
     public AdministradorVentanas() {
         frame.setTitle("Proyecto - Programación Orientada A Objetos");
-        frame.setIconImage(new ImageIcon("earthquake3.png").getImage());
+        frame.setIconImage(icono.getImage());
         frame.setSize(640,512);
         frame.setResizable(false);
         frame.setLayout(null);
