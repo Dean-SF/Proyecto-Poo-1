@@ -1,13 +1,17 @@
 package interfaz;
 
 import java.awt.Font;
-import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Menu extends JPanel {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+public class Menu extends JPanel implements ActionListener {
+    // Elementos de la ventana menu
     private JLabel bienvenida = new JLabel("BIENVENIDO AL MENU PRINCIPAL");
     private JButton sismos = new JButton("ADMINISTRAR SISMOS");
     private JButton personas = new JButton("ADMINISTRAR PERSONAS");
@@ -17,14 +21,24 @@ public class Menu extends JPanel {
 
         sismos.setFont(new Font("Segoe UI",Font.PLAIN,18));
         sismos.setBounds(180, 100, 260, 80);
+        sismos.addActionListener(this);;
 
         personas.setFont(new Font("Segoe UI",Font.PLAIN,18));
         personas.setBounds(180, 200, 260, 80);
-
+        
         this.setBounds(0, 0, 1280, 720);
         this.setLayout(null);
         this.add(bienvenida);
         this.add(sismos);
         this.add(personas);
-    }   
+
+        this.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == sismos) {
+            AdministradorVentanas.abrirMenuSismos();
+        }
+    }
 }

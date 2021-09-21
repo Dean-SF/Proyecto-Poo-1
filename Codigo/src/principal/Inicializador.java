@@ -1,8 +1,8 @@
 package principal;
-import interfaz.VentanaPrincipal;
+import interfaz.AdministradorVentanas;
 
 public class Inicializador {
     public static void main(String[] args) {
-        new VentanaPrincipal();
+        new AdministradorVentanas();
     }
 }
