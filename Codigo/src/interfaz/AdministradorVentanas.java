@@ -1,5 +1,7 @@
 package interfaz;
 
+import java.util.Stack;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,18 +21,23 @@ import interfaz.sismos.MenuSismos;
 
 public class AdministradorVentanas{
     private static JFrame frame = new JFrame(); // Este objeto es el frame principal donde van a ir las ventanas
-    private static JPanel ultimaVentanaAbierta; // Aqui se guarda la ultima ventana para poder visualizarla
-                                                // despues al presionar el boton "volver" en algunas partes de la 
-                                                // interfaz
-
+    
     private ImageIcon icono = new ImageIcon(getClass().getResource("imagenes/earthquake.png")); // Icono del programa
 
     // Todas las ventanas disponibles de la interfaz:
     private static MenuSismos menuSismos = new MenuSismos();
     private static Menu menu = new Menu();
 
+    // Historial
+    private static Stack<JPanel> pilaVentanas = new Stack<JPanel>();  // Esta pila se llena con las ventanas 
+                                                                      // a las que ha ido ingresando el usuario
+                                                                      // la que esta por salir es la actual
+
     // Constructor de la clase:
     public AdministradorVentanas() {
+        // Inicializacion del historial de ventanas
+        pilaVentanas.push(menu); // Se guarda menu de primero porque es la ventana actual
+        
         // Setup del frame principal
         frame.setTitle("Proyecto - Programación Orientada a Objetos"); // Titulo del frame
         frame.setIconImage(icono.getImage());   // Asignacion del icono del programa
@@ -49,16 +56,18 @@ public class AdministradorVentanas{
         frame.setSize(x,y);
     }
 
-    // Hace que se pueda volver al menu
-    static public void volverMenu() {
-        menu.setVisible(true);
-        ultimaVentanaAbierta.setVisible(false);
-        frame.setSize(640,512);
+    // Hace que se pueda volver atras
+    static public void volverAtras() {
+        JPanel ventanaActual = pilaVentanas.pop();
+        ventanaActual.setVisible(false);
+        ventanaActual = pilaVentanas.peek();
+        ventanaActual.setVisible(true);
+        frame.setSize(ventanaActual.getSize());
     }
     
     // hace que se pueda abrir el menu de sismos
     static public void abrirMenuSismos() {
-        ultimaVentanaAbierta = menuSismos;
+        pilaVentanas.push(menuSismos);
         menuSismos.setVisible(true);
         menu.setVisible(false);
         frame.setSize(800,512);

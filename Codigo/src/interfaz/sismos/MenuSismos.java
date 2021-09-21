@@ -79,7 +79,7 @@ public class MenuSismos extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == volver) {
-            AdministradorVentanas.volverMenu();
+            AdministradorVentanas.volverAtras();
         }
         
     }
