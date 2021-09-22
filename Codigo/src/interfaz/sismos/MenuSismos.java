@@ -16,7 +16,6 @@ import java.awt.event.ActionListener;
  * ACME a sismos
 */
 public class MenuSismos extends JPanel implements ActionListener{
-
     // Elementos de la ventana
     private JLabel presentacion = new JLabel("SELECCIONE LA OPCION QUE DESEA:");
     private JButton agregar = new JButton("Agregar un sismo");
@@ -56,7 +55,7 @@ public class MenuSismos extends JPanel implements ActionListener{
         volver.addActionListener(this);
 
         // Setup de la ventna
-        this.setBounds(0, 0, 1280, 720);
+        this.setBounds(0, 0, 800, 512);
         this.setLayout(null);
 
         // Se agregan los elementos
@@ -80,6 +79,8 @@ public class MenuSismos extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == volver) {
             AdministradorVentanas.volverAtras();
+        } else if(e.getSource() == agregar){
+            AdministradorVentanas.abrirAgregarSismos();
         }
         
     }
