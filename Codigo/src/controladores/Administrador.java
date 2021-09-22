@@ -18,6 +18,7 @@ public class Administrador {
         //Default
     }
     
+    //Dialogar como buscar los sismos
     public boolean agregarSismo(){
         return true;
     }
@@ -28,7 +29,7 @@ public class Administrador {
         return true;
     }
     public boolean eliminarSismo(){
-        return true;
+        return false;
     }
     
     public boolean agregarPersona(String ID, String nombre, String correo,
@@ -42,13 +43,30 @@ public class Administrador {
         personas.add(nueva);
         return true;
     }
-    public boolean consultarPersona(String ID){
-        return true;
+    public Persona consultarPersona(String ID){
+        for(Persona persona : personas){
+            if(persona.getID().equals(ID)){
+                return persona;
+            }
+        }
+        return null;
     }
     public boolean modificarPersona(String ID){
-        return true;
+        for(Persona persona : personas){
+            if(persona.getID().equals(ID)){
+                //Falta saber que modificar
+                return true;
+            }
+        }
+        return false;
     }
     public boolean eliminarPersona(String ID){
-        return true;
+        for(Persona persona : personas){
+            if(persona.getID().equals(ID)){
+                personas.remove(persona);
+                return true;
+            }
+        }
+        return false;
     }
 }
