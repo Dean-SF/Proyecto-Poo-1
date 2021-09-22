@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import interfaz.sismos.AgregarSismos;
 import interfaz.sismos.MenuSismos;
 
 /** 
@@ -25,6 +26,7 @@ public class AdministradorVentanas{
     private ImageIcon icono = new ImageIcon(getClass().getResource("imagenes/earthquake.png")); // Icono del programa
 
     // Todas las ventanas disponibles de la interfaz:
+    private static AgregarSismos agregarSismos = new AgregarSismos();
     private static MenuSismos menuSismos = new MenuSismos();
     private static Menu menu = new Menu();
 
@@ -47,6 +49,7 @@ public class AdministradorVentanas{
 
         frame.add(menu);    // Agrega la ventana menu
         frame.add(menuSismos); // Agrega la ventana menu de sismos 
+        frame.add(agregarSismos);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Hace que cuando se intente cerrar la ventana se 
                                                               // cierre todo el programa
@@ -61,8 +64,9 @@ public class AdministradorVentanas{
         JPanel ventanaActual = pilaVentanas.pop();
         ventanaActual.setVisible(false);
         ventanaActual = pilaVentanas.peek();
-        ventanaActual.setVisible(true);
         frame.setSize(ventanaActual.getSize());
+        ventanaActual.setVisible(true);
+        
     }
     
     // hace que se pueda abrir el menu de sismos
@@ -71,5 +75,12 @@ public class AdministradorVentanas{
         menuSismos.setVisible(true);
         menu.setVisible(false);
         frame.setSize(800,512);
+    }
+
+    static public void abrirAgregarSismos(){
+        pilaVentanas.push(agregarSismos);
+        agregarSismos.setVisible(true);
+        menuSismos.setVisible(false);
+        frame.setSize(640,512);
     }
 }
