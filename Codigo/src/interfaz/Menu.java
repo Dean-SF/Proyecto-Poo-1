@@ -18,6 +18,8 @@ public class Menu extends JPanel implements ActionListener {
     private JLabel bienvenida = new JLabel("BIENVENIDO AL MENU PRINCIPAL");
     private JButton sismos = new JButton("ADMINISTRAR SISMOS");
     private JButton personas = new JButton("ADMINISTRAR PERSONAS");
+    private JButton graficos = new JButton("ESTADISTICAS DE SISMOS");
+    
     public Menu() {
 
         // Letra y ubicacion del Label de bienvenida
@@ -34,7 +36,12 @@ public class Menu extends JPanel implements ActionListener {
         personas.setFont(new Font("Segoe UI",Font.PLAIN,18));
         personas.setBounds(180, 200, 260, 80);
         personas.addActionListener(this);
-
+        
+        // Letra, ubicacion y ActionListener del boton de graficos
+        graficos.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        graficos.setBounds(180, 300, 260, 80);
+        graficos.addActionListener(this);  
+        
         // Setup de la ventana
         this.setBounds(0, 0, 640, 512);
         this.setLayout(null);
@@ -43,6 +50,7 @@ public class Menu extends JPanel implements ActionListener {
         this.add(bienvenida);
         this.add(sismos);
         this.add(personas);
+        this.add(graficos);
 
         // Se hace visible puesto a que es la primera ventana que se visualiza
         this.setVisible(true);
@@ -52,6 +60,8 @@ public class Menu extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == sismos) {
             AdministradorVentanas.abrirMenuSismos();
+        }else if(e.getSource()==graficos){
+            AdministradorVentanas.abrirMenuGraficos();
         }
     }
 }

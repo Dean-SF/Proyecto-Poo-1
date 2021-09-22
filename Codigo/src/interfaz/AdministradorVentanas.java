@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import interfaz.sismos.AgregarSismos;
 import interfaz.sismos.MenuSismos;
+import interfaz.sismos.MenuGraficos;
 
 /** 
  * Clase AdministradorVentanas: Esta clase
@@ -29,6 +30,7 @@ public class AdministradorVentanas{
     private static AgregarSismos agregarSismos = new AgregarSismos();
     private static MenuSismos menuSismos = new MenuSismos();
     private static Menu menu = new Menu();
+    private static MenuGraficos menuGraficos = new MenuGraficos();
 
     // Historial
     private static Stack<JPanel> pilaVentanas = new Stack<JPanel>();  // Esta pila se llena con las ventanas 
@@ -50,6 +52,7 @@ public class AdministradorVentanas{
         frame.add(menu);    // Agrega la ventana menu
         frame.add(menuSismos); // Agrega la ventana menu de sismos 
         frame.add(agregarSismos);
+        frame.add(menuGraficos);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Hace que cuando se intente cerrar la ventana se 
                                                               // cierre todo el programa
@@ -82,5 +85,12 @@ public class AdministradorVentanas{
         agregarSismos.setVisible(true);
         menuSismos.setVisible(false);
         frame.setSize(640,512);
+    }
+    
+    static public void abrirMenuGraficos(){
+        pilaVentanas.push(menuGraficos);
+        menuGraficos.setVisible(true);
+        menu.setVisible(false);
+        frame.setSize(800,512);
     }
 }
