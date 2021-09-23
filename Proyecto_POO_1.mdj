@@ -3885,7 +3885,7 @@
 											"top": 242,
 											"width": 1018.341796875,
 											"height": 13,
-											"text": "+consultarSismo(fechaHora: Caldendar, latitud: double, longitud: double): boolean",
+											"text": "+consultarSismo(fechaHora: Caldendar, latitud: double, longitud: double): Sismo",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4242,9 +4242,9 @@
 										"$ref": "AAAAAAF8BqhXf1l9az0="
 									},
 									"font": "Arial;13;0",
-									"left": 1004,
+									"left": 1003,
 									"top": 267,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -4515,9 +4515,9 @@
 										"$ref": "AAAAAAF8BqiuxFwo50c="
 									},
 									"font": "Arial;13;0",
-									"left": 1593,
+									"left": 1592,
 									"top": 451,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -6560,7 +6560,9 @@
 									"_parent": {
 										"$ref": "AAAAAAF8Bqe7glha1FY="
 									},
-									"type": "boolean",
+									"type": {
+										"$ref": "AAAAAAF8BgNQdEoC3yk="
+									},
 									"direction": "return"
 								},
 								{
