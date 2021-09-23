@@ -1,7 +1,7 @@
 //Importaciones
 package controladores;
-import datos.TProvincia;
 import datos.Sismo;
+import datos.TProvincia;
 import datos.Persona;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,8 +25,9 @@ public class Administrador {
     }
     public Sismo consultarSismo(Calendar fechaHora, double latitud, double longitud){
         for(Sismo actual : sismos){
-            if(actual.getFechaHora().equals(fechaHora)){
-                
+            if(actual.getFechaHora().equals(fechaHora) && actual.obtenerLatitud() == 
+               latitud && actual.obtenerLongitud() == longitud){
+                return actual;
             }
         }
         return null;

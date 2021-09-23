@@ -45,7 +45,7 @@ public class Sismo {
         this.localizacion = localizacion;
     }
 
-    public Calendar getFehcaHora() {
+    public Calendar getFechaHora() {
         return fechaHora;
     }
 
@@ -63,6 +63,14 @@ public class Sismo {
 
     public Localizacion getLocalizacion() {
         return localizacion;
+    }
+
+    public double obtenerLatitud() {
+        return localizacion.getLatitud();
+    }
+
+    public double obtenerLongitud() {
+        return localizacion.getLongitud();
     }
 
     //Hacer la sobrecarga del equals!!
