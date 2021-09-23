@@ -4,6 +4,7 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -52,15 +53,22 @@ public class AgregarSismos extends JPanel implements ActionListener{
     private JLabel longitud = new JLabel("Longitud:");
     private JTextField campoLongitud = new JTextField();
 
+    private JLabel provincia = new JLabel("Provincia:");
+    private JComboBox<String> campoProvincia = new JComboBox<String>();
+
+    private JLabel descripcion = new JLabel("Descripcion:");
+    private JTextArea campoDescripcion = new JTextArea();
+
 
     // Boton para volver al menu principal
     private JButton volver = new JButton("Volver");
     public AgregarSismos() {
 
+        // Titulo de la ventana
         presentacion.setFont(new Font("OCR A Extended",Font.PLAIN,34));
-        presentacion.setBounds(180,25,290,25);
+        presentacion.setBounds(235,25,290,25);
 
-
+        // Fecha
         fecha.setFont(new Font("Segoe UI Light",Font.PLAIN,25));
         fecha.setBounds(10,50,100,25);
 
@@ -79,7 +87,7 @@ public class AgregarSismos extends JPanel implements ActionListener{
         campoAño.setBounds(220,80,43,25);
         campoAño.setFont(new Font("SimSun",Font.PLAIN,18));
 
-
+        // Hora
         hora.setFont(new Font("Segoe UI Light",Font.PLAIN,25));
         hora.setBounds(10,110,100,25);
 
@@ -93,13 +101,13 @@ public class AgregarSismos extends JPanel implements ActionListener{
         campoMinutos.setBounds(175,140,25,25);
         campoMinutos.setFont(new Font("SimSun",Font.PLAIN,18));
 
-
+        // Profundidad
         profundidad.setFont(new Font("Segoe UI Light",Font.PLAIN,25));
         profundidad.setBounds(10,175,150,25);
         campoProfundidad.setFont(new Font("SimSun",Font.PLAIN,18));
         campoProfundidad.setBounds(150,175,100,25);
 
-
+        // Origen
         origen.setFont(new Font("Segoe UI Light",Font.PLAIN,25));
         origen.setBounds(10,207,100,35);
         campoOrigen.setBounds(95,214,250,25);
@@ -110,13 +118,13 @@ public class AgregarSismos extends JPanel implements ActionListener{
         campoOrigen.addItem("Intra placa");
         campoOrigen.addItem("Deformacion Interna");
 
-
+        // Magnitud
         magnitud.setBounds(10,250,150,35);
         magnitud.setFont(new Font("Segoe UI Light",Font.PLAIN,25));
         campoMagnitud.setBounds(120,250,150,35);
         campoMagnitud.setFont(new Font("SimSun",Font.PLAIN,18));
 
-
+        // Localizacion
         localizacion.setBounds(10,290,150,35);
         localizacion.setFont(new Font("Segoe UI Light",Font.PLAIN,25));
 
@@ -130,12 +138,35 @@ public class AgregarSismos extends JPanel implements ActionListener{
         campoLongitud.setBounds(280,325,80,25);  
         campoLongitud.setFont(new Font("SimSun",Font.PLAIN,18));
 
+        provincia.setBounds(365,325,100,25);
+        provincia.setFont(new Font("SimSun",Font.PLAIN,20));
+        campoProvincia.setBounds(465,325,120,25);
+        campoProvincia.setFont(new Font("SimSun",Font.PLAIN,18));
+        campoProvincia.addItem("San José");
+        campoProvincia.addItem("Alajuela");
+        campoProvincia.addItem("Cartago");
+        campoProvincia.addItem("Heredia");
+        campoProvincia.addItem("Guanacaste");
+        campoProvincia.addItem("Puntarenas");
+        campoProvincia.addItem("Limón");
+
+        descripcion.setFont(new Font("SimSun",Font.PLAIN,20));
+        descripcion.setBounds(25,355,120,25);
+        campoDescripcion.setFont(new Font("SimSun",Font.PLAIN,18));
+        campoDescripcion.setBounds(150,355,450,100);
+        campoDescripcion.setLineWrap(true);
+        campoDescripcion.setWrapStyleWord(true);
+
+        // Boton de volver
         volver.setFont(new Font("OCR A Extended",Font.PLAIN,20));
-        volver.setBounds(600,440,130,30);
+        volver.setBounds(605,440,130,30);
         volver.addActionListener(this);
 
-        this.setBounds(0, 0, 640, 512);
+        // Tamaño de la ventana y Layout manager
+        this.setBounds(0, 0, 765, 512);
         this.setLayout(null);
+        
+        // Agregado de todos los elementos de la ventana
         this.add(presentacion);
 
         this.add(fecha);
@@ -166,9 +197,14 @@ public class AgregarSismos extends JPanel implements ActionListener{
         this.add(campoLatitud);
         this.add(longitud);
         this.add(campoLongitud);
+        this.add(provincia);
+        this.add(campoProvincia);
+        this.add(descripcion);
+        this.add(campoDescripcion);
 
         this.add(volver);
 
+        // La hace invisible
         this.setVisible(false);
     }
 

@@ -97,7 +97,7 @@ public class AdministradorVentanas{
         pilaVentanas.push(agregarSismos);
         agregarSismos.setVisible(true);
         menuSismos.setVisible(false);
-        frame.setSize(640,512);
+        frame.setSize(755,512);
     }
     
     static public void abrirMenuGraficos(){
