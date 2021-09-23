@@ -68,6 +68,7 @@ public class AdministradorVentanas{
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Hace que cuando se intente cerrar la ventana se 
                                                               // cierre todo el programa
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true); // la hace visible
     }
     static public void cambiarDimensiones(int x,int y) {
