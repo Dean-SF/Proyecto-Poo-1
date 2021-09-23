@@ -1,25 +1,25 @@
-package interfaz.sismos;
-   
+package interfaz.estadisticas;
+
 import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import interfaz.AdministradorVentanas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
- 
+
+
 /**
  *
  * @author Esteban
  */
-public class GraficoTabular extends JPanel implements ActionListener {
-    private JLabel titulo = new JLabel("Grafico tabular");
+public class GraficoBarras extends JPanel implements ActionListener {
+    private JLabel titulo = new JLabel("Grafico de barras");
     private JButton volver = new JButton("Volver");
     
     
-    public GraficoTabular(){
+    public GraficoBarras(){
         this.setBounds(0, 0, 800, 512);
         this.setLayout(null);
         

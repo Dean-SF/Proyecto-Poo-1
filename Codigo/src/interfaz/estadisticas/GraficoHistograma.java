@@ -1,8 +1,6 @@
-package interfaz.sismos;
+package interfaz.estadisticas;
 
 import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,7 +22,7 @@ public class GraficoHistograma extends JPanel implements ActionListener{
         this.setLayout(null);
         
         titulo.setFont(new Font("OCR A Extended",Font.PLAIN,34));
-        titulo.setBounds(300,50,700,25);
+        titulo.setBounds(290,50,700,40);
         this.add(titulo);
         
         volver.setFont(new Font("Segoe UI",Font.PLAIN,18));

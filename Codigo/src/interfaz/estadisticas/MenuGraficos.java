@@ -1,5 +1,5 @@
 //Importaciones
-package interfaz.sismos;
+package interfaz.estadisticas;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
  * @author Esteban
  */
 public class MenuGraficos extends JPanel implements ActionListener{
-    private JLabel titulo = new JLabel("Estadicas");
+    private JLabel titulo = new JLabel("Estadisticas");
     private JButton provincia = new JButton("Por provincia");
     private JButton origen = new JButton("Por tipo de origen");
     private JButton fechas = new JButton("Rango de fechas");
@@ -27,7 +27,7 @@ public class MenuGraficos extends JPanel implements ActionListener{
         this.setLayout(null);
         
         titulo.setFont(new Font("OCR A Extended",Font.PLAIN,34));
-        titulo.setBounds(300,50,700,25);
+        titulo.setBounds(270,50,700,25);
         this.add(titulo);
         
         provincia.setFont(new Font("Segoe UI",Font.PLAIN,18));

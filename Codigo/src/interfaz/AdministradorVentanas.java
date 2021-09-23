@@ -8,11 +8,11 @@ import javax.swing.JPanel;
 
 import interfaz.sismos.AgregarSismos;
 import interfaz.sismos.MenuSismos;
-import interfaz.sismos.MenuGraficos;
-import interfaz.sismos.GraficoBarras;
-import interfaz.sismos.GraficoTabular;
-import interfaz.sismos.GraficoHistograma;
-import interfaz.sismos.GraficoPastel;
+import interfaz.estadisticas.MenuGraficos;
+import interfaz.estadisticas.GraficoBarras;
+import interfaz.estadisticas.GraficoHistograma;
+import interfaz.estadisticas.GraficoPastel;
+import interfaz.estadisticas.GraficoTabular;
 
 /** 
  * Clase AdministradorVentanas: Esta clase

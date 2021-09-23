@@ -1,8 +1,6 @@
-package interfaz.sismos;
+package interfaz.estadisticas;
 
 import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
