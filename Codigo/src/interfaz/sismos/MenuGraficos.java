@@ -66,15 +66,15 @@ public class MenuGraficos extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == provincia) {
- 
+                AdministradorVentanas.abrirGraficoHistograma();
         }else if(e.getSource() == origen){
-  
+                AdministradorVentanas.abrirGraficoPastel();
         }else if(e.getSource() == fechas){
-
+                AdministradorVentanas.abrirGraficoTabular();
         }else if(e.getSource() == mes){
-
+               AdministradorVentanas.abrirGraficoBarras();
         }else if(e.getSource() == magnitud){
-
+                AdministradorVentanas.abrirGraficoTabular();
         }else if(e.getSource() == volver){
             AdministradorVentanas.volverAtras();
         }

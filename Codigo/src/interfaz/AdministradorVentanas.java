@@ -9,6 +9,10 @@ import javax.swing.JPanel;
 import interfaz.sismos.AgregarSismos;
 import interfaz.sismos.MenuSismos;
 import interfaz.sismos.MenuGraficos;
+import interfaz.sismos.GraficoBarras;
+import interfaz.sismos.GraficoTabular;
+import interfaz.sismos.GraficoHistograma;
+import interfaz.sismos.GraficoPastel;
 
 /** 
  * Clase AdministradorVentanas: Esta clase
@@ -31,6 +35,10 @@ public class AdministradorVentanas{
     private static MenuSismos menuSismos = new MenuSismos();
     private static Menu menu = new Menu();
     private static MenuGraficos menuGraficos = new MenuGraficos();
+    private static GraficoBarras barras = new GraficoBarras();
+    private static GraficoTabular tabular = new GraficoTabular();
+    private static GraficoHistograma histograma = new GraficoHistograma();
+    private static GraficoPastel pastel = new GraficoPastel();
 
     // Historial
     private static Stack<JPanel> pilaVentanas = new Stack<JPanel>();  // Esta pila se llena con las ventanas 
@@ -53,6 +61,10 @@ public class AdministradorVentanas{
         frame.add(menuSismos); // Agrega la ventana menu de sismos 
         frame.add(agregarSismos);
         frame.add(menuGraficos);
+        frame.add(barras);
+        frame.add(tabular);
+        frame.add(histograma);
+        frame.add(pastel);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Hace que cuando se intente cerrar la ventana se 
                                                               // cierre todo el programa
@@ -91,6 +103,34 @@ public class AdministradorVentanas{
         pilaVentanas.push(menuGraficos);
         menuGraficos.setVisible(true);
         menu.setVisible(false);
+        frame.setSize(800,512);
+    }
+    
+    static public void abrirGraficoBarras(){
+        pilaVentanas.push(barras);
+        barras.setVisible(true);
+        menuGraficos.setVisible(false);
+        frame.setSize(800,512);
+    }
+    
+    static public void abrirGraficoTabular(){
+        pilaVentanas.push(tabular);
+        tabular.setVisible(true);
+        menuGraficos.setVisible(false);
+        frame.setSize(800,512);
+    }
+    
+    static public void abrirGraficoHistograma(){
+        pilaVentanas.push(histograma);
+        histograma.setVisible(true);
+        menuGraficos.setVisible(false);
+        frame.setSize(800,512);
+    }
+    
+    static public void abrirGraficoPastel(){
+        pilaVentanas.push(pastel);
+        pastel.setVisible(true);
+        menuGraficos.setVisible(false);
         frame.setSize(800,512);
     }
 }
