@@ -8,7 +8,7 @@ import java.util.Calendar;
  * @author Esteban
  */
 public class Sismo {
-   private Calendar fehcaHora;
+   private Calendar fechaHora;
    private float profundidad;
    private TOrigen origen;
    private Magnitud magnitud;
@@ -17,16 +17,16 @@ public class Sismo {
     public Sismo() {
         //Default
     }
-    public Sismo(Calendar fehcaHora, float profundidad, TOrigen origen, Magnitud magnitud, Localizacion localizacion) {
-        this.fehcaHora = fehcaHora;
+    public Sismo(Calendar fechaHora, float profundidad, TOrigen origen, Magnitud magnitud, Localizacion localizacion) {
+        this.fechaHora = fechaHora;
         this.profundidad = profundidad;
         this.origen = origen;
         this.magnitud = magnitud;
         this.localizacion = localizacion;
     }
 
-    public void setFehcaHora(Calendar fehcaHora) {
-        this.fehcaHora = fehcaHora;
+    public void setFechaHora(Calendar fechaHora) {
+        this.fechaHora = fechaHora;
     }
 
     public void setProfundidad(float profundidad) {
@@ -46,7 +46,7 @@ public class Sismo {
     }
 
     public Calendar getFehcaHora() {
-        return fehcaHora;
+        return fechaHora;
     }
 
     public float getProfundidad() {
@@ -69,7 +69,7 @@ public class Sismo {
     
     @Override
     public String toString() {
-        return "Sismo{" + "fehcaHora=" + fehcaHora + ", profundidad=" +
+        return "Sismo{" + "fechaHora=" + fechaHora + ", profundidad=" +
                 profundidad + ", origen=" + origen + ", magnitud=" +
                 magnitud + ", localizacion=" + localizacion + '}';
     }

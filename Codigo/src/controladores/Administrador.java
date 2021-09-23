@@ -4,6 +4,7 @@ import datos.TProvincia;
 import datos.Sismo;
 import datos.Persona;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 //Clase
 /**
@@ -22,8 +23,13 @@ public class Administrador {
     public boolean agregarSismo(){
         return true;
     }
-    public boolean consultarSismo(){
-        return true;
+    public Sismo consultarSismo(Calendar fechaHora, double latitud, double longitud){
+        for(Sismo actual : sismos){
+            if(actual.getFechaHora().equals(fechaHora)){
+                
+            }
+        }
+        return null;
     }
     public boolean modificarSismo(){
         return true;
