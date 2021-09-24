@@ -1,5 +1,7 @@
 package interfaz;
 
+
+
 import java.util.Stack;
 
 import javax.swing.ImageIcon;
@@ -13,6 +15,7 @@ import interfaz.estadisticas.GraficoBarras;
 import interfaz.estadisticas.GraficoHistograma;
 import interfaz.estadisticas.GraficoPastel;
 import interfaz.estadisticas.GraficoTabular;
+import InterfazPersonas.MenuRegister;
 
 /** 
  * Clase AdministradorVentanas: Esta clase
@@ -39,6 +42,7 @@ public class AdministradorVentanas{
     private static GraficoTabular tabular = new GraficoTabular();
     private static GraficoHistograma histograma = new GraficoHistograma();
     private static GraficoPastel pastel = new GraficoPastel();
+    private static MenuRegister registro = new MenuRegister();
 
     // Historial
     private static Stack<JPanel> pilaVentanas = new Stack<JPanel>();  // Esta pila se llena con las ventanas 
@@ -65,7 +69,7 @@ public class AdministradorVentanas{
         frame.add(tabular);
         frame.add(histograma);
         frame.add(pastel);
-
+        frame.add(registro);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Hace que cuando se intente cerrar la ventana se 
                                                               // cierre todo el programa
         frame.setLocationRelativeTo(null);
@@ -132,6 +136,12 @@ public class AdministradorVentanas{
         pilaVentanas.push(pastel);
         pastel.setVisible(true);
         menuGraficos.setVisible(false);
+        frame.setSize(800,512);
+    }
+    static public void abrirMenuRegistro(){
+        pilaVentanas.push(registro);
+        registro.setVisible(true);
+        menu.setVisible(false);
         frame.setSize(800,512);
     }
 }

@@ -63,5 +63,8 @@ public class Menu extends JPanel implements ActionListener {
         }else if(e.getSource()==graficos){
             AdministradorVentanas.abrirMenuGraficos();
         }
+        if(e.getSource()==personas){
+            AdministradorVentanas.abrirMenuRegistro();
+        }
     }
 }
