@@ -159,7 +159,7 @@
 											"top": 525,
 											"width": 753.8349609375,
 											"height": 13,
-											"text": "-profundidad: float",
+											"text": "-profundidad: double",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3717,7 +3717,7 @@
 											"font": "Arial;13;1",
 											"left": 1077,
 											"top": 151,
-											"width": 1018.341796875,
+											"width": 1032.80810546875,
 											"height": 13,
 											"text": "Administrador"
 										},
@@ -3755,7 +3755,7 @@
 									"font": "Arial;13;0",
 									"left": 1072,
 									"top": 144,
-									"width": 1028.341796875,
+									"width": 1042.80810546875,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF8BqVTwlHIrSg="
@@ -3793,7 +3793,7 @@
 											"font": "Arial;13;0",
 											"left": 1077,
 											"top": 174,
-											"width": 1018.341796875,
+											"width": 1032.80810546875,
 											"height": 13,
 											"text": "-sismos: Collection<Sismo>",
 											"horizontalAlignment": 0
@@ -3811,7 +3811,7 @@
 											"font": "Arial;13;0",
 											"left": 1077,
 											"top": 189,
-											"width": 1018.341796875,
+											"width": 1032.80810546875,
 											"height": 13,
 											"text": "-personas: Collection<Persona>",
 											"horizontalAlignment": 0
@@ -3821,7 +3821,7 @@
 									"font": "Arial;13;0",
 									"left": 1072,
 									"top": 169,
-									"width": 1028.341796875,
+									"width": 1042.80810546875,
 									"height": 38
 								},
 								{
@@ -3847,9 +3847,9 @@
 											"font": "Arial;13;0",
 											"left": 1077,
 											"top": 212,
-											"width": 1018.341796875,
+											"width": 1032.80810546875,
 											"height": 13,
-											"text": "+agregarSismo(fechaHora: Caldendar, profundidad: float, origen: TOrigen, magnitud: double, latitud: double, longitud: double, provincia: TProvincia, descripcion: String): boolean",
+											"text": "+agregarSismo(fechaHora: Caldendar, profundidad: double, origen: TOrigen, magnitud: double, latitud: double, longitud: double, provincia: TProvincia, descripcion: String): boolean",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3865,7 +3865,7 @@
 											"font": "Arial;13;0",
 											"left": 1077,
 											"top": 227,
-											"width": 1018.341796875,
+											"width": 1032.80810546875,
 											"height": 13,
 											"text": "+modificarSismo(fechaHora: Caldendar): boolean",
 											"horizontalAlignment": 0
@@ -3883,7 +3883,7 @@
 											"font": "Arial;13;0",
 											"left": 1077,
 											"top": 242,
-											"width": 1018.341796875,
+											"width": 1032.80810546875,
 											"height": 13,
 											"text": "+consultarSismo(fechaHora: Caldendar): Sismo",
 											"horizontalAlignment": 0
@@ -3901,7 +3901,7 @@
 											"font": "Arial;13;0",
 											"left": 1077,
 											"top": 257,
-											"width": 1018.341796875,
+											"width": 1032.80810546875,
 											"height": 13,
 											"text": "+eliminarSismo(fechaHora: Caldendar): boolean",
 											"horizontalAlignment": 0
@@ -3919,7 +3919,7 @@
 											"font": "Arial;13;0",
 											"left": 1077,
 											"top": 272,
-											"width": 1018.341796875,
+											"width": 1032.80810546875,
 											"height": 13,
 											"text": "+agregarPersona(id: String, nombre: String, correo: String, celular: String, provincia: TProvincia): boolean",
 											"horizontalAlignment": 0
@@ -3937,7 +3937,7 @@
 											"font": "Arial;13;0",
 											"left": 1077,
 											"top": 287,
-											"width": 1018.341796875,
+											"width": 1032.80810546875,
 											"height": 13,
 											"text": "+modificarPersona(id: String): boolean",
 											"horizontalAlignment": 0
@@ -3955,7 +3955,7 @@
 											"font": "Arial;13;0",
 											"left": 1077,
 											"top": 302,
-											"width": 1018.341796875,
+											"width": 1032.80810546875,
 											"height": 13,
 											"text": "+consultarPersona(id: String): boolean",
 											"horizontalAlignment": 0
@@ -3973,7 +3973,7 @@
 											"font": "Arial;13;0",
 											"left": 1077,
 											"top": 317,
-											"width": 1018.341796875,
+											"width": 1032.80810546875,
 											"height": 13,
 											"text": "+eliminarPersona(id: String): boolean",
 											"horizontalAlignment": 0
@@ -3991,7 +3991,7 @@
 											"font": "Arial;13;0",
 											"left": 1077,
 											"top": 332,
-											"width": 1018.341796875,
+											"width": 1032.80810546875,
 											"height": 13,
 											"text": "-cargarSismos(): void",
 											"horizontalAlignment": 0
@@ -4009,7 +4009,7 @@
 											"font": "Arial;13;0",
 											"left": 1077,
 											"top": 347,
-											"width": 1018.341796875,
+											"width": 1032.80810546875,
 											"height": 13,
 											"text": "-cargarPersonas(): void",
 											"horizontalAlignment": 0
@@ -4027,7 +4027,7 @@
 											"font": "Arial;13;0",
 											"left": 1077,
 											"top": 362,
-											"width": 1018.341796875,
+											"width": 1032.80810546875,
 											"height": 13,
 											"text": "-guardarSismos(): void",
 											"horizontalAlignment": 0
@@ -4045,7 +4045,7 @@
 											"font": "Arial;13;0",
 											"left": 1077,
 											"top": 377,
-											"width": 1018.341796875,
+											"width": 1032.80810546875,
 											"height": 13,
 											"text": "-guardarPersonas(): void",
 											"horizontalAlignment": 0
@@ -4055,7 +4055,7 @@
 									"font": "Arial;13;0",
 									"left": 1072,
 									"top": 207,
-									"width": 1028.341796875,
+									"width": 1042.80810546875,
 									"height": 188
 								},
 								{
@@ -4098,7 +4098,7 @@
 							"containerChangeable": true,
 							"left": 1072,
 							"top": 144,
-							"width": 1028.341796875,
+							"width": 1042.80810546875,
 							"height": 251,
 							"nameCompartment": {
 								"$ref": "AAAAAAF8BqVTwlHH8w4="
@@ -4410,7 +4410,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1568,
+									"left": 1572,
 									"top": 430,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -4431,8 +4431,8 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 1553,
-									"top": 430,
+									"left": 1557,
+									"top": 429,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -4452,7 +4452,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1597,
+									"left": 1601,
 									"top": 431,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -4472,7 +4472,7 @@
 										"$ref": "AAAAAAF8BqiuxFwo50c="
 									},
 									"font": "Arial;13;0",
-									"left": 1534,
+									"left": 1538,
 									"top": 462,
 									"width": 48.0390625,
 									"height": 13,
@@ -4495,8 +4495,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1555,
-									"top": 444,
+									"left": 1558,
+									"top": 443,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -4515,7 +4515,7 @@
 										"$ref": "AAAAAAF8BqiuxFwo50c="
 									},
 									"font": "Arial;13;0",
-									"left": 1592,
+									"left": 1596,
 									"top": 451,
 									"width": 6.5,
 									"height": 13,
@@ -4538,7 +4538,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1568,
+									"left": 1573,
 									"top": 414,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -4558,7 +4558,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1555,
+									"left": 1559,
 									"top": 416,
 									"height": 13,
 									"alpha": -0.7853981633974483,
@@ -4578,8 +4578,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1596,
-									"top": 410,
+									"left": 1600,
+									"top": 411,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -4628,7 +4628,7 @@
 								"$ref": "AAAAAAF8BgNQd0oEe4o="
 							},
 							"lineStyle": 1,
-							"points": "1583:479;1584:395",
+							"points": "1586:479;1589:395",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF8BqiuxVws1s4="
@@ -4738,7 +4738,7 @@
 							},
 							"name": "profundidad",
 							"visibility": "private",
-							"type": "float"
+							"type": "double"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6447,7 +6447,7 @@
 										"$ref": "AAAAAAF8BqdajleRwzo="
 									},
 									"name": "profundidad",
-									"type": "float"
+									"type": "double"
 								},
 								{
 									"_type": "UMLParameter",
