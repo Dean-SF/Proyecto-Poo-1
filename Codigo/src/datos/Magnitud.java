@@ -7,25 +7,34 @@ package datos;
  * @author Esteban
  */
 public class Magnitud {
-    private float magnitud;;
+    private double magnitud;;
     private TEscala escala;
-
+    
     public Magnitud() {
         //Default
     }
-    public Magnitud(float magnitud, TEscala escala) {
+    public Magnitud(double magnitud) {
         this.magnitud = magnitud;
-        this.escala = escala;
+        if(magnitud > 6.9) {
+            escala = TEscala.MAGNITUD_DE_MOMENTO;
+        } else {
+            escala = TEscala.MAGNITUD_LOCAL;
+        }
     }
 
-    public void setMagnitud(float magnitud) {
+    public void setMagnitud(double magnitud) {
         this.magnitud = magnitud;
+        if(magnitud > 6.9) {
+            escala = TEscala.MAGNITUD_DE_MOMENTO;
+        } else {
+            escala = TEscala.MAGNITUD_LOCAL;
+        }
     }
     public void setEscala(TEscala escala) {
         this.escala = escala;
     }
     
-    public float getMagnitud() {
+    public double getMagnitud() {
         return magnitud;
     }
     public TEscala getEscala() {

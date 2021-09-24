@@ -303,7 +303,7 @@
 											"top": 638,
 											"width": 753.8349609375,
 											"height": 13,
-											"text": "+setHora(hora: int, minutos: int): void",
+											"text": "+setHora(hora: int, minutos: int, segundos: int): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3867,7 +3867,7 @@
 											"top": 227,
 											"width": 1018.341796875,
 											"height": 13,
-											"text": "+modificarSismo(fechaHora: Caldendar, latitud: double, longitud: double): boolean",
+											"text": "+modificarSismo(fechaHora: Caldendar): boolean",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3885,7 +3885,7 @@
 											"top": 242,
 											"width": 1018.341796875,
 											"height": 13,
-											"text": "+consultarSismo(fechaHora: Caldendar, latitud: double, longitud: double): Sismo",
+											"text": "+consultarSismo(fechaHora: Caldendar): Sismo",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3903,7 +3903,7 @@
 											"top": 257,
 											"width": 1018.341796875,
 											"height": 13,
-											"text": "+eliminarSismo(fechaHora: Caldendar, latitud: double, longitud: double): boolean",
+											"text": "+eliminarSismo(fechaHora: Caldendar): boolean",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4946,6 +4946,15 @@
 										"$ref": "AAAAAAF8BhmqY0yH1BE="
 									},
 									"name": "minutos",
+									"type": "int"
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAF8FTTIdescymM=",
+									"_parent": {
+										"$ref": "AAAAAAF8BhmqY0yH1BE="
+									},
+									"name": "segundos",
 									"type": "int"
 								}
 							]
@@ -6525,24 +6534,6 @@
 									},
 									"name": "fechaHora",
 									"type": "Caldendar"
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAF8BrZLSnYTD0U=",
-									"_parent": {
-										"$ref": "AAAAAAF8BqeLHFfU/Tc="
-									},
-									"name": "latitud",
-									"type": "double"
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAF8BrZLSnYUnqg=",
-									"_parent": {
-										"$ref": "AAAAAAF8BqeLHFfU/Tc="
-									},
-									"name": "longitud",
-									"type": "double"
 								}
 							]
 						},
@@ -6573,24 +6564,6 @@
 									},
 									"name": "fechaHora",
 									"type": "Caldendar"
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAF8Brafe3bmBF4=",
-									"_parent": {
-										"$ref": "AAAAAAF8Bqe7glha1FY="
-									},
-									"name": "latitud",
-									"type": "double"
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAF8Brafe3bnlMo=",
-									"_parent": {
-										"$ref": "AAAAAAF8Bqe7glha1FY="
-									},
-									"name": "longitud",
-									"type": "double"
 								}
 							]
 						},
@@ -6619,24 +6592,6 @@
 									},
 									"name": "fechaHora",
 									"type": "Caldendar"
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAF8BrawDXdNjbw=",
-									"_parent": {
-										"$ref": "AAAAAAF8Bq1z4mlv+eY="
-									},
-									"name": "latitud",
-									"type": "double"
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAF8BrawDXdO5Z0=",
-									"_parent": {
-										"$ref": "AAAAAAF8Bq1z4mlv+eY="
-									},
-									"name": "longitud",
-									"type": "double"
 								}
 							]
 						},

@@ -1,7 +1,10 @@
 //Importaciones
 package controladores;
 import datos.Sismo;
+import datos.TOrigen;
 import datos.TProvincia;
+import datos.Localizacion;
+import datos.Magnitud;
 import datos.Persona;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,23 +23,106 @@ public class Administrador {
     }
     
     //Dialogar como buscar los sismos
-    public boolean agregarSismo(){
+    public boolean agregarSismo(Calendar fechaHora, double profundidad, TOrigen origen, double magnitud, double latitud,
+    double longitud, TProvincia provincia, String descripcion){
+        Localizacion localizacion = new Localizacion(latitud, longitud, descripcion, provincia);
+        Magnitud objetoMagnitud = new Magnitud(magnitud);
+        Sismo sismo = new Sismo(fechaHora, profundidad, origen, objetoMagnitud, localizacion);
+        for(Sismo actual : sismos) {
+            if(actual.equals(sismo)){
+                return false;
+            }
+        }
         return true;
     }
-    public Sismo consultarSismo(Calendar fechaHora, double latitud, double longitud){
+    public Sismo consultarSismo(Calendar fechaHora){
         for(Sismo actual : sismos){
-            if(actual.getFechaHora().equals(fechaHora) && actual.obtenerLatitud() == 
-               latitud && actual.obtenerLongitud() == longitud){
+            if(actual.getFechaHora().equals(fechaHora)){
                 return actual;
             }
         }
         return null;
     }
-    public boolean modificarSismo(){
+
+    public boolean modificarSismo(Calendar fechaHora,TModificacion modificacion,int valor){
+        Sismo sismo = consultarSismo(fechaHora);
+        if(sismo.equals(null)) {
+            return false;
+        }
+        switch(modificacion) {
+            case ANNIO:
+                sismo.setFechaAnnio(valor);
+                return true;
+            case DIA:
+                sismo.setFechaDia(valor);
+                return true;
+            case MES:
+                sismo.setFechaMes(valor);
+                return true;
+            case HORA:
+                sismo.setHoraHoras(valor);
+                return true;
+            case MINUTOS:
+                sismo.setHoraMinutos(valor);
+                return true;
+            case SEGUNDOS:
+                sismo.setHorasSegundos(valor);
+                return true;
+            default:
+                break;
+        }
+        return false;
+    }
+
+    public boolean modificarSismo(Calendar fechaHora,TModificacion modificacion, double valor){
+        Sismo sismo = consultarSismo(fechaHora);
+        if(sismo.equals(null)) {
+            return false;
+        }
+        switch(modificacion) {
+            case LATITUD:
+                sismo.setLatitud(valor);
+                return true;
+            case LONGITUD:
+                sismo.setLongitud(valor);
+                return true;
+            case MAGNITUD:
+                sismo.setMagnitud(valor);
+                return true;
+            case PROFUNDIDAD:
+                sismo.setProfundidad(valor);
+                return true;
+            default:
+                break;
+        }
+        return false;
+    }
+
+    public boolean modificarSismo(Calendar fechaHora, TProvincia provincia) {
+        Sismo sismo = consultarSismo(fechaHora);
+        if(sismo.equals(null)) {
+            return false;
+        }
+        sismo.setProvincia(provincia);
         return true;
     }
-    public boolean eliminarSismo(){
-        return false;
+
+    public boolean modificarSismo(Calendar fechaHora, String descripcion) {
+        Sismo sismo = consultarSismo(fechaHora);
+        if(sismo.equals(null)) {
+            return false;
+        }
+        sismo.setDescripcion(descripcion);
+        return true;
+    }
+
+    public boolean eliminarSismo(Calendar fechaHora){
+        Sismo sismo = consultarSismo(fechaHora);
+        if(sismo.equals(null)) {
+            return false;
+        }
+        sismos.remove(sismo);
+        return true;
     }
     
     public boolean agregarPersona(String ID, String nombre, String correo,

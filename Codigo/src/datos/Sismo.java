@@ -9,7 +9,7 @@ import java.util.Calendar;
  */
 public class Sismo {
    private Calendar fechaHora;
-   private float profundidad;
+   private double profundidad;
    private TOrigen origen;
    private Magnitud magnitud;
    private Localizacion localizacion;
@@ -17,7 +17,7 @@ public class Sismo {
     public Sismo() {
         //Default
     }
-    public Sismo(Calendar fechaHora, float profundidad, TOrigen origen, Magnitud magnitud, Localizacion localizacion) {
+    public Sismo(Calendar fechaHora, double profundidad, TOrigen origen, Magnitud magnitud, Localizacion localizacion) {
         this.fechaHora = fechaHora;
         this.profundidad = profundidad;
         this.origen = origen;
@@ -25,11 +25,43 @@ public class Sismo {
         this.localizacion = localizacion;
     }
 
-    public void setFechaHora(Calendar fechaHora) {
-        this.fechaHora = fechaHora;
+    public void setFecha(int dia, int mes, int annio) {
+        this.fechaHora.set(Calendar.DAY_OF_MONTH,dia);
+        this.fechaHora.set(Calendar.MONTH,mes);
+        this.fechaHora.set(Calendar.YEAR,annio);
     }
 
-    public void setProfundidad(float profundidad) {
+    public void setFechaDia(int dia) {
+        this.fechaHora.set(Calendar.DAY_OF_MONTH,dia);
+    }
+    
+    public void setFechaMes(int mes) {
+        this.fechaHora.set(Calendar.MONTH,mes);
+    }
+
+    public void setFechaAnnio(int annio) {
+        this.fechaHora.set(Calendar.YEAR,annio);
+    }
+
+    public void setHora(int hora, int minutos, int segundos) {
+        this.fechaHora.set(Calendar.HOUR, hora);
+        this.fechaHora.set(Calendar.MINUTE, minutos);
+        this.fechaHora.set(Calendar.SECOND, segundos);
+    }
+
+    public void setHoraHoras(int hora) {
+        this.fechaHora.set(Calendar.HOUR, hora);
+    }
+
+    public void setHoraMinutos(int minutos) {
+        this.fechaHora.set(Calendar.MINUTE, minutos);
+    }
+
+    public void setHorasSegundos(int segundos) {
+        this.fechaHora.set(Calendar.SECOND, segundos);
+    }
+
+    public void setProfundidad(double profundidad) {
         this.profundidad = profundidad;
     }
 
@@ -37,19 +69,35 @@ public class Sismo {
         this.origen = origen;
     }
 
-    public void setMagnitud(Magnitud magnitud) {
-        this.magnitud = magnitud;
+    public void setMagnitud(double magnitud) {
+        this.magnitud.setMagnitud(magnitud);;
     }
 
     public void setLocalizacion(Localizacion localizacion) {
         this.localizacion = localizacion;
     }
 
+    public void setLatitud(double latitud) {
+        this.localizacion.setLatitud(latitud);
+    }
+    
+    public void setLongitud(double longitud) {
+        this.localizacion.setLongitud(longitud);
+    }
+
+    public void setProvincia(TProvincia provincia) {
+        this.localizacion.setProvincia(provincia);
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.localizacion.setDescripcion(descripcion);
+    }
+
     public Calendar getFechaHora() {
         return fechaHora;
     }
 
-    public float getProfundidad() {
+    public double getProfundidad() {
         return profundidad;
     }
 
@@ -65,15 +113,20 @@ public class Sismo {
         return localizacion;
     }
 
-    public double obtenerLatitud() {
-        return localizacion.getLatitud();
+    @Override
+    public boolean equals(Object obj) {
+        final Sismo other = (Sismo) obj;
+        if(this == obj){
+            return true;
+        } 
+        if(obj.getClass() != getClass()) {
+            return false;
+        } 
+        if(!(this.fechaHora.equals(other.fechaHora))) {
+            return false;
+        }
+        return true;
     }
-
-    public double obtenerLongitud() {
-        return localizacion.getLongitud();
-    }
-
-    //Hacer la sobrecarga del equals!!
     
     @Override
     public String toString() {
