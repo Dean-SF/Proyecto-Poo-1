@@ -22,6 +22,7 @@ public class MenuSismos extends JPanel implements ActionListener{
     private JButton consultar = new JButton("Consultar un sismo");
     private JButton modificar = new JButton("Modificar un sismo");
     private JButton eliminar = new JButton("Eliminar un sismo");
+    private JButton verMapa = new JButton("Ver Mapa");
 
     // Boton para volver al menu principal
     private JButton volver = new JButton("Volver");
@@ -49,6 +50,10 @@ public class MenuSismos extends JPanel implements ActionListener{
         eliminar.setFont(new Font("Segoe UI",Font.PLAIN,18));
         eliminar.setBounds(300, 250, 190, 40);
         eliminar.addActionListener(this);
+        
+        verMapa.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        verMapa.setBounds(300, 350, 190, 40);
+        verMapa.addActionListener(this);
 
         volver.setFont(new Font("OCR A Extended",Font.PLAIN,20));
         volver.setBounds(650,440,130,30);
@@ -65,6 +70,7 @@ public class MenuSismos extends JPanel implements ActionListener{
         this.add(consultar);
         this.add(modificar);
         this.add(eliminar);
+        this.add(verMapa);
 
         this.add(volver);
 
@@ -81,6 +87,9 @@ public class MenuSismos extends JPanel implements ActionListener{
             AdministradorVentanas.volverAtras();
         } else if(e.getSource() == agregar){
             AdministradorVentanas.abrirAgregarSismos();
+        }
+        else if(e.getSource() == verMapa){
+            AdministradorVentanas.verMapaSismos();
         }
         
     }

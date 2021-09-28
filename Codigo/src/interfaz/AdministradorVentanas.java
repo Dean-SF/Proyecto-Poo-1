@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import interfaz.sismos.AgregarSismos;
 import interfaz.sismos.MenuSismos;
+import interfaz.sismos.MapaSismos;
 import interfaz.estadisticas.MenuGraficos;
 import interfaz.estadisticas.GraficoBarras;
 import interfaz.estadisticas.GraficoHistograma;
@@ -34,6 +35,7 @@ public class AdministradorVentanas{
     private ImageIcon icono = new ImageIcon(getClass().getResource("imagenes/earthquake.png")); // Icono del programa
 
     // Todas las ventanas disponibles de la interfaz:
+    private static MapaSismos mapaSismos = new MapaSismos();
     private static AgregarSismos agregarSismos = new AgregarSismos();
     private static MenuSismos menuSismos = new MenuSismos();
     private static Menu menu = new Menu();
@@ -102,6 +104,10 @@ public class AdministradorVentanas{
         agregarSismos.setVisible(true);
         menuSismos.setVisible(false);
         frame.setSize(755,512);
+    }
+    static public void verMapaSismos(){
+        String url="https://www.google.com/maps/d/edit?mid=1cDD46xY41UoTCr6qk8QTrU2fw4YA-rK0&usp=sharing";
+        mapaSismos.openURL(url);
     }
     
     static public void abrirMenuGraficos(){
