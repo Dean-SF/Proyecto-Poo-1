@@ -6,7 +6,7 @@
 //Esta es la base para enviar correo, la agrego para tenerla ahi y luego seguir con el resto de mi parte
 package controladores;
 
-import java.util.Properties;
+/*import java.util.Properties;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.Session;
@@ -14,7 +14,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.MimeMultipart;*/
 
 /**
  *
@@ -36,7 +36,7 @@ public class EnvioCorreo {
         try
         {
         
-            Properties props = new Properties();
+            /*Properties props = new Properties();
             props.setProperty("mail.smtp.host", "smtp.gmail.com");
             props.setProperty("mail.smtp.starttls.enable", "true");
             props.setProperty("mail.smtp.port", "587");
@@ -67,7 +67,7 @@ public class EnvioCorreo {
             Transport t = session.getTransport("smtp");
             t.connect(user,password);
             t.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
-            t.close();
+            t.close();*/
             
         }
         catch (Exception e)

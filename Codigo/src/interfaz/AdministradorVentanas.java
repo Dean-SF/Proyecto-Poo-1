@@ -135,14 +135,14 @@ public class AdministradorVentanas{
         pilaVentanas.push(histograma);
         histograma.setVisible(true);
         menuGraficos.setVisible(false);
-        frame.setSize(800,512);
+        frame.setSize(515,600);
     }
     
     static public void abrirGraficoPastel(){
         pilaVentanas.push(pastel);
         pastel.setVisible(true);
         menuGraficos.setVisible(false);
-        frame.setSize(800,512);
+        frame.setSize(515,600);
     }
     static public void abrirMenuRegistro(){
         pilaVentanas.push(registro);
