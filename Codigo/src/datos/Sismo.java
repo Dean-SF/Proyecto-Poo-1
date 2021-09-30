@@ -1,6 +1,15 @@
 //Importaciones
 package datos;
+import java.text.DecimalFormat;
 import java.util.Calendar;
+
+import static java.util.Calendar.DAY_OF_MONTH;
+import static java.util.Calendar.MONTH;
+import static java.util.Calendar.YEAR;
+import static java.util.Calendar.HOUR_OF_DAY;
+import static java.util.Calendar.MINUTE;
+import static java.util.Calendar.SECOND;
+
 
 //Clase
 /**
@@ -8,21 +17,24 @@ import java.util.Calendar;
  * @author Esteban
  */
 public class Sismo {
-   private Calendar fechaHora;
-   private double profundidad;
-   private TOrigen origen;
-   private Magnitud magnitud;
-   private Localizacion localizacion;
+    private Calendar fechaHora;
+    private double profundidad;
+    private TOrigen origen;
+    private Magnitud magnitud;
+    private Localizacion localizacion;
+    private int id;
 
     public Sismo() {
         //Default
     }
-    public Sismo(Calendar fechaHora, double profundidad, TOrigen origen, Magnitud magnitud, Localizacion localizacion) {
+    public Sismo(int id, Calendar fechaHora, double profundidad, TOrigen origen, Magnitud magnitud, 
+    Localizacion localizacion) {
         this.fechaHora = fechaHora;
         this.profundidad = profundidad;
         this.origen = origen;
         this.magnitud = magnitud;
         this.localizacion = localizacion;
+        this.id = id;
     }
 
     public void setFecha(int dia, int mes, int annio) {
@@ -93,6 +105,10 @@ public class Sismo {
         this.localizacion.setDescripcion(descripcion);
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Calendar getFechaHora() {
         return fechaHora;
     }
@@ -111,6 +127,68 @@ public class Sismo {
 
     public Localizacion getLocalizacion() {
         return localizacion;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getLatitud() {
+        return localizacion.getLatitud();
+    }
+
+    public double getLongitud() {
+        return localizacion.getLongitud();
+    }
+
+    public String stringFecha(){
+        return fechaHora.get(DAY_OF_MONTH) + "/" + (fechaHora.get(MONTH)+1) + "/" + fechaHora.get(YEAR);
+    }
+
+    public String stringHora(){
+        DecimalFormat formato = new DecimalFormat("00");
+        return formato.format(fechaHora.get(HOUR_OF_DAY)) + ":" + formato.format(fechaHora.get(MINUTE)) + ":" + 
+        formato.format(fechaHora.get(SECOND));
+    }
+
+    public String stringMagnitud(){
+            TEscala escala = magnitud.getEscala();
+            switch (escala) {
+                case MAGNITUD_LOCAL:
+                    return magnitud.getMagnitud() + " Ml";
+                case MAGNITUD_DE_MOMENTO:
+                    return magnitud.getMagnitud() + " Mw";
+                default:
+                    return "N/A";
+            }
+    }
+
+    public String stringLocalizacion() {
+        TProvincia provincia = localizacion.getProvincia();
+        String descripcion = localizacion.getDescripcion();
+        switch (provincia) {
+            case ALAJUELA:
+                return "Alajuela" + ", " + descripcion;
+            case CARTAGO:
+                return "Cartago" + ", " + descripcion;
+            case GUANACASTE:
+                return "Guanacaste" + ", " + descripcion;
+            case HEREDIA:
+                return "Heredia" + ", " + descripcion;
+            case LIMON:
+                return "Limon" + ", " + descripcion;
+            case PUNTARENAS:
+                return "Puntarenas" + ", " + descripcion;
+            case SAN_JOSE:
+                return "San Jose" + ", " + descripcion;
+            default:
+                return "N/A";
+            
+        }
+    }
+
+    public String stringProfundidad() {
+        return profundidad + " Km";
     }
 
     @Override

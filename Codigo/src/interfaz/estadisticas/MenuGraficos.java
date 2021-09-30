@@ -4,7 +4,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import interfaz.AdministradorVentanas;
+import interfaz.GestorVentanas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -66,17 +66,17 @@ public class MenuGraficos extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == provincia) {
-                AdministradorVentanas.abrirGraficoHistograma();
+                GestorVentanas.abrirGraficoHistograma();
         }else if(e.getSource() == origen){
-                AdministradorVentanas.abrirGraficoPastel();
+                GestorVentanas.abrirGraficoPastel();
         }else if(e.getSource() == fechas){
-                AdministradorVentanas.abrirGraficoTabular();
+                GestorVentanas.abrirGraficoTabular();
         }else if(e.getSource() == mes){
-               AdministradorVentanas.abrirGraficoBarras();
+               GestorVentanas.abrirGraficoBarras();
         }else if(e.getSource() == magnitud){
-                AdministradorVentanas.abrirGraficoTabular();
+                GestorVentanas.abrirGraficoTabular();
         }else if(e.getSource() == volver){
-            AdministradorVentanas.volverAtras();
+            GestorVentanas.volverAtras();
         }
     }
 }

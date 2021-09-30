@@ -1,12 +1,11 @@
 package interfaz.estadisticas;
    
 import java.awt.Font;
-import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import interfaz.AdministradorVentanas;
+import interfaz.GestorVentanas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JScrollPane;
@@ -41,6 +40,8 @@ public class GraficoTabular extends JPanel implements ActionListener {
         this.setBounds(0, 0, 800, 512);
         this.setLayout(null);
            
+        titulo.setBounds(0,0,0,0); // Cambiar cuando se necesite
+
         /*JTable tabla = new JTable(datos,titulos);
         tabla.setPreferredScrollableViewportSize(new Dimension(500,50));
         tabla.setFillsViewportHeight(true);
@@ -65,7 +66,7 @@ public class GraficoTabular extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == volver){
-            AdministradorVentanas.volverAtras();
+            GestorVentanas.volverAtras();
         }
     }
 }

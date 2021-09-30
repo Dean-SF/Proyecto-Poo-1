@@ -32,7 +32,7 @@ public class EnvioCorreo {
 
         destino= "demoralesv@gmail.com";
         subject="Prestamo";
-         String us;
+        //String us;
         try
         {
         

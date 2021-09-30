@@ -17,35 +17,46 @@ import java.util.Calendar;
 public class Administrador {
     private ArrayList<Sismo> sismos = new ArrayList<Sismo>();
     private ArrayList<Persona> personas = new ArrayList<Persona>();
+    private int numeroSismo = 1;
 
     public Administrador() {
         //Default
     }
     
+    public ArrayList<Sismo> getSismos() {
+        return sismos;
+    }
+
+    public ArrayList<Persona> getPersonas() {
+        return personas;
+    }
+
     //Dialogar como buscar los sismos
     public boolean agregarSismo(Calendar fechaHora, double profundidad, TOrigen origen, double magnitud, double latitud,
     double longitud, TProvincia provincia, String descripcion){
         Localizacion localizacion = new Localizacion(latitud, longitud, descripcion, provincia);
         Magnitud objetoMagnitud = new Magnitud(magnitud);
-        Sismo sismo = new Sismo(fechaHora, profundidad, origen, objetoMagnitud, localizacion);
+        Sismo sismo = new Sismo(numeroSismo, fechaHora, profundidad, origen, objetoMagnitud, localizacion);
         for(Sismo actual : sismos) {
             if(actual.equals(sismo)){
                 return false;
             }
         }
+        sismos.add(sismo);
+        numeroSismo++;
         return true;
     }
-    public Sismo consultarSismo(Calendar fechaHora){
+    public Sismo consultarSismo(int id){
         for(Sismo actual : sismos){
-            if(actual.getFechaHora().equals(fechaHora)){
+            if(actual.getId() == id){
                 return actual;
             }
         }
         return null;
     }
 
-    public boolean modificarSismo(Calendar fechaHora,TModificacion modificacion,int valor){
-        Sismo sismo = consultarSismo(fechaHora);
+    public boolean modificarSismo(int id,TModificacion modificacion,int valor){
+        Sismo sismo = consultarSismo(id);
         if(sismo.equals(null)) {
             return false;
         }
@@ -74,8 +85,8 @@ public class Administrador {
         return false;
     }
 
-    public boolean modificarSismo(Calendar fechaHora,TModificacion modificacion, double valor){
-        Sismo sismo = consultarSismo(fechaHora);
+    public boolean modificarSismo(int id,TModificacion modificacion, double valor){
+        Sismo sismo = consultarSismo(id);
         if(sismo.equals(null)) {
             return false;
         }
@@ -98,8 +109,8 @@ public class Administrador {
         return false;
     }
 
-    public boolean modificarSismo(Calendar fechaHora, TProvincia provincia) {
-        Sismo sismo = consultarSismo(fechaHora);
+    public boolean modificarSismo(int id, TProvincia provincia) {
+        Sismo sismo = consultarSismo(id);
         if(sismo.equals(null)) {
             return false;
         }
@@ -107,8 +118,8 @@ public class Administrador {
         return true;
     }
 
-    public boolean modificarSismo(Calendar fechaHora, String descripcion) {
-        Sismo sismo = consultarSismo(fechaHora);
+    public boolean modificarSismo(int id, String descripcion) {
+        Sismo sismo = consultarSismo(id);
         if(sismo.equals(null)) {
             return false;
         }
@@ -116,8 +127,8 @@ public class Administrador {
         return true;
     }
 
-    public boolean eliminarSismo(Calendar fechaHora){
-        Sismo sismo = consultarSismo(fechaHora);
+    public boolean eliminarSismo(int id){
+        Sismo sismo = consultarSismo(id);
         if(sismo.equals(null)) {
             return false;
         }

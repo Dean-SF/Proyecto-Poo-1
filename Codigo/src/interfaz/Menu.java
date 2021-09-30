@@ -59,12 +59,12 @@ public class Menu extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == sismos) {
-            AdministradorVentanas.abrirMenuSismos();
+            GestorVentanas.abrirMenuSismos();
         }else if(e.getSource()==graficos){
-            AdministradorVentanas.abrirMenuGraficos();
+            GestorVentanas.abrirMenuGraficos();
         }
         if(e.getSource()==personas){
-            AdministradorVentanas.abrirMenuRegistro();
+            GestorVentanas.abrirMenuRegistro();
         }
     }
 }

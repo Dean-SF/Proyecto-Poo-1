@@ -4,7 +4,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import interfaz.AdministradorVentanas;
+import interfaz.GestorVentanas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import org.jfree.chart.ChartFactory;
@@ -47,8 +47,8 @@ public class GraficoHistograma extends JPanel implements ActionListener{
         this.setBounds(0, 0, 800, 600);
         this.setLayout(null);
         
-        /*titulo.setFont(new Font("OCR A Extended",Font.PLAIN,34));
         titulo.setBounds(290,50,700,40);
+        /*titulo.setFont(new Font("OCR A Extended",Font.PLAIN,34));
         this.add(titulo);*/
         
         JPanel bar = panel();
@@ -67,7 +67,7 @@ public class GraficoHistograma extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == volver){
-            AdministradorVentanas.volverAtras();
+            GestorVentanas.volverAtras();
         }
     }
 }

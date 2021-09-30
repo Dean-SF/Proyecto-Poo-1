@@ -6,7 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import interfaz.AdministradorVentanas;
+import interfaz.GestorVentanas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -84,12 +84,12 @@ public class MenuSismos extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == volver) {
-            AdministradorVentanas.volverAtras();
+            GestorVentanas.volverAtras();
         } else if(e.getSource() == agregar){
-            AdministradorVentanas.abrirAgregarSismos();
+            GestorVentanas.abrirAgregarSismos();
         }
         else if(e.getSource() == verMapa){
-            AdministradorVentanas.verMapaSismos();
+            GestorVentanas.verMapaSismos();
         }
         
     }

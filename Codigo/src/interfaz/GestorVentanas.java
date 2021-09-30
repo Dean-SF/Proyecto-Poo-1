@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import interfaz.sismos.AgregarSismos;
+import interfaz.sismos.AdminSismos;
 import interfaz.sismos.MenuSismos;
 import interfaz.sismos.MapaSismos;
 import interfaz.estadisticas.MenuGraficos;
@@ -17,6 +17,7 @@ import interfaz.estadisticas.GraficoHistograma;
 import interfaz.estadisticas.GraficoPastel;
 import interfaz.estadisticas.GraficoTabular;
 import InterfazPersonas.MenuRegister;
+
 
 /** 
  * Clase AdministradorVentanas: Esta clase
@@ -29,14 +30,14 @@ import InterfazPersonas.MenuRegister;
  * Esta clase se encarga de eso ultimo.
 */
 
-public class AdministradorVentanas{
+public class GestorVentanas{
+
     private static JFrame frame = new JFrame(); // Este objeto es el frame principal donde van a ir las ventanas
     
     private ImageIcon icono = new ImageIcon(getClass().getResource("imagenes/earthquake.png")); // Icono del programa
 
     // Todas las ventanas disponibles de la interfaz:
-    private static MapaSismos mapaSismos = new MapaSismos();
-    private static AgregarSismos agregarSismos = new AgregarSismos();
+    private static AdminSismos adminSismos = new AdminSismos();
     private static MenuSismos menuSismos = new MenuSismos();
     private static Menu menu = new Menu();
     private static MenuGraficos menuGraficos = new MenuGraficos();
@@ -52,7 +53,7 @@ public class AdministradorVentanas{
                                                                       // la que esta por salir es la actual
 
     // Constructor de la clase:
-    public AdministradorVentanas() {
+    public GestorVentanas() {
         // Inicializacion del historial de ventanas
         pilaVentanas.push(menu); // Se guarda menu de primero porque es la ventana actual
         
@@ -65,7 +66,7 @@ public class AdministradorVentanas{
 
         frame.add(menu);    // Agrega la ventana menu
         frame.add(menuSismos); // Agrega la ventana menu de sismos 
-        frame.add(agregarSismos);
+        frame.add(adminSismos);
         frame.add(menuGraficos);
         frame.add(barras);
         frame.add(tabular);
@@ -100,14 +101,14 @@ public class AdministradorVentanas{
     }
 
     static public void abrirAgregarSismos(){
-        pilaVentanas.push(agregarSismos);
-        agregarSismos.setVisible(true);
+        pilaVentanas.push(adminSismos);
+        adminSismos.setVisible(true);
         menuSismos.setVisible(false);
-        frame.setSize(755,512);
+        frame.setSize(1280,512);
     }
     static public void verMapaSismos(){
-        String url="https://www.google.com/maps/d/edit?mid=1cDD46xY41UoTCr6qk8QTrU2fw4YA-rK0&usp=sharing";
-        mapaSismos.openURL(url);
+        String url="https://www.google.com/maps/place/9%C2%B003'19.8%22N+84%C2%B001'33.6%22W/";
+        MapaSismos.openURL(url);
     }
     
     static public void abrirMenuGraficos(){
