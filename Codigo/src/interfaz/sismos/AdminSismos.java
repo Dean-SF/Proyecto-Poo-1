@@ -15,7 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-
+import controladores.TModificacion;
 import interfaz.GestorVentanas;
 import datos.Sismo;
 import datos.TOrigen;
@@ -47,7 +47,7 @@ public class AdminSismos extends JPanel implements ActionListener{
     private JTextField campoMes = new JTextField();
 
     private JLabel año = new JLabel("Año:");
-    private JTextField campoAño = new JTextField();
+    private JTextField campoAnnio = new JTextField();
 
     private JLabel hora = new JLabel("Hora:");
 
@@ -127,8 +127,8 @@ public class AdminSismos extends JPanel implements ActionListener{
 
         año.setFont(new Font("SimSun",Font.PLAIN,20));
         año.setBounds(175,80,100,25);
-        campoAño.setBounds(220,80,43,25);
-        campoAño.setFont(new Font("SimSun",Font.PLAIN,18));
+        campoAnnio.setBounds(220,80,43,25);
+        campoAnnio.setFont(new Font("SimSun",Font.PLAIN,18));
 
         // Hora
         hora.setFont(new Font("Segoe UI Light",Font.PLAIN,25));
@@ -222,9 +222,11 @@ public class AdminSismos extends JPanel implements ActionListener{
 
         eliminar.setFont(new Font("Segoe UI",Font.PLAIN,18));
         eliminar.setBounds(750,440,130,30);
+        eliminar.addActionListener(this);
 
         modificar.setFont(new Font("Segoe UI",Font.PLAIN,18));
         modificar.setBounds(890,440,130,30);
+        modificar.addActionListener(this);
 
         id.setFont(new Font("SimSun",Font.PLAIN,20));
         id.setBounds(610,400,30,30);
@@ -249,7 +251,7 @@ public class AdminSismos extends JPanel implements ActionListener{
         this.add(mes);
         this.add(campoMes);
         this.add(año);
-        this.add(campoAño);
+        this.add(campoAnnio);
 
         this.add(hora);
         this.add(horas);
@@ -305,8 +307,19 @@ public class AdminSismos extends JPanel implements ActionListener{
         }
 
         // Boton para agregar sismo
-        if(e.getSource() == agregar) {
+        else if(e.getSource() == agregar) {
             agregarSismo();
+        }
+
+        // Boton para eliminar sismo
+        else if(e.getSource() == eliminar) {
+            eliminarSismo();
+        }
+
+        // Boton para modificar sismo
+        else if(e.getSource() == modificar) {
+            modificarSismo();
+            cargarTabla();
         }
 
     }
@@ -358,7 +371,7 @@ public class AdminSismos extends JPanel implements ActionListener{
      * Metodo para agregar un sismo a la lista de sismos, esto por medio de un objeto de la clase Administrador
     */
     private void agregarSismo() {
-        Calendar fechaHora = verificarFecha();
+        Calendar fechaHora = verificarFechaHora();
             if(fechaHora == null) {
                 JOptionPane.showMessageDialog(this, "POR FAVOR VERIFIQUE LA FECHA Y LA HORA","ERROR",
                 JOptionPane.ERROR_MESSAGE);
@@ -407,20 +420,67 @@ public class AdminSismos extends JPanel implements ActionListener{
 
 
     /**
-     * Metodo que verifica si la fecha y hora estan en el formato correcto
+     * Metodo que verifica si la fecha y hora estan en el formato correcto usando los metodos {@link #verificarFecha()}
+     * y {@link #verificarHora()}
      * @return un objeto tipo {@code Calendar}, en caso de que este en un mal formato retorna {@code null}
     */
+    private Calendar verificarFechaHora() {
+
+        // Se usan los metodos para verificar las partes de la hora y la fecha
+        Calendar fechaHora = verificarFecha();
+        int[] hora = verificarHora();
+
+        // se comprueba que estas sean varlidad
+        if(fechaHora == null || hora == null) {
+            return null;
+        }
+
+        // Se realizan los cambios y se retorna
+        fechaHora.set(Calendar.HOUR_OF_DAY,hora[0]);
+        fechaHora.set(Calendar.MINUTE,hora[1]);
+        fechaHora.set(Calendar.SECOND,hora[2]);
+        return fechaHora;
+    }
+
+    /**
+     * Metodo que verifica la fecha ingresada en la ventana
+     * @return objeto tipo {@code Calendar} en caso que sea correcto y {@code null} en caso de que sea incorrecto
+     */
     private Calendar verificarFecha() {
         try {
-            // Se convierte a entero todos los datos de la fecha, en caso de que alguno no se pueda
-            // Se retorna null debido al try_catch
             int mes = Integer.parseInt(campoMes.getText());
             int dia = Integer.parseInt(campoDia.getText());
-            int annio = Integer.parseInt(campoAño.getText());
+            int annio = Integer.parseInt(campoAnnio.getText());
+            Calendar fecha = new GregorianCalendar(annio, mes-1, dia);
+            // Si el objeto tipo calendar no tiene los datos a como entraron, significa que este intento
+            // compensar los datos que se pasaban del rango y quedo una fecha no deseada, por lo que se retorna null
+            if(fecha.get(Calendar.YEAR) != annio) {
+                return null;
+            }
+            if(fecha.get(Calendar.MONTH) != (mes-1)) {
+                return null;
+            }
+            if(fecha.get(Calendar.DAY_OF_MONTH) != dia) {
+                return null;
+            }
+            
+            // En caso de que todo lo anterior no se cumpla, la fecha esta correcta
+            return fecha;
+        } catch (Exception e) {
+            // Cuando se digita un caracter que no es un numero, se retorna null para avisar
+            return null;
+        }
+    }
+
+    /**
+     * Metodo que verifica la Hora ingresada en la ventana
+     * @return objeto tipo {@code int[]} en caso que sea correcto y {@code null} en caso de que sea incorrecto
+     */
+    private int[] verificarHora() {
+        try {
             int hora = Integer.parseInt(campoHoras.getText());
             int minutos = Integer.parseInt(campoMinutos.getText());
             int segundos =  Integer.parseInt(campoSegundos.getText());
-
             // Verificacion de la hora
             if(!(0 <= hora && hora <= 23)) {
                 return null;
@@ -434,30 +494,14 @@ public class AdminSismos extends JPanel implements ActionListener{
                 return null;
             }
 
-            // Se crea un objeto tipo calendar con los datos obtenidos
-            Calendar fechaHora = new GregorianCalendar(annio, mes-1, dia, hora, minutos, segundos);
-            
-            // Si el objeto tipo calendar no tiene los datos a como entraron, significa que este intento
-            // compensar los datos que se pasaban del rango y quedo una fecha no deseada, por lo que se retorna null
-            if(fechaHora.get(Calendar.YEAR) != annio) {
-                return null;
-            }
-            if(fechaHora.get(Calendar.MONTH) != (mes-1)) {
-                return null;
-            }
-            if(fechaHora.get(Calendar.DAY_OF_MONTH) != dia) {
-                return null;
-            }
+            // Se crea un array que contenga la hora en el orden comun de una hora
+            int [] arr = {hora,minutos,segundos};
+            return arr;
 
-            // En caso de que todo lo anterior no se cumpla, la fecha esta correcta
-            return fechaHora;
-
-        } catch (NumberFormatException e) {
-
-            // Cuando se digita un caracter que no es un numero, se retorna null para avisar
+        } catch (Exception e) {
             return null;
         }
-    }
+    } 
 
     /**
      * Este metodo comprueba si un string de entrada es un numero mayor a 0
@@ -543,5 +587,154 @@ public class AdminSismos extends JPanel implements ActionListener{
             default:
                 return null;
         }
+    }
+
+    /**
+     * Metodo para verficicar que el ID sea un numero entero positivo y no se haya ingresado otra cosa en la ventana
+     * @return {@code int} el ID en caso de que este correcto, de lo contrario retorna -1
+     */
+    private int verificarId(){
+        String string = idCampo.getText();
+        try { // try_catch verifica si este string es valido para ser un entero
+            int id = Integer.parseInt(string);
+            if(id <= 0) {
+                return -1;
+            }
+            return id;
+
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
+    /** 
+     * Metodo para eliminar un sismo dado un ID en la ventana
+    */
+    private void eliminarSismo() {
+        int id = verificarId();
+        if(id == -1){
+            JOptionPane.showMessageDialog(this, "EL ID INTRODUCIDO ES INVALIDO","ERROR",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        boolean resultado = adminDatos.eliminarSismo(id);
+        if(!(resultado)) {
+            JOptionPane.showMessageDialog(this, "EL ID INTRODUCIDO NO EXISTE","ERROR",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        cargarTabla();
+    }
+
+    /** 
+     * Metodo para modificar sismos, modifica el sismo seleccionado segun los datos ingresados en la ventana, las
+     * modificaciones se realizan de arriba hacia abajo, por ende, si se encuentra algun error en algun camino de la
+     * modificacion, realizara las anteriores y se avisara al usuario donde ocurrio el error
+    */
+    private void modificarSismo() {
+
+        // Se verifica el ID
+        int id = verificarId();
+        if(id == -1){
+            JOptionPane.showMessageDialog(this, "EL ID INTRODUCIDO ES INVALIDO","ERROR",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Mensaje extra para los errores
+        String msg_extra = ", SI REALIZO MODIFICACIONES PREVIAS, ESTAS FUERON REALIZADAS";
+
+        // Se guardan algunos campos en formato String o de su tipo de enumeracion ya que son usadas multiples
+        // veces durante el metodo
+        String campoProfundidad = this.campoProfundidad.getText();
+        String campoMagnitud = this.campoMagnitud.getText();
+        String campoLatitud = this.campoLatitud.getText();
+        String campoLongitud = this.campoLongitud.getText();
+        String campoDescripcion = this.campoDescripcion.getText();
+        String campoProvincia = String.valueOf(this.campoProvincia.getSelectedItem());
+        String campoOrigen = String.valueOf(this.campoOrigen.getSelectedItem());
+        TProvincia provincia = provinciaEnum(campoProvincia);
+        TOrigen origen = origenEnum(campoOrigen);
+
+
+        // Se verifica si la fecha esta completa y no hay ningun espacio vacio
+        if(campoDia.getText().length() != 0 && campoMes.getText().length() != 0 && campoAnnio.getText().length() != 0) {
+            Calendar fecha = verificarFecha(); // se usa el metodo de verificar fecha para asegurarse que este correcta
+            if(fecha == null) {
+                JOptionPane.showMessageDialog(this, "FECHA INVALIDA" + msg_extra,"ERROR",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Modificaciones:
+            adminDatos.modificarSismo(id, TModificacion.DIA, fecha.get(Calendar.DAY_OF_MONTH));
+            adminDatos.modificarSismo(id, TModificacion.MES, fecha.get(Calendar.MONTH));
+            adminDatos.modificarSismo(id, TModificacion.ANNIO, fecha.get(Calendar.YEAR));
+        }
+
+        // Los espacios vacios y completos se revisan en cada elemento, en cada if del metodo.
+        if(campoHoras.getText().length() != 0  && campoMinutos.getText().length() != 0 && 
+        campoSegundos.getText().length() != 0 ) {
+            int[] hora = verificarHora(); // se usa el metodo para verificar que la hora este correcta
+            if(hora == null) {
+                JOptionPane.showMessageDialog(this, "HORA INVALIDA" + msg_extra,"ERROR",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Modificaciones:
+            adminDatos.modificarSismo(id, TModificacion.HORA, hora[0]);
+            adminDatos.modificarSismo(id, TModificacion.MINUTOS, hora[1]);
+            adminDatos.modificarSismo(id, TModificacion.SEGUNDOS, hora[2]);
+        }
+
+        if(campoProfundidad.length() != 0) {
+            if(verificarNumeros(campoProfundidad)) { // verificacion de datos
+                JOptionPane.showMessageDialog(this, "PROFUNDIDAD INVALIDA"+msg_extra,"ERROR",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Modificaciones:
+            double profundidad = Double.parseDouble(campoProfundidad);
+            adminDatos.modificarSismo(id, TModificacion.PROFUNDIDAD, profundidad);
+        }
+
+        adminDatos.modificarSismo(id, origen); // modificacion de la provincia
+
+        if(campoMagnitud.length() != 0) {
+            if(verificarNumeros(campoMagnitud)) { // verificacion de datos
+                JOptionPane.showMessageDialog(this, "MAGNITUD INVALIDA" + msg_extra,"ERROR",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Modificaciones:
+            double magnitud = Double.parseDouble(campoMagnitud);
+            adminDatos.modificarSismo(id, TModificacion.MAGNITUD, magnitud);
+        }
+
+        if(campoLatitud.length() != 0) { 
+            if(verificarCoordenadas(campoLatitud)) { // verificacion de datos
+                JOptionPane.showMessageDialog(this, "LATITUD INVALIDA" + msg_extra,"ERROR",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Modificaciones:
+            double latitud = Double.parseDouble(campoLatitud);
+            adminDatos.modificarSismo(id, TModificacion.LATITUD, latitud);
+        }
+
+        if(campoLongitud.length() != 0) {
+            if(verificarCoordenadas(campoLongitud)) { // verificacion de datos
+                JOptionPane.showMessageDialog(this, "LONGITUD INVALIDA" + msg_extra,"ERROR",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Modificaciones:
+            double longitud = Double.parseDouble(campoLongitud);
+            adminDatos.modificarSismo(id, TModificacion.LONGITUD, longitud);
+        }
+
+        adminDatos.modificarSismo(id, provincia); // modificacion de la provincia
+
+        if(campoDescripcion.length() != 0) {
+            // Modificaciones:
+            adminDatos.modificarSismo(id, campoDescripcion);
+        } 
     }
 }

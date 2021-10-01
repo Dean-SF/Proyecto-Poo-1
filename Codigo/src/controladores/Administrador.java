@@ -57,7 +57,7 @@ public class Administrador {
 
     public boolean modificarSismo(int id,TModificacion modificacion,int valor){
         Sismo sismo = consultarSismo(id);
-        if(sismo.equals(null)) {
+        if(sismo == null) {
             return false;
         }
         switch(modificacion) {
@@ -87,7 +87,7 @@ public class Administrador {
 
     public boolean modificarSismo(int id,TModificacion modificacion, double valor){
         Sismo sismo = consultarSismo(id);
-        if(sismo.equals(null)) {
+        if(sismo == null) {
             return false;
         }
         switch(modificacion) {
@@ -111,16 +111,25 @@ public class Administrador {
 
     public boolean modificarSismo(int id, TProvincia provincia) {
         Sismo sismo = consultarSismo(id);
-        if(sismo.equals(null)) {
+        if(sismo == null) {
             return false;
         }
         sismo.setProvincia(provincia);
         return true;
     }
 
+    public boolean modificarSismo(int id, TOrigen origen) {
+        Sismo sismo = consultarSismo(id);
+        if(sismo == null) {
+            return false;
+        }
+        sismo.setOrigen(origen);
+        return true;
+    }
+
     public boolean modificarSismo(int id, String descripcion) {
         Sismo sismo = consultarSismo(id);
-        if(sismo.equals(null)) {
+        if(sismo == null) {
             return false;
         }
         sismo.setDescripcion(descripcion);
@@ -129,7 +138,7 @@ public class Administrador {
 
     public boolean eliminarSismo(int id){
         Sismo sismo = consultarSismo(id);
-        if(sismo.equals(null)) {
+        if(sismo == null) {
             return false;
         }
         sismos.remove(sismo);

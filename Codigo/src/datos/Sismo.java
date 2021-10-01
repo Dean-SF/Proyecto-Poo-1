@@ -56,13 +56,13 @@ public class Sismo {
     }
 
     public void setHora(int hora, int minutos, int segundos) {
-        this.fechaHora.set(Calendar.HOUR, hora);
+        this.fechaHora.set(Calendar.HOUR_OF_DAY, hora);
         this.fechaHora.set(Calendar.MINUTE, minutos);
         this.fechaHora.set(Calendar.SECOND, segundos);
     }
 
     public void setHoraHoras(int hora) {
-        this.fechaHora.set(Calendar.HOUR, hora);
+        this.fechaHora.set(Calendar.HOUR_OF_DAY, hora);
     }
 
     public void setHoraMinutos(int minutos) {
