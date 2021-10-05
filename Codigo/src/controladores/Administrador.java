@@ -22,7 +22,19 @@ public class Administrador {
     public Administrador() {
         //Default
     }
-    
+    public void setNumeroSismo() {
+        for(Sismo actual : sismos) {
+            if(numeroSismo < actual.getId()) {
+                numeroSismo = actual.getId();
+            }
+        }
+        numeroSismo++;
+    }
+
+    public int getNumeroSismo() {
+        return numeroSismo;
+    }
+
     public ArrayList<Sismo> getSismos() {
         return sismos;
     }
@@ -46,6 +58,21 @@ public class Administrador {
         numeroSismo++;
         return true;
     }
+
+    public boolean agregarSismo(Calendar fechaHora, double profundidad, TOrigen origen, double magnitud, double latitud,
+    double longitud, TProvincia provincia, String descripcion, int id){
+        Localizacion localizacion = new Localizacion(latitud, longitud, descripcion, provincia);
+        Magnitud objetoMagnitud = new Magnitud(magnitud);
+        Sismo sismo = new Sismo(id, fechaHora, profundidad, origen, objetoMagnitud, localizacion);
+        for(Sismo actual : sismos) {
+            if(actual.equals(sismo)){
+                return false;
+            }
+        }
+        sismos.add(sismo);
+        return true;
+    }
+
     public Sismo consultarSismo(int id){
         for(Sismo actual : sismos){
             if(actual.getId() == id){

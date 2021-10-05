@@ -293,6 +293,7 @@ public class AdminSismos extends JPanel implements ActionListener{
 
         // La hace invisible
         this.setVisible(false);
+        cargarTabla();
     }
 
     /** 

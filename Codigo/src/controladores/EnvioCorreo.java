@@ -21,12 +21,12 @@ import javax.mail.internet.MimeMultipart;*/
  * @author DMV
  */
 public class EnvioCorreo {
-    private static  String user="rm070396@gmail.com";
+    private static String user="rm070396@gmail.com";
     private static String password="KEEPcalm6887*";
     private static String subject;
     private static String text;
     private static String destino;
-     public  void enviar() {
+     public void enviar() {
         
         text=	"joto";
 

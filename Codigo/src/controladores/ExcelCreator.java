@@ -1,11 +1,14 @@
 package controladores;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
@@ -13,20 +16,34 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import datos.Sismo;
+import datos.TOrigen;
+import datos.TProvincia;
 
 import static principal.Inicializador.adminDatos;
 
 public class ExcelCreator {
-    private XSSFWorkbook excel = new XSSFWorkbook();
-    private XSSFSheet sismos = excel.createSheet("Sismos");
-    //private XSSFSheet personas = excel.createSheet("Personas");
     private File archivo = new File("src/principal/datos.xlsx");
-    private CellStyle formatoFecha = excel.createCellStyle();
-    private CellStyle formatoDefault = excel.createCellStyle();
+    private XSSFWorkbook excel;
+    private XSSFSheet sismos;
+    private CellStyle formatoFecha;
     private Row nuevaFila;
     private Cell nuevaCelda;
 
-    public ExcelCreator(){
+    public ExcelCreator() throws InvalidFormatException, IOException{
+        if(archivo.exists()) {
+            cargarExcel();
+            return;
+        }
+        excel = new XSSFWorkbook();
+        sismos = excel.createSheet("Sismos");
+        formatoFecha = excel.createCellStyle();
+        formatoFecha.setDataFormat((short) 22);
+        cargarCabeza();
+        
+        
+    }
+
+    private void cargarCabeza() {
         nuevaFila = sismos.createRow(0);
         String[] cabeza = {"ID","Fecha","Magnitud","Profundidad","Origen","Provincia",
                            "Descripcion","Latitud","Longitud"};
@@ -35,8 +52,6 @@ public class ExcelCreator {
             nuevaCelda = nuevaFila.createCell(i);
             nuevaCelda.setCellValue(cabeza[i]);
         }
-
-        formatoFecha.setDataFormat((short) 22);
     }
 
     private void guardarExcel() throws IOException {
@@ -88,13 +103,55 @@ public class ExcelCreator {
     }
 
     public void agregarUltimoSismo() throws IOException {
+        
         ArrayList<Sismo> listaSismos = adminDatos.getSismos();
         Sismo sismo = listaSismos.get((listaSismos.size()-1));
-
         nuevaFila = sismos.createRow(listaSismos.size());
         agregarSismo(sismo);
         guardarExcel();
     }
 
-    
+    private void cargarExcel() throws InvalidFormatException, IOException {
+        excel = new XSSFWorkbook(new FileInputStream(archivo));
+        formatoFecha = excel.createCellStyle();
+        formatoFecha.setDataFormat((short) 22);
+        sismos = excel.getSheet("Sismos");
+        nuevaFila = sismos.getRow(1);
+
+        for(int i = 1; nuevaFila != null; i++) {
+            
+            nuevaCelda = nuevaFila.getCell(0);
+            int id = (int) nuevaCelda.getNumericCellValue();
+
+            nuevaCelda = nuevaFila.getCell(1);
+            Calendar fecha = new GregorianCalendar();
+            fecha.setTimeInMillis(nuevaCelda.getDateCellValue().getTime());
+
+            nuevaCelda = nuevaFila.getCell(2);
+            double mag = nuevaCelda.getNumericCellValue();
+
+            nuevaCelda = nuevaFila.getCell(3);
+            double prof = nuevaCelda.getNumericCellValue();
+
+            nuevaCelda = nuevaFila.getCell(4);
+            TOrigen origen = Sismo.stringToTOrigen(nuevaCelda.getStringCellValue());
+
+            nuevaCelda = nuevaFila.getCell(5);
+            TProvincia provincia = Sismo.stringToTProvincia(nuevaCelda.getStringCellValue());
+
+            nuevaCelda = nuevaFila.getCell(6);
+            String descripcion = nuevaCelda.getStringCellValue();
+            
+            nuevaCelda = nuevaFila.getCell(7);
+            double lat = nuevaCelda.getNumericCellValue();
+
+            nuevaCelda = nuevaFila.getCell(8);
+            double lon = nuevaCelda.getNumericCellValue();
+
+            nuevaFila = sismos.getRow(i+1);
+
+            adminDatos.agregarSismo(fecha, prof, origen, mag, lat, lon, provincia, descripcion, id);
+        }
+        adminDatos.setNumeroSismo();
+    }
 }
