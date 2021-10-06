@@ -5,6 +5,7 @@
  */
 package InterfazPersonas;
 
+import controladores.Administrador;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -13,9 +14,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import interfaz.GestorVentanas;
-
+import datos.DatosPersonas;
+import datos.Persona;
+import datos.TProvincia;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 /**
  *
  * @author DMV
@@ -31,6 +37,9 @@ public class MenuRegister extends JPanel implements ActionListener {
     
     private JLabel labelCorreo = new JLabel("Correo Electronico:");
     private JTextField correo = new JTextField();
+    
+    private JLabel labelID = new JLabel("ID:");
+    private JTextField ID = new JTextField();
     
     //Lista de provincias para suscribirse
     private JLabel labelProvincias = new JLabel("Provincias de Interes:");
@@ -53,16 +62,22 @@ public class MenuRegister extends JPanel implements ActionListener {
     labelNombre.setBounds(10,70,100,25);
     nombre.setFont(new Font("Segoe UI",Font.PLAIN,18));
     nombre.setBounds(25,100,150,25);
+    //ID
+    labelID.setFont(new Font("Segoe UI",Font.PLAIN,18));
+    labelID.setBounds(10,130,100,25);
+    ID.setFont(new Font("Segoe UI",Font.PLAIN,18));
+    ID.setBounds(25,160,150,25);
     //Numero
     labelNumero.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    labelNumero.setBounds(10,130,100,25);
+    labelNumero.setBounds(10,190,100,25);
     numero.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    numero.setBounds(25,160,100,25);
+    numero.setBounds(25,220,100,25);
     //Correo
     labelCorreo.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    labelCorreo.setBounds(10,195,150,25);
+    labelCorreo.setBounds(10,255,150,25);
     correo.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    correo.setBounds(25,225,150,25);
+    correo.setBounds(25,285,250,25);
+    
     //Provincias
     labelProvincias.setFont(new Font("Segoe UI",Font.PLAIN,18));
     labelProvincias.setBounds(400,70,200,25);
@@ -99,6 +114,8 @@ public class MenuRegister extends JPanel implements ActionListener {
     this.add(numero);
     this.add(labelCorreo);
     this.add(correo);
+    this.add(labelID);
+    this.add(ID);
     this.add(labelProvincias);
     this.add(sanjose);
     this.add(cartago);
@@ -112,11 +129,93 @@ public class MenuRegister extends JPanel implements ActionListener {
     this.setVisible(false);
     }
     
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == volver) {
             GestorVentanas.volverAtras();
         }
+        if(e.getSource()== aceptar){
+            agregarPersona();
+            
+        }
     }
-    
+    public void agregarPersona(){
+        if(verificarNombre() == -1){
+            JOptionPane.showMessageDialog(this, "FAVOR INTRODUZCA UN NOMBRE","ERROR",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(verificarID() == -1){//verifica que el ID no esté vacio y sean numeros enteros
+            JOptionPane.showMessageDialog(this, "EL ID INTRODUCIDO ES INVALIDO","ERROR",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(verificarNumero() == -1){
+            JOptionPane.showMessageDialog(this, "EL NÚMERO INTRODUCIDO ES INVALIDO","ERROR",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(verificarCorreo()=="-1"){//verifica que el correo no esté vacio y sea formato valido
+            JOptionPane.showMessageDialog(this, "EL CORREO INTRODUCIDO ES INVALIDO","ERROR",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //Aqui se agregaba la persona al excel
+        //DatosPersonas.CrearExcel(nombre.getText(), correo.getText(), numero.getText(), ID.getText(), crearListaProvincias());
+    }
+    private int verificarNombre(){
+        String string = nombre.getText();
+        if(string.isBlank())
+            return -1;
+        return 1;
+    }
+    private int verificarNumero(){
+        String string = numero.getText();
+        try { // try_catch verifica si este string es valido para ser un entero
+            int number = Integer.parseInt(string);
+            if(number <= 0) {
+                return -1;
+            }
+            return number;
+
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+    private int verificarID(){
+    String string = ID.getText();
+        try { // try_catch verifica si este string es valido para ser un entero
+            int id = Integer.parseInt(string);
+            if(id <= 0) {
+                return -1;
+            }
+            return id;
+
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+    private String verificarCorreo(){
+         if(correo.getText().matches("^[\\w.\\-]+\\@[\\w.\\-]+\\.[a-zA-z]{2,6}$")){    
+            return correo.getText();
+        }else{
+            return "-1";
+        }
+    }
+    private List crearListaProvincias(){
+        List provincias = new ArrayList();
+        if(sanjose.isSelected())
+            provincias.add(TProvincia.SAN_JOSE);
+        if(cartago.isSelected())
+            provincias.add(TProvincia.CARTAGO);
+        if(alajuela.isSelected())
+            provincias.add(TProvincia.ALAJUELA);
+        if(heredia.isSelected())
+            provincias.add(TProvincia.HEREDIA);
+        if(limon.isSelected())
+            provincias.add(TProvincia.LIMON);
+        if(puntarenas.isSelected())
+            provincias.add(TProvincia.PUNTARENAS);
+        if(guanacaste.isSelected())
+            provincias.add(TProvincia.GUANACASTE);
+        return provincias;
+    }
 }

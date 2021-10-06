@@ -95,6 +95,7 @@ public class AdminSismos extends JPanel implements ActionListener{
     private JButton agregar = new JButton("Agregar");
     private JButton eliminar = new JButton("Eliminar");
     private JButton modificar = new JButton("Modificar");
+    private JButton ver = new JButton("Ver Sismo");
     private JLabel id = new JLabel("ID:");
     private JTextField idCampo = new JTextField();
 
@@ -224,10 +225,14 @@ public class AdminSismos extends JPanel implements ActionListener{
         eliminar.setFont(new Font("Segoe UI",Font.PLAIN,18));
         eliminar.setBounds(750,440,130,30);
         eliminar.addActionListener(this);
-
+        
         modificar.setFont(new Font("Segoe UI",Font.PLAIN,18));
         modificar.setBounds(890,440,130,30);
         modificar.addActionListener(this);
+        //boton para ver un sismo, hay que acomodarlo mejor
+        ver.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        ver.setBounds(800,400,150,30);
+        ver.addActionListener(this);
 
         id.setFont(new Font("SimSun",Font.PLAIN,20));
         id.setBounds(610,400,30,30);
@@ -286,6 +291,7 @@ public class AdminSismos extends JPanel implements ActionListener{
         this.add(agregar);
         this.add(eliminar);
         this.add(modificar);
+        this.add(ver);
         this.add(id);
         this.add(idCampo);
 
@@ -322,6 +328,10 @@ public class AdminSismos extends JPanel implements ActionListener{
         else if(e.getSource() == modificar) {
             modificarSismo();
             cargarTabla();
+        }
+        else if(e.getSource() == ver){
+            verSismo();
+            
         }
 
     }
@@ -639,6 +649,27 @@ public class AdminSismos extends JPanel implements ActionListener{
             JOptionPane.showMessageDialog(this, "OCURRIO EL ERROR '" + e.getMessage() + 
             "' A LA HORA DE GUARDAR EN EL EXCEL","ERROR", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    /*
+    Metodo para ver un sismo segun su id en la tabla de sismos que se van agregando 
+    
+    */
+    
+    private void verSismo(){
+        int id = verificarId();
+        if(id == -1){
+            JOptionPane.showMessageDialog(this, "EL ID INTRODUCIDO ES INVALIDO","ERROR",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Sismo actual = adminDatos.consultarSismo(id);
+        if(actual == null) {
+            JOptionPane.showMessageDialog(this, "EL ID INTRODUCIDO NO EXISTE","ERROR",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        double lat = actual.getLatitud();
+        double lon = actual.getLongitud();
+        MapaSismos.abrirNavegador("https://www.google.com/maps/place/" + lat + "," + lon);
+    
     }
 
     /** 

@@ -6,8 +6,10 @@ import datos.TProvincia;
 import datos.Localizacion;
 import datos.Magnitud;
 import datos.Persona;
+import datos.DatosPersonas;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 //Clase
 /**
@@ -56,6 +58,7 @@ public class Administrador {
         }
         sismos.add(sismo);
         numeroSismo++;
+        DatosPersonas.LeerExcel(provincia);
         return true;
     }
 
@@ -173,13 +176,14 @@ public class Administrador {
     }
     
     public boolean agregarPersona(String ID, String nombre, String correo,
-            String celular, TProvincia provincia){
+            String celular, List provincias){
         for(Persona persona : personas){
             if(persona.getID().equals(ID)){
                 return false;
             }
         }
-        Persona nueva = new Persona(nombre,correo,celular,provincia,ID);
+        Persona nueva = new Persona(ID,nombre,correo,celular,provincias);
+        //Persona nueva = new Persona(nombre,correo,celular,provincia,ID);
         personas.add(nueva);
         return true;
     }
@@ -209,4 +213,5 @@ public class Administrador {
         }
         return false;
     }
+    
 }
