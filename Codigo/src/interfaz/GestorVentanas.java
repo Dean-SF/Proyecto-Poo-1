@@ -107,8 +107,8 @@ public class GestorVentanas{
         frame.setSize(1280,512);
     }
     static public void verMapaSismos(){
-        String url="https://www.google.com/maps/place/9%C2%B003'19.8%22N+84%C2%B001'33.6%22W/";
-        MapaSismos.openURL(url);
+        String url="https://www.google.com/maps/d/viewer?mid=1cDD46xY41UoTCr6qk8QTrU2fw4YA-rK0&hl=es-419&ll=10.385491939193622%2C-84.29291492944776&z=8";
+        MapaSismos.abrirNavegador(url);
     }
     
     static public void abrirMenuGraficos(){

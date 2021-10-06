@@ -11,39 +11,41 @@ package interfaz.sismos;
  */
 import java.lang.reflect.Method;
 import javax.swing.JOptionPane;
+import chrriis.dj.nativeswing.swtimpl.*;
+import chrriis.dj.nativeswing.swtimpl.components.*;
+import java.awt.BorderLayout;
+import javax.swing.*;
+//Esta clase crea el mapa de sismos en un ventana de navegador dentro del mismo java
 
-public class MapaSismos {
-    private static final String errMsg = "Error attempting to launch web browser";
-    public static void openURL(String url) {
-    
-        String osName = System.getProperty("os.name");
-        try {
-            if (osName.startsWith("Mac OS")) {
-                Class<?> fileMgr = Class.forName("com.apple.eio.FileManager");
-                Method openURL = fileMgr.getDeclaredMethod("openURL",
-                new Class<?>[] {String.class});
-                openURL.invoke(null, new Object[] {url});
+public class MapaSismos extends JFrame{
+    private String url;
+    //este metodo crea el navegador recibiendo una url
+    public MapaSismos(String url){
+        this.url = url;
+        JPanel panelBrowser = new JPanel();
+        panelBrowser.setLayout(new BorderLayout());
+        final JWebBrowser browser = new JWebBrowser();
+        browser.navigate(url);
+        panelBrowser.add(browser);
+        add(panelBrowser);
+    }
+    public void setUrl(String url) {
+        this.url = url;
+    }
+    //este metodo invoca al navegador 
+    public static void abrirNavegador(String url){
+        NativeInterface.open();
+        SwingUtilities.invokeLater(new Runnable(){
+            public void run(){
+                MapaSismos nav = new MapaSismos(url);
+                nav.setUrl(url);
+                nav.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                nav.setVisible(true);
+                nav.setSize(900, 900);
+                
             }
-            else if (osName.startsWith("Windows"))
-                    Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
-                    else { //assume Unix or Linux
-                        String[] browsers = {
-                        "firefox", "opera", "konqueror", "epiphany", "mozilla", "netscape" };
-                        String browser1 = null;
-                        for (int count = 0; count < browsers.length ; count++)
-                            if (Runtime.getRuntime().exec(
-                                new String[] {"which", browsers[count]}).waitFor() == 0)
-                                browser1 = browsers[count];
-                                if (browser1 == null)
-                                    throw new Exception("Could not find web browser");
-                                else
-                                    Runtime.getRuntime().exec(new String[] {browser1, url});
-                          }
-                        }
-            catch (Exception e) {
-            JOptionPane.showMessageDialog(null, errMsg + ":\n" + e.getLocalizedMessage());
-            }
-          }
-    
+    });
+    }
 
-}
+
+}   

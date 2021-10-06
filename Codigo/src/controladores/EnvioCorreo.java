@@ -6,7 +6,7 @@
 //Esta es la base para enviar correo, la agrego para tenerla ahi y luego seguir con el resto de mi parte
 package controladores;
 
-/*import java.util.Properties;
+import java.util.Properties;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.Session;
@@ -14,29 +14,30 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;*/
+import javax.mail.internet.MimeMultipart;
 
 /**
  *
  * @author DMV
  */
 public class EnvioCorreo {
-    private static  String user="rm070396@gmail.com";
-    private static String password="KEEPcalm6887*";
+    private static  String user="ovsicoriuna@gmail.com";
+    private static String password="CorreoPOO";
     private static String subject;
     private static String text;
     private static String destino;
-     public  void enviar() {
+    private static String nombre;
+    private static String provincia;
+    public static void enviar(String nombre,String correo,String provincia) {
         
-        text=	"joto";
-
-        destino= "demoralesv@gmail.com";
-        subject="Prestamo";
+        text =	"Hola, " + nombre + " le informamos que ha temblado en " + provincia + '\n' ;
+        destino = correo;
+        subject="Nuevo temblor registrado en " + provincia;
         //String us;
         try
         {
         
-            /*Properties props = new Properties();
+            Properties props = new Properties();
             props.setProperty("mail.smtp.host", "smtp.gmail.com");
             props.setProperty("mail.smtp.starttls.enable", "true");
             props.setProperty("mail.smtp.port", "587");
@@ -67,7 +68,7 @@ public class EnvioCorreo {
             Transport t = session.getTransport("smtp");
             t.connect(user,password);
             t.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
-            t.close();*/
+            t.close();
             
         }
         catch (Exception e)

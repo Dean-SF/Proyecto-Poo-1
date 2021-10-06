@@ -3,6 +3,7 @@ package datos;
 
 //Clase
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -13,6 +14,7 @@ public class Persona {
     private String nombre;
     private String correo;
     private String celular;
+    private List provincias;
     private TProvincia provincia;
     private String ID;
 
@@ -25,6 +27,21 @@ public class Persona {
         this.celular = celular;
         this.provincia = provincia;
         this.ID = ID;
+    }
+    public Persona(String ID, String nombre, String correo, String celular, List provincias) {
+        this.nombre = nombre;
+        this.correo = correo;
+        this.celular = celular;
+        this.provincias = provincias;
+        this.ID = ID;
+    }
+
+    public List getProvincias() {
+        return provincias;
+    }
+
+    public void setProvincias(List provincias) {
+        this.provincias = provincias;
     }
 
     public void setNombre(String nombre) {
@@ -80,7 +97,7 @@ public class Persona {
     @Override
     public String toString() {
         return "Persona{" + "nombre=" + nombre + ", correo=" +
-                correo + ", celular=" + celular + ", provincia=" +
-                provincia + ", ID=" + ID + '}';
+                correo + ", celular=" + celular + ", provincias=" +
+                provincias + ", ID=" + ID + '}';
     }
 }
