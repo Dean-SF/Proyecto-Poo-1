@@ -82,7 +82,7 @@ public class Sismo {
     }
 
     public void setMagnitud(double magnitud) {
-        this.magnitud.setMagnitud(magnitud);;
+        this.magnitud.setMagnitud(magnitud);
     }
 
     public void setLocalizacion(Localizacion localizacion) {
@@ -125,8 +125,16 @@ public class Sismo {
         return magnitud;
     }
 
+    public double getMagnitudNumerica() {
+        return magnitud.getMagnitud();
+    }
+
     public Localizacion getLocalizacion() {
         return localizacion;
+    }
+
+    public String getDescripcion() {
+        return localizacion.getDescripcion();
     }
 
     public int getId() {
@@ -164,32 +172,91 @@ public class Sismo {
     }
 
     public String stringLocalizacion() {
+        return stringProvincia() + ", " + getDescripcion();
+    }
+
+    public String stringProvincia() {
         TProvincia provincia = localizacion.getProvincia();
-        String descripcion = localizacion.getDescripcion();
         switch (provincia) {
             case ALAJUELA:
-                return "Alajuela" + ", " + descripcion;
+                return "Alajuela";
             case CARTAGO:
-                return "Cartago" + ", " + descripcion;
+                return "Cartago";
             case GUANACASTE:
-                return "Guanacaste" + ", " + descripcion;
+                return "Guanacaste";
             case HEREDIA:
-                return "Heredia" + ", " + descripcion;
+                return "Heredia";
             case LIMON:
-                return "Limon" + ", " + descripcion;
+                return "Limon";
             case PUNTARENAS:
-                return "Puntarenas" + ", " + descripcion;
+                return "Puntarenas";
             case SAN_JOSE:
-                return "San Jose" + ", " + descripcion;
+                return "San Jose";
             default:
                 return "N/A";
             
         }
     }
 
+    public String stringOrigen() {
+        switch (origen) {
+            case SUBDUCION:
+                return "Subduccion";
+            case CHOQUE_DE_PLACAS:
+                return "Choque de placas";
+            case DEFORMACION_INTERNA:
+                return "Deformacion interna";    
+            case INTRA_PLACA:
+                return "Intra placa";
+            case TECTONICO_POR_FALLA_LOCAL:
+                return "Tecnonico por falla local";
+            default:
+                return "N/A";
+        }
+    }
+
     public String stringProfundidad() {
         return profundidad + " Km";
     }
+
+    public static TOrigen stringToTOrigen(String origen) {
+        switch (origen) {
+            case "Subduccion":
+                return TOrigen.SUBDUCION;
+            case "Choque de placas":
+                return TOrigen.CHOQUE_DE_PLACAS;
+            case "Deformacion interna":
+                return TOrigen.DEFORMACION_INTERNA;
+            case "Intra placa":
+                return TOrigen.INTRA_PLACA;
+            case "Tecnonico por falla local":
+                return TOrigen.TECTONICO_POR_FALLA_LOCAL;
+            default:
+                return null;
+        }
+    }
+
+    public static TProvincia stringToTProvincia(String provincia) {
+        switch (provincia) {
+            case "Alajuela":
+                return TProvincia.ALAJUELA;
+            case "Cartago":
+                return TProvincia.CARTAGO;
+            case "Guanacaste":
+                return TProvincia.GUANACASTE;
+            case "Heredia":
+                return TProvincia.HEREDIA;
+            case "Limon":
+                return TProvincia.LIMON;
+            case "Puntarenas":
+                return TProvincia.PUNTARENAS;
+            case "San Jose":
+                return TProvincia.SAN_JOSE;
+            default:
+                return null;
+        }
+    }
+    
 
     @Override
     public boolean equals(Object obj) {

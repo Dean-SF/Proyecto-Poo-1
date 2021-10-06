@@ -26,6 +26,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import static principal.Inicializador.adminDatos;
+import static principal.Inicializador.excel;
 
 /** 
  * @author Deyan Sanabria
@@ -298,6 +299,7 @@ public class AdminSismos extends JPanel implements ActionListener{
 
         // La hace invisible
         this.setVisible(false);
+        cargarTabla();
     }
 
     /** 
@@ -426,6 +428,14 @@ public class AdminSismos extends JPanel implements ActionListener{
             }
 
             cargarTabla();
+          
+            try {
+                excel.agregarUltimoSismo();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "OCURRIO EL ERROR '" + e.getMessage() + 
+                "' A LA HORA DE GUARDAR EN EL EXCEL","ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        
     }
 
 
@@ -633,6 +643,12 @@ public class AdminSismos extends JPanel implements ActionListener{
         }
 
         cargarTabla();
+        try {
+            excel.actualizarHojaSismos();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "OCURRIO EL ERROR '" + e.getMessage() + 
+            "' A LA HORA DE GUARDAR EN EL EXCEL","ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
     /*
     Metodo para ver un sismo segun su id en la tabla de sismos que se van agregando 
@@ -766,6 +782,13 @@ public class AdminSismos extends JPanel implements ActionListener{
         if(campoDescripcion.length() != 0) {
             // Modificaciones:
             adminDatos.modificarSismo(id, campoDescripcion);
-        } 
+        }
+
+        try {
+            excel.actualizarHojaSismos();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "OCURRIO EL ERROR '" + e.getMessage() + 
+            "' A LA HORA DE GUARDAR EN EL EXCEL","ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
