@@ -17,6 +17,7 @@ import interfaz.estadisticas.GraficoHistograma;
 import interfaz.estadisticas.GraficoPastel;
 import interfaz.estadisticas.GraficoTabular;
 import InterfazPersonas.MenuRegister;
+import interfaz.estadisticas.GraficoTabularFechas;
 
 
 /** 
@@ -46,6 +47,7 @@ public class GestorVentanas{
     private static GraficoHistograma histograma = new GraficoHistograma();
     private static GraficoPastel pastel = new GraficoPastel();
     private static MenuRegister registro = new MenuRegister();
+    private static GraficoTabularFechas tabularFechas = new GraficoTabularFechas();
 
     // Historial
     private static Stack<JPanel> pilaVentanas = new Stack<JPanel>();  // Esta pila se llena con las ventanas 
@@ -73,6 +75,7 @@ public class GestorVentanas{
         frame.add(histograma);
         frame.add(pastel);
         frame.add(registro);
+        frame.add(tabularFechas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Hace que cuando se intente cerrar la ventana se 
                                                               // cierre todo el programa
         frame.setLocationRelativeTo(null);
@@ -122,21 +125,21 @@ public class GestorVentanas{
         pilaVentanas.push(barras);
         barras.setVisible(true);
         menuGraficos.setVisible(false);
-        frame.setSize(800,512);
+        frame.setSize(712,650);
     }
     
     static public void abrirGraficoTabular(){
         pilaVentanas.push(tabular);
         tabular.setVisible(true);
         menuGraficos.setVisible(false);
-        frame.setSize(800,512);
+        frame.setSize(700,300);
     }
     
     static public void abrirGraficoHistograma(){
         pilaVentanas.push(histograma);
         histograma.setVisible(true);
         menuGraficos.setVisible(false);
-        frame.setSize(515,600);
+        frame.setSize(512,650);
     }
     
     static public void abrirGraficoPastel(){
@@ -145,6 +148,14 @@ public class GestorVentanas{
         menuGraficos.setVisible(false);
         frame.setSize(515,600);
     }
+    
+    static public void abrirGraficoTabularFechas(){
+        pilaVentanas.push(tabularFechas);
+        tabularFechas.setVisible(true);
+        menuGraficos.setVisible(false);
+        frame.setSize(700,300);
+    }
+    
     static public void abrirMenuRegistro(){
         pilaVentanas.push(registro);
         registro.setVisible(true);

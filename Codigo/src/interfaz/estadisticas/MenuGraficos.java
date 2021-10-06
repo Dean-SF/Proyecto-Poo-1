@@ -70,7 +70,7 @@ public class MenuGraficos extends JPanel implements ActionListener{
         }else if(e.getSource() == origen){
                 GestorVentanas.abrirGraficoPastel();
         }else if(e.getSource() == fechas){
-                GestorVentanas.abrirGraficoTabular();
+                GestorVentanas.abrirGraficoTabularFechas();
         }else if(e.getSource() == mes){
                GestorVentanas.abrirGraficoBarras();
         }else if(e.getSource() == magnitud){

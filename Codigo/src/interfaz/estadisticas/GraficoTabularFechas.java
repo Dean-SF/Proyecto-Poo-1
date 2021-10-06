@@ -19,7 +19,7 @@ import static principal.Inicializador.adminDatos;
  *
  * @author Esteban
  */
-public class GraficoTabular extends JPanel implements ActionListener {
+public class GraficoTabularFechas extends JPanel implements ActionListener {
     private JButton volver = new JButton("Volver");
     private JButton graficar = new JButton("Graficar");
     private ArrayList<Sismo> sismos = new ArrayList<Sismo>();
@@ -28,7 +28,7 @@ public class GraficoTabular extends JPanel implements ActionListener {
     private JTable tabla = new JTable(datos,titulos);
     private JScrollPane pane = new JScrollPane(tabla);
     
-     private void cargarTabla(){
+    private void cargarTabla(){
         sismos = adminDatos.getSismos();
         DefaultTableModel modeloTabla = new DefaultTableModel(titulos, sismos.size());
         for(int  i = 0; i<sismos.size(); i++){
@@ -53,16 +53,16 @@ public class GraficoTabular extends JPanel implements ActionListener {
         tabla.getColumnModel().getColumn(3).setPreferredWidth(100);
     }
     
-    public GraficoTabular(){
+    public GraficoTabularFechas(){
         this.setBounds(0, 0, 700, 300);
         this.setLayout(null);
-        
+               
         pane.setBounds(50, 0, 600, 200);
         tabla.setEnabled(false);
         tabla.setFont(new Font("Copperplate Gothic Light",Font.PLAIN,12));
         tabla.setRowHeight(30);
         this.add(pane);
-        
+         
         graficar.setFont(new Font("Segoe UI",Font.PLAIN,18));
         graficar.setBounds(200,210,130,30);
         graficar.addActionListener(this);
