@@ -1,6 +1,5 @@
 package interfaz.estadisticas;
 import datos.Sismo;
-import datos.TEscala;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -15,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import org.jfree.data.category.DefaultCategoryDataset;
 import static principal.Inicializador.adminDatos;
 
 /**
@@ -64,7 +62,7 @@ public class GraficoTabularFechas extends JPanel implements ActionListener {
         DefaultTableModel modeloTabla = new DefaultTableModel(titulos, sismos.size());
         int j = 0;
         for(int  i = 0; i<sismos.size(); i++){
-            String texto = "";
+            //String texto = "";
             Sismo actual = sismos.get(i);
             Calendar actualF = actual.getFechaHora();
             if(actualF.get(Calendar.YEAR)>=anioF.get(Calendar.YEAR)&&

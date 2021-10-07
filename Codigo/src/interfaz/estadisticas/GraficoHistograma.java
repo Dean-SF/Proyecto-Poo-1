@@ -1,12 +1,10 @@
 package interfaz.estadisticas;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import interfaz.GestorVentanas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JComboBox;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;

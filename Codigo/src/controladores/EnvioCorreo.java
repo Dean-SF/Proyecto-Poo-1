@@ -27,8 +27,8 @@ public class EnvioCorreo {
     private static String subject;
     private static String text;
     private static String destino;
-    private static String nombre;
-    private static String provincia;
+    //private static String nombre;
+    //private static String provincia;
 
     public static void enviar(String nombre, String correo, String provincia) {
 

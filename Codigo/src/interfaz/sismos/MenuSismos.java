@@ -86,7 +86,7 @@ public class MenuSismos extends JPanel implements ActionListener{
         if(e.getSource() == volver) {
             GestorVentanas.volverAtras();
         } else if(e.getSource() == agregar){
-            GestorVentanas.abrirAgregarSismos();
+            //GestorVentanas.abrirAgregarSismos();
         }
         else if(e.getSource() == verMapa){
             GestorVentanas.verMapaSismos();

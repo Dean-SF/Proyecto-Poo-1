@@ -35,7 +35,7 @@ import static principal.Inicializador.excel;
  * sismos que hay hasta el momento
 */
 public class AdminSismos extends JPanel implements ActionListener{
-    private JLabel presentacion = new JLabel("AGREGAR SISMO");
+    private JLabel presentacion = new JLabel("ADMINISTRACIÓN DE SISMOS");
 
     // Elementos de la ventana
     // Parte de registro:
@@ -111,7 +111,7 @@ public class AdminSismos extends JPanel implements ActionListener{
 
         // Titulo de la ventana
         presentacion.setFont(new Font("OCR A Extended",Font.PLAIN,34));
-        presentacion.setBounds(235,25,290,25);
+        presentacion.setBounds(360,20,600,25);
 
         // Fecha
         fecha.setFont(new Font("Segoe UI Light",Font.PLAIN,25));

@@ -12,11 +12,11 @@ import interfaz.sismos.AdminSismos;
 import interfaz.sismos.MenuSismos;
 import interfaz.sismos.MapaSismos;
 import interfaz.estadisticas.MenuGraficos;
+import interfaz.personas.AdminPersonas;
 import interfaz.estadisticas.GraficoBarras;
 import interfaz.estadisticas.GraficoHistograma;
 import interfaz.estadisticas.GraficoPastel;
 import interfaz.estadisticas.GraficoTabular;
-import InterfazPersonas.MenuRegister;
 import interfaz.estadisticas.GraficoTabularFechas;
 
 
@@ -46,7 +46,7 @@ public class GestorVentanas{
     private static GraficoTabular tabular = new GraficoTabular();
     private static GraficoHistograma histograma = new GraficoHistograma();
     private static GraficoPastel pastel = new GraficoPastel();
-    private static MenuRegister registro = new MenuRegister();
+    private static AdminPersonas registro = new AdminPersonas();
     private static GraficoTabularFechas tabularFechas = new GraficoTabularFechas();
 
     // Historial
@@ -94,19 +94,11 @@ public class GestorVentanas{
         ventanaActual.setVisible(true);
         
     }
-    
-    // hace que se pueda abrir el menu de sismos
-    static public void abrirMenuSismos() {
-        pilaVentanas.push(menuSismos);
-        menuSismos.setVisible(true);
-        menu.setVisible(false);
-        frame.setSize(800,512);
-    }
 
-    static public void abrirAgregarSismos(){
+    static public void abrirAdminSismos(){
         pilaVentanas.push(adminSismos);
         adminSismos.setVisible(true);
-        menuSismos.setVisible(false);
+        menu.setVisible(false);
         frame.setSize(1280,512);
     }
     static public void verMapaSismos(){

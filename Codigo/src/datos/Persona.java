@@ -13,34 +13,26 @@ import java.util.Objects;
 public class Persona {
     private String nombre;
     private String correo;
-    private String celular;
-    private List provincias;
-    private TProvincia provincia;
-    private String ID;
+    private int celular;
+    private List<TProvincia> provincias;
+    private int id;
 
     public Persona() {
         //Default
     }
-    public Persona(String nombre, String correo, String celular, TProvincia provincia, String ID) {
-        this.nombre = nombre;
-        this.correo = correo;
-        this.celular = celular;
-        this.provincia = provincia;
-        this.ID = ID;
-    }
-    public Persona(String ID, String nombre, String correo, String celular, List provincias) {
+    public Persona(int id, String nombre, String correo, int celular, List<TProvincia> provincias) {
         this.nombre = nombre;
         this.correo = correo;
         this.celular = celular;
         this.provincias = provincias;
-        this.ID = ID;
+        this.id = id;
     }
 
-    public List getProvincias() {
+    public List<TProvincia> getProvincias() {
         return provincias;
     }
 
-    public void setProvincias(List provincias) {
+    public void setProvincias(List<TProvincia> provincias) {
         this.provincias = provincias;
     }
 
@@ -50,14 +42,11 @@ public class Persona {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    public void setCelular(String celular) {
+    public void setCelular(int celular) {
         this.celular = celular;
     }
-    public void setProvincia(TProvincia provincia) {
-        this.provincia = provincia;
-    }
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setID(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -66,14 +55,11 @@ public class Persona {
     public String getCorreo() {
         return correo;
     }
-    public String getCelular() {
+    public int getCelular() {
         return celular;
     }
-    public TProvincia getProvincia() {
-        return provincia;
-    }
-    public String getID() {
-        return ID;
+    public int getID() {
+        return id;
     }
 
     @Override
@@ -88,7 +74,7 @@ public class Persona {
             return false;
         }
         final Persona other = (Persona) obj;
-        if (!Objects.equals(this.ID, other.ID)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
@@ -98,6 +84,6 @@ public class Persona {
     public String toString() {
         return "Persona{" + "nombre=" + nombre + ", correo=" +
                 correo + ", celular=" + celular + ", provincias=" +
-                provincias + ", ID=" + ID + '}';
+                provincias + ", id=" + id + '}';
     }
 }

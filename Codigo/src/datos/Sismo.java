@@ -257,7 +257,6 @@ public class Sismo {
         }
     }
     
-
     @Override
     public boolean equals(Object obj) {
         final Sismo other = (Sismo) obj;
@@ -267,7 +266,7 @@ public class Sismo {
         if(obj.getClass() != getClass()) {
             return false;
         } 
-        if(!(this.fechaHora.equals(other.fechaHora))) {
+        if(this.id != other.id) {
             return false;
         }
         return true;

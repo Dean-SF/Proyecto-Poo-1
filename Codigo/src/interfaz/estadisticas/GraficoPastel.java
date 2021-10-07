@@ -4,7 +4,6 @@ import datos.Sismo;
 import datos.TOrigen;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import interfaz.GestorVentanas;
 import java.awt.event.ActionEvent;

@@ -9,8 +9,6 @@ package interfaz.sismos;
  *
  * @author DMV
  */
-import java.lang.reflect.Method;
-import javax.swing.JOptionPane;
 import chrriis.dj.nativeswing.swtimpl.*;
 import chrriis.dj.nativeswing.swtimpl.components.*;
 import java.awt.BorderLayout;
