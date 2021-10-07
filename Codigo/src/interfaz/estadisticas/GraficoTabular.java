@@ -4,7 +4,6 @@ import datos.Sismo;
 import datos.TEscala;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import interfaz.GestorVentanas;
@@ -23,12 +22,13 @@ public class GraficoTabular extends JPanel implements ActionListener {
     private JButton volver = new JButton("Volver");
     private JButton graficar = new JButton("Graficar");
     private ArrayList<Sismo> sismos = new ArrayList<Sismo>();
-    private String [] titulos = {"Magnitud", "Escala","ID","Descipcion"};
-    private Object [][] datos = {{null,null,null,null}};
+    private String [] titulos = {"Magnitud", "Escala","ID","Descipcion","Ubicacion"};
+    private Object [][] datos = {{null,null,null,null,null}};
     private JTable tabla = new JTable(datos,titulos);
     private JScrollPane pane = new JScrollPane(tabla);
     
      private void cargarTabla(){
+        tabla.setVisible(true);
         sismos = adminDatos.getSismos();
         DefaultTableModel modeloTabla = new DefaultTableModel(titulos, sismos.size());
         for(int  i = 0; i<sismos.size(); i++){
@@ -44,13 +44,15 @@ public class GraficoTabular extends JPanel implements ActionListener {
             modeloTabla.setValueAt(actual.getMagnitud().getMagnitud(), i, 1); 
             modeloTabla.setValueAt(actual.getId(), i, 2);
             modeloTabla.setValueAt(actual.getDescripcion(), i, 3);
+            modeloTabla.setValueAt(actual.getLocalizacion().getProvincia(), i, 4);
         }
         tabla.setModel(modeloTabla);
         
         tabla.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tabla.getColumnModel().getColumn(1).setPreferredWidth(20);
-        tabla.getColumnModel().getColumn(2).setPreferredWidth(20);
+        tabla.getColumnModel().getColumn(1).setPreferredWidth(10);
+        tabla.getColumnModel().getColumn(2).setPreferredWidth(10);
         tabla.getColumnModel().getColumn(3).setPreferredWidth(100);
+        tabla.getColumnModel().getColumn(4).setPreferredWidth(40);
     }
     
     public GraficoTabular(){
@@ -79,6 +81,7 @@ public class GraficoTabular extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == volver){
+            tabla.setVisible(false);
             GestorVentanas.volverAtras();
         }else if(e.getSource() == graficar){
             cargarTabla();

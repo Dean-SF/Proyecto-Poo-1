@@ -22,13 +22,14 @@ import datos.TProvincia;
  * @author Esteban
  */
 public class GraficoHistograma extends JPanel implements ActionListener{
-    private JLabel titulo = new JLabel("Histograma");
     private JButton volver = new JButton("Volver");
-    private JLabel provincia = new JLabel("Origen:");
-    private JComboBox<String> cajaProvincia = new JComboBox<String>();
+    //private JLabel provincia = new JLabel("Origen:");
+    //private JComboBox<String> cajaProvincia = new JComboBox<String>();
     private JButton graficar = new JButton("Graficar");
     private ArrayList<Sismo> sismos;
-    private String lugar;
+    //private String lugar;
+    private JPanel bar1;
+    private boolean siGrafico = false;
     
     private CategoryDataset createDataset() {
       DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -37,21 +38,21 @@ public class GraficoHistograma extends JPanel implements ActionListener{
       for(Sismo actual : sismos){
           TProvincia sitio = actual.getLocalizacion().getProvincia();
           System.out.println(sitio);
-          if("Alajuela".equals(lugar) && sitio==TProvincia.ALAJUELA){
+          if(sitio==TProvincia.ALAJUELA){
               A+=1;
               System.out.println("A");
-          }else if("Cartago".equals(lugar) && sitio==TProvincia.CARTAGO){
+          }else if(sitio==TProvincia.CARTAGO){
               C+=1;
               System.out.println("C");
-          }else if("Limon".equals(lugar) && sitio==TProvincia.LIMON){
+          }else if(sitio==TProvincia.LIMON){
               L+=1;
-          }else if("San Jose".equals(lugar) && sitio==TProvincia.SAN_JOSE){
+          }else if(sitio==TProvincia.SAN_JOSE){
               SJ+=1;
-          }else if("Puntarenas".equals(lugar) && sitio==TProvincia.PUNTARENAS){
+          }else if(sitio==TProvincia.PUNTARENAS){
               P+=1;
-          }else if("Heredia".equals(lugar) && sitio==TProvincia.HEREDIA){
+          }else if(sitio==TProvincia.HEREDIA){
               H+=1;
-          }else if("Guanacaste".equals(lugar) && sitio==TProvincia.GUANACASTE){
+          }else if(sitio==TProvincia.GUANACASTE){
               G+=1;
           }
           System.out.println("Listo");
@@ -68,7 +69,6 @@ public class GraficoHistograma extends JPanel implements ActionListener{
     
     private JFreeChart modelo(){
         JFreeChart bar = ChartFactory.createBarChart("Provincias", "", "Cantidad sismos", createDataset());
-        //JFreeChart bar = ChartFactory.createHistogram("Provincias", "", "Cantidad sismos", createDataset(), PlotOrientation.VERTICAL, true, true, true);
         return bar;
     }
     
@@ -78,22 +78,27 @@ public class GraficoHistograma extends JPanel implements ActionListener{
     }
         
     private void graficar(){
-        lugar = String.valueOf(cajaProvincia.getSelectedItem());
-        JPanel bar = panel();
-        bar.setSize(500,500);
-        bar.setVisible(true);
-        this.add(bar);
+        if(siGrafico){
+            this.remove(bar1);
+        }
+        //lugar = String.valueOf(cajaProvincia.getSelectedItem());
+        bar1 = panel();
+        bar1.setSize(500,500);
+        bar1.setVisible(true);
+        this.add(bar1);
+        this.updateUI();
+        siGrafico=true;
     }
     
     public GraficoHistograma(){
         this.setBounds(0, 0, 500, 600);
         this.setLayout(null);
         
-        provincia.setFont(new Font("Segoe UI Light",Font.PLAIN,25));
+        /*provincia.setFont(new Font("Segoe UI Light",Font.PLAIN,25));
         provincia.setBounds(190,520,130,30);
         this.add(provincia);
         
-        cajaProvincia.setBounds(190,550,130,30);
+        /*cajaProvincia.setBounds(190,550,130,30);
         cajaProvincia.setFont(new Font("SimSun",Font.PLAIN,18));
         cajaProvincia.addItem("Alajuela");
         cajaProvincia.addItem("Cartago");
@@ -102,7 +107,7 @@ public class GraficoHistograma extends JPanel implements ActionListener{
         cajaProvincia.addItem("Puntarenas");
         cajaProvincia.addItem("Heredia");
         cajaProvincia.addItem("Guanacaste");
-        this.add(cajaProvincia);
+        this.add(cajaProvincia);*/
         
         graficar.setFont(new Font("Segoe UI",Font.PLAIN,18));
         graficar.setBounds(10,520,130,30);
@@ -120,6 +125,11 @@ public class GraficoHistograma extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == volver){
+            if(siGrafico){
+                bar1.setVisible(false);
+                this.remove(bar1);
+                siGrafico=false;
+            }
             GestorVentanas.volverAtras();
         }else if(e.getSource() == graficar){
             graficar();

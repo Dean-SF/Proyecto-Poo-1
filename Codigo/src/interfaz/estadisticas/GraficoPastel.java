@@ -23,12 +23,11 @@ import static principal.Inicializador.adminDatos;
  * @author Esteban
  */
 public class GraficoPastel extends JPanel implements ActionListener {
-    private JLabel titulo = new JLabel("Pastel");
     private JButton volver = new JButton("Volver");
     private JButton graficar = new JButton("Graficar");
     private ArrayList<Sismo> sismos = new ArrayList<Sismo>();
     private JPanel pie1;
-    private static boolean y = false;
+    private boolean siGrafico = false;
     
     private double por(int dato, int total){
         double por = (100*dato)/total;
@@ -72,11 +71,15 @@ public class GraficoPastel extends JPanel implements ActionListener {
     }
     
     private void graficar(){
+        if(siGrafico){
+            this.remove(pie1);
+        }
         pie1 = panel();
         pie1.setSize(500,500);
         pie1.setVisible(true);
         this.add(pie1);
-        y=true;
+        this.updateUI();
+        siGrafico=true;
     }
     
     public GraficoPastel(){
@@ -99,9 +102,10 @@ public class GraficoPastel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == volver){
-            if(y){
+            if(siGrafico){
                 pie1.setVisible(false);
-                y=false;
+                this.remove(pie1);
+                siGrafico=false;
             }
             GestorVentanas.volverAtras();
         }else if(e.getSource() == graficar){
