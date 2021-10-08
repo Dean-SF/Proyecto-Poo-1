@@ -86,8 +86,8 @@ public class AdminSismos extends JPanel implements ActionListener{
     private JScrollPane scrollDescripcion = new JScrollPane(campoDescripcion);
 
     // Parte de visualizacion
-    private String [] nombreColumnas = {"ID","Fecha","Hora","Mag.","Prof.","Localizacion","Lat.","Long."};
-    private Object [][] vacio = {{null,null,null,null,null,null,null,null}};
+    private String [] nombreColumnas = {"ID","Fecha","Hora","Mag.","Prof.","Localizacion","Origen","Lat.","Long."};
+    private Object [][] vacio = {{null,null,null,null,null,null,null,null,null}};
     private JTable tabla = new JTable(vacio,nombreColumnas);
     private JScrollPane panelScroll = new JScrollPane(tabla);
 
@@ -190,15 +190,17 @@ public class AdminSismos extends JPanel implements ActionListener{
 
         provincia.setBounds(365,325,100,25);
         provincia.setFont(new Font("SimSun",Font.PLAIN,20));
-        campoProvincia.setBounds(465,325,120,25);
+        campoProvincia.setBounds(465,325,130,25);
         campoProvincia.setFont(new Font("SimSun",Font.PLAIN,18));
-        campoProvincia.addItem("San José");
+        campoProvincia.addItem("Sin asignar");
         campoProvincia.addItem("Alajuela");
         campoProvincia.addItem("Cartago");
-        campoProvincia.addItem("Heredia");
         campoProvincia.addItem("Guanacaste");
-        campoProvincia.addItem("Puntarenas");
+        campoProvincia.addItem("Heredia");
         campoProvincia.addItem("Limón");
+        campoProvincia.addItem("Puntarenas");
+        campoProvincia.addItem("San José");
+        
 
         descripcion.setFont(new Font("SimSun",Font.PLAIN,20));
         descripcion.setBounds(25,355,120,25);
@@ -211,41 +213,42 @@ public class AdminSismos extends JPanel implements ActionListener{
         Parte de visualizacion de sismos: Tabla tipo excel dentro del programa para visualizar
         todos los datos de los sismos
         */
-        panelScroll.setBounds(650, 50, 600, 300);
+        panelScroll.setBounds(350, 50, 910, 270);
         tabla.setEnabled(false);
         tabla.setFont(new Font("Copperplate Gothic Light",Font.PLAIN,12));
         tabla.setRowHeight(30);
+        
         /*
         Parte de botones de funcionalidad: Botones de agregar, eliminar y modificar
         */
         agregar.setFont(new Font("Segoe UI",Font.PLAIN,18));
-        agregar.setBounds(610,440,130,30);
+        agregar.setBounds(610,424,130,30);
         agregar.addActionListener(this);
 
         eliminar.setFont(new Font("Segoe UI",Font.PLAIN,18));
-        eliminar.setBounds(750,440,130,30);
+        eliminar.setBounds(750,424,130,30);
         eliminar.addActionListener(this);
         
         modificar.setFont(new Font("Segoe UI",Font.PLAIN,18));
-        modificar.setBounds(890,440,130,30);
+        modificar.setBounds(890,424,130,30);
         modificar.addActionListener(this);
         //boton para ver un sismo, hay que acomodarlo mejor
         ver.setFont(new Font("Segoe UI",Font.PLAIN,18));
-        ver.setBounds(800,400,150,30);
+        ver.setBounds(750,390,150,30);
         ver.addActionListener(this);
 
         id.setFont(new Font("SimSun",Font.PLAIN,20));
-        id.setBounds(610,400,30,30);
+        id.setBounds(610,390,30,30);
         idCampo.setFont(new Font("SimSun",Font.PLAIN,18));
-        idCampo.setBounds(640,400,90,30);
+        idCampo.setBounds(640,390,90,30);
 
         // Boton de volver
         volver.setFont(new Font("OCR A Extended",Font.PLAIN,20));
-        volver.setBounds(1130,440,130,30);
+        volver.setBounds(1130,424,130,30);
         volver.addActionListener(this);
 
         // Tamaño de la ventana y Layout manager
-        this.setBounds(0, 0, 1280, 512);
+        this.setBounds(0, 0, 1280, 497);
         this.setLayout(null);
         
         // Agregado de todos los elementos de la ventana
@@ -362,8 +365,9 @@ public class AdminSismos extends JPanel implements ActionListener{
             modeloTabla.setValueAt(actual.stringMagnitud(), i, 3);
             modeloTabla.setValueAt(actual.stringProfundidad(), i, 4);
             modeloTabla.setValueAt(actual.stringLocalizacion(), i, 5);
-            modeloTabla.setValueAt(actual.getLongitud(), i, 6);
-            modeloTabla.setValueAt(actual.getLatitud(), i, 7);
+            modeloTabla.setValueAt(actual.stringOrigen(), i, 6);
+            modeloTabla.setValueAt(actual.getLongitud(), i, 7);
+            modeloTabla.setValueAt(actual.getLatitud(), i, 8);
         }
         // Se coloca el modelo a la tabla
         tabla.setModel(modeloTabla);
@@ -374,9 +378,10 @@ public class AdminSismos extends JPanel implements ActionListener{
         tabla.getColumnModel().getColumn(2).setPreferredWidth(65);
         tabla.getColumnModel().getColumn(3).setPreferredWidth(58);
         tabla.getColumnModel().getColumn(4).setPreferredWidth(58);
-        tabla.getColumnModel().getColumn(5).setPreferredWidth(150);
-        tabla.getColumnModel().getColumn(6).setPreferredWidth(55);
+        tabla.getColumnModel().getColumn(5).setPreferredWidth(300);
+        tabla.getColumnModel().getColumn(6).setPreferredWidth(185);
         tabla.getColumnModel().getColumn(7).setPreferredWidth(55);
+        tabla.getColumnModel().getColumn(8).setPreferredWidth(55);
     }
     
     /** 
@@ -416,8 +421,8 @@ public class AdminSismos extends JPanel implements ActionListener{
             // Provincia y origen
             String provincia = String.valueOf(campoProvincia.getSelectedItem());
             String origen = String.valueOf(campoOrigen.getSelectedItem());
-            TProvincia province = provinciaEnum(provincia);
-            TOrigen origin = origenEnum(origen);
+            TProvincia province = Sismo.stringToTProvincia(provincia);
+            TOrigen origin = Sismo.stringToTOrigen(origen);
 
             boolean verificacion = adminDatos.agregarSismo(fechaHora, profundidad, origin, 
             magnitud, latitud, longitud, province, descripcion);
@@ -556,59 +561,6 @@ public class AdminSismos extends JPanel implements ActionListener{
         }
     }
 
-
-    /**
-     * Metodo que convierte un string ya sea: {@code "Choque de placas"}, {@code "Tectonico Por falla Local"}, 
-     * {@code "Subduccion"}, {@code "Intra placa"} y {@code "Deformacion Interna"} a su TOrigen correspondiente
-     * @param string cualquier tipo de string
-     * @return {@code TOrigen} dependiendo del string de entrada, si este no coincide con ningun caso retorna
-     * {@code null}
-     */
-    private TOrigen origenEnum(String string){
-        switch (string) {
-            case "Choque de placas":
-                return TOrigen.CHOQUE_DE_PLACAS;
-            case "Tectonico Por falla Local":
-                return TOrigen.TECTONICO_POR_FALLA_LOCAL;
-            case "Subduccion":
-                return TOrigen.SUBDUCION;
-            case "Intra placa":
-                return TOrigen.INTRA_PLACA;
-            case "Deformacion Interna":
-                return TOrigen.DEFORMACION_INTERNA;
-            default:
-                return null;
-        }
-    }
-
-    /**
-     *  Metodo que convierte un string ya sea: {@code "San José"}, {@code "Alajuela"}, {@code "Cartago"}, 
-     * {@code "Heredia"}, {@code "Guanacaste"}, {@code "Puntarenas"} y {@code "Limón"} a su TProvincia correspondiente
-     * @param string cualquier tipo de string
-     * @return {@code TProvincia} dependiendo del string de entrada, si este no coincide con ningun caso retorna
-     * {@code null}
-    */
-    private TProvincia provinciaEnum(String string) {
-        switch (string) {
-            case "San José":
-                return TProvincia.SAN_JOSE;
-            case "Alajuela":
-                return TProvincia.ALAJUELA;
-            case "Cartago":
-                return TProvincia.CARTAGO;
-            case "Heredia":
-                return TProvincia.HEREDIA;
-            case "Guanacaste":
-                return TProvincia.GUANACASTE;
-            case "Puntarenas":
-                return TProvincia.PUNTARENAS;
-            case "Limón":
-                return TProvincia.LIMON;  
-            default:
-                return null;
-        }
-    }
-
     /**
      * Metodo para verficicar que el ID sea un numero entero positivo y no se haya ingresado otra cosa en la ventana
      * @return {@code int} el ID en caso de que este correcto, de lo contrario retorna -1
@@ -698,8 +650,8 @@ public class AdminSismos extends JPanel implements ActionListener{
         String campoDescripcion = this.campoDescripcion.getText();
         String campoProvincia = String.valueOf(this.campoProvincia.getSelectedItem());
         String campoOrigen = String.valueOf(this.campoOrigen.getSelectedItem());
-        TProvincia provincia = provinciaEnum(campoProvincia);
-        TOrigen origen = origenEnum(campoOrigen);
+        TProvincia provincia = Sismo.stringToTProvincia(campoProvincia);
+        TOrigen origen = Sismo.stringToTOrigen(campoOrigen);
 
 
         // Se verifica si la fecha esta completa y no hay ningun espacio vacio

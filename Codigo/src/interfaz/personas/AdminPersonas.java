@@ -16,10 +16,12 @@ import interfaz.GestorVentanas;
 import datos.TProvincia;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import static principal.Inicializador.adminDatos;
+import static principal.Inicializador.excel;;
 
 /**
  *
@@ -156,14 +158,34 @@ public class AdminPersonas extends JPanel implements ActionListener {
             JOptionPane.showMessageDialog(this, "EL CORREO INTRODUCIDO ES INVALIDO","ERROR",JOptionPane.ERROR_MESSAGE);
             return;
         }
+        if(verificarProvincias()) {
+            JOptionPane.showMessageDialog(this, "SELECCIONE AL MENOS UNA PROVINCIA","ERROR",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
         int id = Integer.parseInt(this.id.getText());
-        int celular = Integer.parseInt(numero.getText());
+        int celular;
+        if(numero.getText().equals("")){
+            celular = -1;
+        } else {
+            celular = Integer.parseInt(numero.getText());
+        }
+        String correo = this.correo.getText();
+        if(correo.equals("")) {
+            correo = "N/A";
+        }
+
         List<TProvincia> provincias = crearListaProvincias();
-        boolean resultado = adminDatos.agregarPersona(id, nombre.getText(), correo.getText(), celular, provincias);
+        boolean resultado = adminDatos.agregarPersona(id, nombre.getText(), correo, celular, provincias);
         if(!resultado) {
             JOptionPane.showMessageDialog(this, "EL ID YA SE ENCUENTRA REGISTRADO","ERROR",JOptionPane.ERROR_MESSAGE);
             return;
+        }
+        try {
+            excel.agregarUltimaPersona();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "OCURRIO EL ERROR '" + e.getMessage() + 
+                "' A LA HORA DE GUARDAR EN EL EXCEL","ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
     private int verificarNombre(){
@@ -174,6 +196,9 @@ public class AdminPersonas extends JPanel implements ActionListener {
     }
     private int verificarNumero(){
         String string = numero.getText();
+        if(string.isBlank()){
+            return 0;
+        }
         if(string.length() != 8) {
             return -1;
         }
@@ -188,11 +213,12 @@ public class AdminPersonas extends JPanel implements ActionListener {
             return -1;
         }
     }
+
     private int verificarid(){
-    String string = id.getText();
+        String string = id.getText();
         try { // try_catch verifica si este string es valido para ser un entero
             int id = Integer.parseInt(string);
-            if(id <= 0) {
+            if(id <= 0 || string.length() != 9) {
                 return -1;
             }
             return id;
@@ -202,12 +228,21 @@ public class AdminPersonas extends JPanel implements ActionListener {
         }
     }
     private String verificarCorreo(){
-         if(correo.getText().matches("^[\\w.\\-]+\\@[\\w.\\-]+\\.[a-zA-z]{2,6}$")){    
+        if(correo.getText().matches("^[\\w.\\-]+\\@[\\w.\\-]+\\.[a-zA-z]{2,6}$") || correo.getText().isBlank()){    
             return correo.getText();
         }else{
             return "-1";
         }
     }
+
+    private boolean verificarProvincias() {
+        if(!sanjose.isSelected() && !cartago.isSelected() && !alajuela.isSelected() && !heredia.isSelected() && 
+        !limon.isSelected() && !puntarenas.isSelected() && !guanacaste.isSelected()) {
+            return true;
+        }
+        return false;
+    }
+
     private List<TProvincia> crearListaProvincias(){
         List<TProvincia> provincias = new ArrayList<TProvincia>();
         if(sanjose.isSelected())

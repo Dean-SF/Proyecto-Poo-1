@@ -99,7 +99,7 @@ public class GestorVentanas{
         pilaVentanas.push(adminSismos);
         adminSismos.setVisible(true);
         menu.setVisible(false);
-        frame.setSize(1280,512);
+        frame.setSize(1280,497);
     }
     static public void verMapaSismos(){
         String url="https://www.google.com/maps/d/viewer?mid=1cDD46xY41UoTCr6qk8QTrU2fw4YA-rK0&hl=es-419&ll=10.385491939193622%2C-84.29291492944776&z=8";

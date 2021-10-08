@@ -196,26 +196,7 @@ public class Sismo {
      * @return String con la provincia
      */
     public String stringProvincia() {
-        TProvincia provincia = localizacion.getProvincia();
-        switch (provincia) {
-            case ALAJUELA:
-                return "Alajuela";
-            case CARTAGO:
-                return "Cartago";
-            case GUANACASTE:
-                return "Guanacaste";
-            case HEREDIA:
-                return "Heredia";
-            case LIMON:
-                return "Limon";
-            case PUNTARENAS:
-                return "Puntarenas";
-            case SAN_JOSE:
-                return "San Jose";
-            default:
-                return "N/A";
-            
-        }
+        return tprovinciaToString(localizacion.getProvincia());
     }
     
     /**
@@ -223,20 +204,7 @@ public class Sismo {
      * @return String con origen
      */
     public String stringOrigen() {
-        switch (origen) {
-            case SUBDUCION:
-                return "Subduccion";
-            case CHOQUE_DE_PLACAS:
-                return "Choque de placas";
-            case DEFORMACION_INTERNA:
-                return "Deformacion interna";    
-            case INTRA_PLACA:
-                return "Intra placa";
-            case TECTONICO_POR_FALLA_LOCAL:
-                return "Tecnonico por falla local";
-            default:
-                return "N/A";
-        }
+        return torigenToString(origen);
     }
 
     /**
@@ -248,9 +216,11 @@ public class Sismo {
     }
 
     /**
-     * Toma la entrada Strng con el lugar de origen y lo vonvierte a un TOtigen
-     * @param origen
-     * @return TOrigen
+     * Metodo que convierte un string ya sea: {@code "Choque de placas"}, {@code "Tectonico Por falla Local"}, 
+     * {@code "Subduccion"}, {@code "Intra placa"} y {@code "Deformacion Interna"} a su TOrigen correspondiente
+     * @param string cualquier tipo de string
+     * @return {@code TOrigen} dependiendo del string de entrada, si este no coincide con ningun caso retorna
+     * {@code null}
      */
     public static TOrigen stringToTOrigen(String origen) {
         switch (origen) {
@@ -270,10 +240,12 @@ public class Sismo {
     }
 
     /**
-     * Toma un String con la provincia y lo convierte a un TProvincia
-     * @param provincia
-     * @return TProvincia
-     */
+     *  Metodo que convierte un string ya sea: {@code "San José"}, {@code "Alajuela"}, {@code "Cartago"}, 
+     * {@code "Heredia"}, {@code "Guanacaste"}, {@code "Puntarenas"} y {@code "Limón"} a su TProvincia correspondiente
+     * @param string cualquier tipo de string
+     * @return {@code TProvincia} dependiendo del string de entrada, si este no coincide con ningun caso retorna
+     * {@code null}
+    */
     public static TProvincia stringToTProvincia(String provincia) {
         switch (provincia) {
             case "Alajuela":
@@ -290,10 +262,53 @@ public class Sismo {
                 return TProvincia.PUNTARENAS;
             case "San Jose":
                 return TProvincia.SAN_JOSE;
+            case "Sin asignar":
+                return TProvincia.SIN_ASIGNAR;
             default:
                 return null;
         }
     }
+
+    public static String tprovinciaToString(TProvincia provincia) {
+        switch (provincia) {
+            case ALAJUELA:
+                return "Alajuela";
+            case CARTAGO:
+                return "Cartago";
+            case GUANACASTE:
+                return "Guanacaste";
+            case HEREDIA:
+                return "Heredia";
+            case LIMON:
+                return "Limon";
+            case PUNTARENAS:
+                return "Puntarenas";
+            case SAN_JOSE:
+                return "San Jose";
+            case SIN_ASIGNAR:
+                return "Sin asignar";
+            default:
+                return "N/A";
+        }
+    }
+
+    public static String torigenToString(TOrigen origen) {
+        switch (origen) {
+            case SUBDUCION:
+                return "Subduccion";
+            case CHOQUE_DE_PLACAS:
+                return "Choque de placas";
+            case DEFORMACION_INTERNA:
+                return "Deformacion interna";    
+            case INTRA_PLACA:
+                return "Intra placa";
+            case TECTONICO_POR_FALLA_LOCAL:
+                return "Tecnonico por falla local";
+            default:
+                return "N/A";
+        }
+    }
+
     
     @Override
     public boolean equals(Object obj) {
