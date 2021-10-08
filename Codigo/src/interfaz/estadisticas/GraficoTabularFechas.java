@@ -1,3 +1,4 @@
+//Importaciones
 package interfaz.estadisticas;
 import datos.Sismo;
 import java.awt.Font;
@@ -11,13 +12,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import static principal.Inicializador.adminDatos;
 
 /**
- *
+ * Ventana que crea un panel con un grafico tabular segun los datos de
+ * los sismos en un rango de fechas dada por el usuario.
  * @author Esteban
  */
 public class GraficoTabularFechas extends JPanel implements ActionListener {
@@ -33,30 +36,56 @@ public class GraficoTabularFechas extends JPanel implements ActionListener {
     private JTable tabla = new JTable(datos,titulos);
     private JScrollPane pane = new JScrollPane(tabla);
     
+    /**
+     * Obtioene la priemra fecha del textField
+     * @return Calendar con un gregorianCalendar
+     */
     private Calendar obtenerFecha1(){
-        int anioF = Integer.parseInt(anio.getText());
-        if(anioF<0||anioF>3000){
-            //Hacer error.
+        try{
+            int anioF = Integer.parseInt(anio.getText());
+            if(anioF<0){
+                return null;
+            }
+            Calendar fecha = new GregorianCalendar(anioF,1,1);
+            return fecha;
+        } catch (Exception e){
+            return null;
         }
-        Calendar fecha = new GregorianCalendar(anioF,1,1);
-        return fecha;
     }
     
+    /**
+     * Obtiene la segunda fecha del textField
+     * @return Calendar con un gregorianCalendar
+     */
     private Calendar obtenerFecha2(){
-        int anioF = Integer.parseInt(anio2.getText());
-        if(anioF<0||anioF>3000){
-            //Hacer error.
+        try{
+            int anioF = Integer.parseInt(anio2.getText());
+            if(anioF<0){
+                return null;
+            }
+            Calendar fecha = new GregorianCalendar(anioF,1,1);
+            return fecha;
+        } catch (Exception e){
+            return null;
         }
-        Calendar fecha = new GregorianCalendar(anioF,1,1);
-        return fecha;
     }
     
+    /**
+     * Carga la tabla con los datos de los sismos ocurridos entre las dos
+     * fechas dadas por el usuario
+     */
     private void cargarTabla(){
         if(tabla.isVisible()){
             tabla.setVisible(false);
         }
         Calendar anioF = obtenerFecha1();
         Calendar anioF2 = obtenerFecha2();
+        if(anioF==null||anioF2==null||(anioF.get(Calendar.YEAR)>anioF2.get(Calendar.YEAR))){
+            JOptionPane.showMessageDialog(this, "Debe de ingresar una fecha mayor a cero"
+                    + " y inicio debe de ser menor a final","Error",
+            JOptionPane.ERROR_MESSAGE);
+            return;
+      }
         tabla.setVisible(true);
         sismos = adminDatos.getSismos();
         DefaultTableModel modeloTabla = new DefaultTableModel(titulos, sismos.size());
@@ -82,6 +111,10 @@ public class GraficoTabularFechas extends JPanel implements ActionListener {
         tabla.getColumnModel().getColumn(3).setPreferredWidth(100);
     }
     
+    /**
+     * Contrucor del panel con los diferentes botones y textFields
+     * mas un JTable para agregrar los datos de los sismos.
+     */
     public GraficoTabularFechas(){
         this.setBounds(0, 0, 700, 350);
         this.setLayout(null);
@@ -119,6 +152,10 @@ public class GraficoTabularFechas extends JPanel implements ActionListener {
         this.setVisible(false);
     }
     
+    /**
+     * Contiene los actionListeners de los botones del panel.
+     * @param e 
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == volver){

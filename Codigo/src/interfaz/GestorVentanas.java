@@ -131,7 +131,7 @@ public class GestorVentanas{
         pilaVentanas.push(histograma);
         histograma.setVisible(true);
         menuGraficos.setVisible(false);
-        frame.setSize(512,650);
+        frame.setSize(512,600);
     }
     
     static public void abrirGraficoPastel(){
@@ -145,7 +145,7 @@ public class GestorVentanas{
         pilaVentanas.push(tabularFechas);
         tabularFechas.setVisible(true);
         menuGraficos.setVisible(false);
-        frame.setSize(700,300);
+        frame.setSize(700,350);
     }
     
     static public void abrirMenuRegistro(){

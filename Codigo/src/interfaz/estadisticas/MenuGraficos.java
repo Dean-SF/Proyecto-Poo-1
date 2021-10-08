@@ -10,11 +10,12 @@ import java.awt.event.ActionListener;
 
 //Clase
 /**
- *
+ * Ventana con las opciones para crear diferentes graficos
+ * se encarga de llamar a los metodos correspondientes de gestorVentanas
  * @author Esteban
  */
 public class MenuGraficos extends JPanel implements ActionListener{
-    private JLabel titulo = new JLabel("Estadisticas");
+    private JLabel titulo = new JLabel("Estadisticas de sismos");
     private JButton provincia = new JButton("Por provincia");
     private JButton origen = new JButton("Por tipo de origen");
     private JButton fechas = new JButton("Rango de fechas");
@@ -22,12 +23,15 @@ public class MenuGraficos extends JPanel implements ActionListener{
     private JButton magnitud = new JButton("Por magnitud");
     private JButton volver = new JButton("Volver");
     
+    /**
+     * Contructor para el panel con las opciones a todos los graficos
+     */
     public MenuGraficos(){
         this.setBounds(0, 0, 800, 512);
         this.setLayout(null);
         
         titulo.setFont(new Font("OCR A Extended",Font.PLAIN,34));
-        titulo.setBounds(270,50,700,25);
+        titulo.setBounds(170,50,700,25);
         this.add(titulo);
         
         provincia.setFont(new Font("Segoe UI",Font.PLAIN,18));
@@ -63,6 +67,11 @@ public class MenuGraficos extends JPanel implements ActionListener{
         this.setVisible(false);
     }
     
+    /**
+     * Contiene los actionListeners de los botones del panel
+     * que llaman a las funciones del gestorVentanas.
+     * @param e 
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == provincia) {

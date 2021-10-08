@@ -1,7 +1,7 @@
+//Importaciones
+//Default
 package interfaz.estadisticas;
-   
-import datos.Sismo;
-import datos.TEscala;
+//Interfaz
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -9,13 +9,17 @@ import javax.swing.JTable;
 import interfaz.GestorVentanas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+//Otros
+import java.util.ArrayList;
+import datos.Sismo;
+import datos.TEscala;
+import javax.swing.JOptionPane;
 import static principal.Inicializador.adminDatos;
 
 /**
- *
+ * Crea una ventana con un grafco tabular que muestra los datos de los sismos segun su magnitud.
  * @author Esteban
  */
 public class GraficoTabular extends JPanel implements ActionListener {
@@ -27,34 +31,46 @@ public class GraficoTabular extends JPanel implements ActionListener {
     private JTable tabla = new JTable(datos,titulos);
     private JScrollPane pane = new JScrollPane(tabla);
     
+    /**
+     * Carga un JTable con los datos de los sismos y los etiqueta.
+     */
      private void cargarTabla(){
-        tabla.setVisible(true);
-        sismos = adminDatos.getSismos();
-        DefaultTableModel modeloTabla = new DefaultTableModel(titulos, sismos.size());
-        for(int  i = 0; i<sismos.size(); i++){
-            String texto = "";
-            Sismo actual = sismos.get(i);
-            TEscala escalaActual = actual.getMagnitud().getEscala();
-            if(escalaActual==TEscala.MAGNITUD_DE_MOMENTO){
-                texto = "Magnitud momento";
-            }else{
-                texto = "Magnitud Richter";
+        try{
+            tabla.setVisible(true);
+            sismos = adminDatos.getSismos();
+            DefaultTableModel modeloTabla = new DefaultTableModel(titulos, sismos.size());
+            for(int  i = 0; i<sismos.size(); i++){
+                String texto = "";
+                Sismo actual = sismos.get(i);
+                TEscala escalaActual = actual.getMagnitud().getEscala();
+                if(escalaActual==TEscala.MAGNITUD_DE_MOMENTO){
+                    texto = "Magnitud momento";
+                }else{
+                    texto = "Magnitud Richter";
+                }
+                modeloTabla.setValueAt(texto, i, 0);
+                modeloTabla.setValueAt(actual.getMagnitud().getMagnitud(), i, 1); 
+                modeloTabla.setValueAt(actual.getId(), i, 2);
+                modeloTabla.setValueAt(actual.getDescripcion(), i, 3);
+                modeloTabla.setValueAt(actual.getLocalizacion().getProvincia(), i, 4);
             }
-            modeloTabla.setValueAt(texto, i, 0);
-            modeloTabla.setValueAt(actual.getMagnitud().getMagnitud(), i, 1); 
-            modeloTabla.setValueAt(actual.getId(), i, 2);
-            modeloTabla.setValueAt(actual.getDescripcion(), i, 3);
-            modeloTabla.setValueAt(actual.getLocalizacion().getProvincia(), i, 4);
+            tabla.setModel(modeloTabla);
+
+            tabla.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tabla.getColumnModel().getColumn(1).setPreferredWidth(10);
+            tabla.getColumnModel().getColumn(2).setPreferredWidth(10);
+            tabla.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tabla.getColumnModel().getColumn(4).setPreferredWidth(40);
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Esto no deberia de estar aqui","Error",
+            JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        tabla.setModel(modeloTabla);
-        
-        tabla.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tabla.getColumnModel().getColumn(1).setPreferredWidth(10);
-        tabla.getColumnModel().getColumn(2).setPreferredWidth(10);
-        tabla.getColumnModel().getColumn(3).setPreferredWidth(100);
-        tabla.getColumnModel().getColumn(4).setPreferredWidth(40);
     }
     
+     /**
+      * Constructoder de la ventana con los botones y el JTable.
+      */
     public GraficoTabular(){
         this.setBounds(0, 0, 700, 300);
         this.setLayout(null);
@@ -78,6 +94,10 @@ public class GraficoTabular extends JPanel implements ActionListener {
         this.setVisible(false);
     }
     
+    /**
+     * Contiene los actionListeners de los botones del panel.
+     * @param e 
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == volver){
