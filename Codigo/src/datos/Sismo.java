@@ -148,17 +148,29 @@ public class Sismo {
     public double getLongitud() {
         return localizacion.getLongitud();
     }
-
+    
+    /**
+     * Devuelve un string con la fecha del sismo
+     * @return String con mes, dias y annio
+     */
     public String stringFecha(){
         return fechaHora.get(DAY_OF_MONTH) + "/" + (fechaHora.get(MONTH)+1) + "/" + fechaHora.get(YEAR);
     }
-
+    
+    /**
+     * Devuelve un string con la hora del sismo
+     * @return String con hora, minuto y segundo
+     */
     public String stringHora(){
         DecimalFormat formato = new DecimalFormat("00");
         return formato.format(fechaHora.get(HOUR_OF_DAY)) + ":" + formato.format(fechaHora.get(MINUTE)) + ":" + 
         formato.format(fechaHora.get(SECOND));
     }
 
+    /**
+     * Convierte la magnitud en un string mas el tipo de magnitud
+     * @return String con magnitud + (Ml o Mw)
+     */
     public String stringMagnitud(){
             TEscala escala = magnitud.getEscala();
             switch (escala) {
@@ -171,10 +183,18 @@ public class Sismo {
             }
     }
 
+    /**
+     * Devualve un string con la provincia y la descripcion
+     * @return Sring de provincia + descripcion
+     */
     public String stringLocalizacion() {
         return stringProvincia() + ", " + getDescripcion();
     }
-
+    
+    /**
+     * Convierte el TProvincia en un string
+     * @return String con la provincia
+     */
     public String stringProvincia() {
         TProvincia provincia = localizacion.getProvincia();
         switch (provincia) {
@@ -197,7 +217,11 @@ public class Sismo {
             
         }
     }
-
+    
+    /**
+     * Convierte el TOrigen en un string
+     * @return String con origen
+     */
     public String stringOrigen() {
         switch (origen) {
             case SUBDUCION:
@@ -215,10 +239,19 @@ public class Sismo {
         }
     }
 
+    /**
+     * Devuelve un string con la profundidad mas el simbolo de Km
+     * @return String profundidad + Km
+     */
     public String stringProfundidad() {
         return profundidad + " Km";
     }
 
+    /**
+     * Toma la entrada Strng con el lugar de origen y lo vonvierte a un TOtigen
+     * @param origen
+     * @return TOrigen
+     */
     public static TOrigen stringToTOrigen(String origen) {
         switch (origen) {
             case "Subduccion":
@@ -236,6 +269,11 @@ public class Sismo {
         }
     }
 
+    /**
+     * Toma un String con la provincia y lo convierte a un TProvincia
+     * @param provincia
+     * @return TProvincia
+     */
     public static TProvincia stringToTProvincia(String provincia) {
         switch (provincia) {
             case "Alajuela":
