@@ -166,9 +166,9 @@ public class AdminSismos extends JPanel implements ActionListener{
         campoOrigen.setFont(new Font("SimSun",Font.PLAIN,18));
         campoOrigen.addItem("Subduccion");
         campoOrigen.addItem("Choque de placas");
-        campoOrigen.addItem("Tectonico Por falla Local");
+        campoOrigen.addItem("Tectonico por falla local");
         campoOrigen.addItem("Intra placa");
-        campoOrigen.addItem("Deformacion Interna");
+        campoOrigen.addItem("Deformacion interna");
 
         // Magnitud
         magnitud.setBounds(10,250,150,35);
@@ -199,9 +199,9 @@ public class AdminSismos extends JPanel implements ActionListener{
         campoProvincia.addItem("Cartago");
         campoProvincia.addItem("Guanacaste");
         campoProvincia.addItem("Heredia");
-        campoProvincia.addItem("Limón");
+        campoProvincia.addItem("Limon");
         campoProvincia.addItem("Puntarenas");
-        campoProvincia.addItem("San José");
+        campoProvincia.addItem("San Jose");
         
 
         descripcion.setFont(new Font("SimSun",Font.PLAIN,20));
