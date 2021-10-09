@@ -83,6 +83,11 @@ public class GestorVentanas{
     }
     static public void cambiarDimensiones(int x,int y) {
         frame.setSize(x,y);
+        frame.setLocationRelativeTo(null);
+    }
+
+    static public void setVisibilidad(boolean valor) {
+        frame.setVisible(valor);
     }
 
     // Hace que se pueda volver atras
@@ -92,6 +97,7 @@ public class GestorVentanas{
         ventanaActual = pilaVentanas.peek();
         frame.setSize(ventanaActual.getSize());
         ventanaActual.setVisible(true);
+        frame.setLocationRelativeTo(null);
         
     }
 
@@ -100,6 +106,7 @@ public class GestorVentanas{
         adminSismos.setVisible(true);
         menu.setVisible(false);
         frame.setSize(1280,497);
+        frame.setLocationRelativeTo(null);
     }
     static public void verMapaSismos(){
         String url="https://www.google.com/maps/d/viewer?mid=1cDD46xY41UoTCr6qk8QTrU2fw4YA-rK0&hl=es-419&ll=10.385491939193622%2C-84.29291492944776&z=8";
@@ -111,6 +118,7 @@ public class GestorVentanas{
         menuGraficos.setVisible(true);
         menu.setVisible(false);
         frame.setSize(800,512);
+        frame.setLocationRelativeTo(null);
     }
     
     static public void abrirGraficoBarras(){
@@ -118,6 +126,7 @@ public class GestorVentanas{
         barras.setVisible(true);
         menuGraficos.setVisible(false);
         frame.setSize(712,650);
+        frame.setLocationRelativeTo(null);
     }
     
     static public void abrirGraficoTabular(){
@@ -125,6 +134,7 @@ public class GestorVentanas{
         tabular.setVisible(true);
         menuGraficos.setVisible(false);
         frame.setSize(700,300);
+        frame.setLocationRelativeTo(null);
     }
     
     static public void abrirGraficoHistograma(){
@@ -132,6 +142,7 @@ public class GestorVentanas{
         histograma.setVisible(true);
         menuGraficos.setVisible(false);
         frame.setSize(512,600);
+        frame.setLocationRelativeTo(null);
     }
     
     static public void abrirGraficoPastel(){
@@ -139,6 +150,7 @@ public class GestorVentanas{
         pastel.setVisible(true);
         menuGraficos.setVisible(false);
         frame.setSize(515,600);
+        frame.setLocationRelativeTo(null);
     }
     
     static public void abrirGraficoTabularFechas(){
@@ -146,6 +158,7 @@ public class GestorVentanas{
         tabularFechas.setVisible(true);
         menuGraficos.setVisible(false);
         frame.setSize(700,350);
+        frame.setLocationRelativeTo(null);
     }
     
     static public void abrirMenuRegistro(){
@@ -153,5 +166,6 @@ public class GestorVentanas{
         registro.setVisible(true);
         menu.setVisible(false);
         frame.setSize(800,512);
+        frame.setLocationRelativeTo(null);
     }
 }
