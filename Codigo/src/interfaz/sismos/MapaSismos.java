@@ -31,6 +31,7 @@ public class MapaSismos extends JFrame{
         final JWebBrowser browser = new JWebBrowser();
         browser.setBarsVisible(false);
         browser.navigate(url);
+        browser.setSize(980, 700);
         panelBrowser.add(browser);
         setTitle("Proyecto - Mapa");
         setIconImage(icono.getImage());
