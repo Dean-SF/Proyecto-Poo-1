@@ -105,10 +105,10 @@ public class GraficoTabularFechas extends JPanel implements ActionListener {
         }
         tabla.setModel(modeloTabla);
         
-        tabla.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tabla.getColumnModel().getColumn(1).setPreferredWidth(10);
-        tabla.getColumnModel().getColumn(2).setPreferredWidth(10);
-        tabla.getColumnModel().getColumn(3).setPreferredWidth(100);
+        tabla.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tabla.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tabla.getColumnModel().getColumn(2).setPreferredWidth(50);
+        tabla.getColumnModel().getColumn(3).setPreferredWidth(10);
     }
     
     /**
