@@ -13,6 +13,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import controladores.TModificacion;
@@ -214,10 +217,22 @@ public class AdminSismos extends JPanel implements ActionListener{
         todos los datos de los sismos
         */
         panelScroll.setBounds(350, 50, 910, 270);
-        tabla.setEnabled(false);
+        tabla.setEnabled(true);
         tabla.setFont(new Font("Copperplate Gothic Light",Font.PLAIN,12));
         tabla.setRowHeight(30);
-        
+        ListSelectionModel seleccionTabla = tabla.getSelectionModel();
+        seleccionTabla.addListSelectionListener(new ListSelectionListener(){
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(!seleccionTabla.isSelectionEmpty() && !e.getValueIsAdjusting()) {
+                    int sismoSel = seleccionTabla.getMinSelectionIndex();
+                    sismoSel = (int) tabla.getValueAt(sismoSel, 0);
+                    verSismo(sismoSel);
+                }
+                
+            }
+        });
+
         /*
         Parte de botones de funcionalidad: Botones de agregar, eliminar y modificar
         */
@@ -333,7 +348,6 @@ public class AdminSismos extends JPanel implements ActionListener{
             cargarTabla();
         }
         else if(e.getSource() == ver){
-            verSismo();
             
         }
 
@@ -607,12 +621,7 @@ public class AdminSismos extends JPanel implements ActionListener{
     
     */
     
-    private void verSismo(){
-        int id = verificarId();
-        if(id == -1){
-            JOptionPane.showMessageDialog(this, "EL ID INTRODUCIDO ES INVALIDO","ERROR",JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+    private void verSismo(int id){
         Sismo actual = adminDatos.consultarSismo(id);
         if(actual == null) {
             JOptionPane.showMessageDialog(this, "EL ID INTRODUCIDO NO EXISTE","ERROR",JOptionPane.ERROR_MESSAGE);

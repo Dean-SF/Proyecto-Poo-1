@@ -90,6 +90,9 @@ public class GestorVentanas{
         frame.setVisible(valor);
     }
 
+    static public boolean getVisibilidad() {
+        return frame.isVisible();
+    }
     // Hace que se pueda volver atras
     static public void volverAtras() {
         JPanel ventanaActual = pilaVentanas.pop();
