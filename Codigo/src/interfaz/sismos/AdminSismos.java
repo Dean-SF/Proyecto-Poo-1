@@ -98,7 +98,6 @@ public class AdminSismos extends JPanel implements ActionListener{
     private JButton agregar = new JButton("Agregar");
     private JButton eliminar = new JButton("Eliminar");
     private JButton modificar = new JButton("Modificar");
-    private JButton ver = new JButton("Ver Sismo");
     private JLabel id = new JLabel("ID:");
     private JTextField idCampo = new JTextField();
 
@@ -247,10 +246,6 @@ public class AdminSismos extends JPanel implements ActionListener{
         modificar.setFont(new Font("Segoe UI",Font.PLAIN,18));
         modificar.setBounds(890,424,130,30);
         modificar.addActionListener(this);
-        //boton para ver un sismo, hay que acomodarlo mejor
-        ver.setFont(new Font("Segoe UI",Font.PLAIN,18));
-        ver.setBounds(750,390,150,30);
-        ver.addActionListener(this);
 
         id.setFont(new Font("SimSun",Font.PLAIN,20));
         id.setBounds(610,390,30,30);
@@ -309,7 +304,6 @@ public class AdminSismos extends JPanel implements ActionListener{
         this.add(agregar);
         this.add(eliminar);
         this.add(modificar);
-        this.add(ver);
         this.add(id);
         this.add(idCampo);
 
@@ -347,10 +341,6 @@ public class AdminSismos extends JPanel implements ActionListener{
             modificarSismo();
             cargarTabla();
         }
-        else if(e.getSource() == ver){
-            
-        }
-
     }
 
     /** 
