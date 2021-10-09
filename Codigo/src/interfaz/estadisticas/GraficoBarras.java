@@ -119,7 +119,7 @@ public class GraficoBarras extends JPanel implements ActionListener{
      * @return JFreeChart con el modelo
      */
     private JFreeChart modelo(){
-        JFreeChart bar = ChartFactory.createBarChart("Meces", "", "Cantidad sismos", createDataset());
+        JFreeChart bar = ChartFactory.createBarChart("Meses", "", "Cantidad sismos", createDataset());
         return bar;
     }
     
