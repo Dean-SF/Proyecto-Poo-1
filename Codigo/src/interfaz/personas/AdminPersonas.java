@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import static principal.Inicializador.adminDatos;
-import static principal.Inicializador.excel;;
+import static principal.Inicializador.excel;
 
 /**
  *
@@ -56,78 +56,78 @@ public class AdminPersonas extends JPanel implements ActionListener {
     private JButton volver = new JButton("Volver");
     
     public AdminPersonas(){
-    presentacion.setFont(new Font("OCR A Extended",Font.PLAIN,25));
-    presentacion.setBounds(320,25,250,25);
-    //Nombre
-    labelNombre.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    labelNombre.setBounds(10,70,100,25);
-    nombre.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    nombre.setBounds(25,100,150,25);
-    //id
-    labelID.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    labelID.setBounds(10,130,100,25);
-    id.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    id.setBounds(25,160,150,25);
-    //Numero
-    labelNumero.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    labelNumero.setBounds(10,190,100,25);
-    numero.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    numero.setBounds(25,220,100,25);
-    //Correo
-    labelCorreo.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    labelCorreo.setBounds(10,255,150,25);
-    correo.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    correo.setBounds(25,285,250,25);
-    
-    //Provincias
-    labelProvincias.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    labelProvincias.setBounds(400,70,200,25);
-    sanjose.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    sanjose.setBounds(400,100,200,25);
-    cartago.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    cartago.setBounds(400,130,200,25);
-    alajuela.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    alajuela.setBounds(400,160,200,25);
-    heredia.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    heredia.setBounds(400,190,200,25);
-    limon.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    limon.setBounds(400,220,200,25);
-    puntarenas.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    puntarenas.setBounds(400,250,200,25);
-    guanacaste.setFont(new Font("Segoe UI",Font.PLAIN,18));
-    guanacaste.setBounds(400,280,200,25);
-    // Boton de volver
-    aceptar.setFont(new Font("OCR A Extended",Font.PLAIN,20));
-    aceptar.setBounds(405,440,130,30);
-    aceptar.addActionListener(this);
-    // Boton de volver
-    volver.setFont(new Font("OCR A Extended",Font.PLAIN,20));
-    volver.setBounds(605,440,130,30);
-    volver.addActionListener(this);
-    // Tamaño de la ventana y Layout manager
-    this.setBounds(0, 0, 765, 512);
-    this.setLayout(null);
-    //Agrega todo a la ventana
-    this.add(presentacion);
-    this.add(labelNombre);
-    this.add(nombre);
-    this.add(labelNumero);
-    this.add(numero);
-    this.add(labelCorreo);
-    this.add(correo);
-    this.add(labelID);
-    this.add(id);
-    this.add(labelProvincias);
-    this.add(sanjose);
-    this.add(cartago);
-    this.add(alajuela);
-    this.add(heredia);
-    this.add(limon);
-    this.add(puntarenas);
-    this.add(guanacaste);
-    this.add(volver);
-    this.add(aceptar);
-    this.setVisible(false);
+        presentacion.setFont(new Font("OCR A Extended",Font.PLAIN,25));
+        presentacion.setBounds(310,25,250,25);
+        //Nombre
+        labelNombre.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        labelNombre.setBounds(10,70,100,25);
+        nombre.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        nombre.setBounds(25,100,150,25);
+        //id
+        labelID.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        labelID.setBounds(10,130,100,25);
+        id.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        id.setBounds(25,160,150,25);
+        //Numero
+        labelNumero.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        labelNumero.setBounds(10,190,100,25);
+        numero.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        numero.setBounds(25,220,100,25);
+        //Correo
+        labelCorreo.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        labelCorreo.setBounds(10,255,150,25);
+        correo.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        correo.setBounds(25,285,250,25);
+        
+        //Provincias
+        labelProvincias.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        labelProvincias.setBounds(400,70,200,25);
+        sanjose.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        sanjose.setBounds(400,100,200,25);
+        cartago.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        cartago.setBounds(400,130,200,25);
+        alajuela.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        alajuela.setBounds(400,160,200,25);
+        heredia.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        heredia.setBounds(400,190,200,25);
+        limon.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        limon.setBounds(400,220,200,25);
+        puntarenas.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        puntarenas.setBounds(400,250,200,25);
+        guanacaste.setFont(new Font("Segoe UI",Font.PLAIN,18));
+        guanacaste.setBounds(400,280,200,25);
+        // Boton de volver
+        aceptar.setFont(new Font("OCR A Extended",Font.PLAIN,20));
+        aceptar.setBounds(405,440,130,30);
+        aceptar.addActionListener(this);
+        // Boton de volver
+        volver.setFont(new Font("OCR A Extended",Font.PLAIN,20));
+        volver.setBounds(605,440,130,30);
+        volver.addActionListener(this);
+        // Tamaño de la ventana y Layout manager
+        this.setBounds(0, 0, 765, 512);
+        this.setLayout(null);
+        //Agrega todo a la ventana
+        this.add(presentacion);
+        this.add(labelNombre);
+        this.add(nombre);
+        this.add(labelNumero);
+        this.add(numero);
+        this.add(labelCorreo);
+        this.add(correo);
+        this.add(labelID);
+        this.add(id);
+        this.add(labelProvincias);
+        this.add(sanjose);
+        this.add(cartago);
+        this.add(alajuela);
+        this.add(heredia);
+        this.add(limon);
+        this.add(puntarenas);
+        this.add(guanacaste);
+        this.add(volver);
+        this.add(aceptar);
+        this.setVisible(false);
     }
     
     
@@ -141,6 +141,20 @@ public class AdminPersonas extends JPanel implements ActionListener {
             
         }
     }
+    private void clear() {
+        id.setText("");
+        nombre.setText("");
+        numero.setText("");
+        correo.setText("");
+        sanjose.setSelected(false);
+        cartago.setSelected(false);
+        alajuela.setSelected(false);
+        heredia.setSelected(false);
+        limon.setSelected(false);
+        puntarenas.setSelected(false);
+        guanacaste.setSelected(false);
+    }
+
     public void agregarPersona(){
         if(verificarNombre() == -1){
             JOptionPane.showMessageDialog(this, "FAVOR INTRODUZCA UN NOMBRE","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -174,6 +188,10 @@ public class AdminPersonas extends JPanel implements ActionListener {
         if(correo.equals("")) {
             correo = "N/A";
         }
+        if(correo.equals("N/A") && celular == -1) {
+            JOptionPane.showMessageDialog(this, "COLOQUE EL NUMERO O EL CORREO","ERROR",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         List<TProvincia> provincias = crearListaProvincias();
         boolean resultado = adminDatos.agregarPersona(id, nombre.getText(), correo, celular, provincias);
@@ -187,6 +205,8 @@ public class AdminPersonas extends JPanel implements ActionListener {
             JOptionPane.showMessageDialog(this, "OCURRIO EL ERROR '" + e.getMessage() + 
                 "' A LA HORA DE GUARDAR EN EL EXCEL","ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        JOptionPane.showMessageDialog(this, "SE AGREGO LA PERSONA","ENHORABUENA",JOptionPane.INFORMATION_MESSAGE);
+        clear();
     }
     private int verificarNombre(){
         String string = nombre.getText();

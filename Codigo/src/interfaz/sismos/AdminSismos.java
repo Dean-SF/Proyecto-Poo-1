@@ -18,6 +18,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import controladores.EnvioCorreo;
 import controladores.TModificacion;
 import interfaz.GestorVentanas;
 import datos.Sismo;
@@ -227,6 +228,7 @@ public class AdminSismos extends JPanel implements ActionListener{
                     int sismoSel = seleccionTabla.getMinSelectionIndex();
                     sismoSel = (int) tabla.getValueAt(sismoSel, 0);
                     verSismo(sismoSel);
+                    tabla.clearSelection();
                 }
                 
             }
@@ -435,19 +437,44 @@ public class AdminSismos extends JPanel implements ActionListener{
                 JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
+            
+            // Se carga la tabla
             cargarTabla();
-          
+            
+            // Se agrega al excel el Sismo
             try {
                 excel.agregarUltimoSismo();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "OCURRIO EL ERROR '" + e.getMessage() + 
                 "' A LA HORA DE GUARDAR EN EL EXCEL","ERROR", JOptionPane.ERROR_MESSAGE);
+                return;
             }
-        
+
+            // Se crea un nuevo hilo donde se ejecuta el envio del correo para no congelar la interfaz
+            Thread correo = new Thread(new Runnable(){
+                @Override
+                public void run() {
+                    EnvioCorreo.envioCorreos();
+                } 
+             });
+            correo.start(); // Se inicia el hilo
+            clear();
+            JOptionPane.showMessageDialog(this, "SE AGREGO EL SISMO","ENHORABUENA",JOptionPane.INFORMATION_MESSAGE);
     }
 
-
+    private void clear() {
+        campoDia.setText("");
+        campoAnnio.setText("");
+        campoDescripcion.setText("");
+        campoHoras.setText("");
+        campoLatitud.setText("");
+        campoLongitud.setText("");
+        campoMagnitud.setText("");
+        campoMes.setText("");
+        campoMinutos.setText("");
+        campoProfundidad.setText("");
+        campoSegundos.setText("");
+    }
     /**
      * Metodo que verifica si la fecha y hora estan en el formato correcto usando los metodos {@link #verificarFecha()}
      * y {@link #verificarHora()}
@@ -483,7 +510,7 @@ public class AdminSismos extends JPanel implements ActionListener{
             Calendar fecha = new GregorianCalendar(annio, mes-1, dia);
             // Si el objeto tipo calendar no tiene los datos a como entraron, significa que este intento
             // compensar los datos que se pasaban del rango y quedo una fecha no deseada, por lo que se retorna null
-            if(fecha.get(Calendar.YEAR) != annio) {
+            if(fecha.get(Calendar.YEAR) != annio || annio < 1970) {
                 return null;
             }
             if(fecha.get(Calendar.MONTH) != (mes-1)) {
@@ -605,6 +632,7 @@ public class AdminSismos extends JPanel implements ActionListener{
             JOptionPane.showMessageDialog(this, "OCURRIO EL ERROR '" + e.getMessage() + 
             "' A LA HORA DE GUARDAR EN EL EXCEL","ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        JOptionPane.showMessageDialog(this, "SE ELIMINO EL SISMO","ENHORABUENA",JOptionPane.INFORMATION_MESSAGE);
     }
     /*
     Metodo para ver un sismo segun su id en la tabla de sismos que se van agregando 
@@ -741,5 +769,7 @@ public class AdminSismos extends JPanel implements ActionListener{
             JOptionPane.showMessageDialog(this, "OCURRIO EL ERROR '" + e.getMessage() + 
             "' A LA HORA DE GUARDAR EN EL EXCEL","ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        clear();
+        JOptionPane.showMessageDialog(this, "SE MODIFICO EL SISMO","ENHORABUENA",JOptionPane.INFORMATION_MESSAGE);
     }
 }

@@ -6,6 +6,7 @@
 //Esta es la base para enviar correo, la agrego para tenerla ahi y luego seguir con el resto de mi parte
 package controladores;
 
+import java.util.List;
 import java.util.Properties;
 import javax.mail.BodyPart;
 import javax.mail.Message;
@@ -16,6 +17,10 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import datos.Persona;
+import datos.Sismo;
+
+import static principal.Inicializador.adminDatos;
 /**
  *
  * @author DMV
@@ -27,14 +32,14 @@ public class EnvioCorreo {
     private static String subject;
     private static String text;
     private static String destino;
-    //private static String nombre;
-    //private static String provincia;
 
-    public static void enviar(String nombre, String correo, String provincia) {
+    public static void enviar(String nombre, String correo, Sismo sismo) {
 
-        text = "Hola, " + nombre + " le informamos que ha temblado en " + provincia + '\n';
+        text = "Hola, " + nombre + " le informamos que ha temblado en " + sismo.stringProvincia() + 
+        " aqui le compartimos los datos:\n" + sismo;
         destino = correo;
-        subject = "Nuevo temblor registrado en " + provincia;
+        subject = "Nuevo temblor registrado en " + sismo.stringProvincia();
+
         // String us;
         try {
 
@@ -67,6 +72,18 @@ public class EnvioCorreo {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void envioCorreos() {
+        List<Sismo> lista = adminDatos.getSismos();
+        List<Persona> personas = adminDatos.getPersonas();
+        Sismo sismo = lista.get(lista.size()-1);
+
+        for(Persona actual : personas) {
+            if(actual.getProvincias().contains(sismo.getProvincia()) && !(actual.getCorreo().equals("N/A"))) {
+                enviar(actual.getNombre(), actual.getCorreo(), sismo);
+            }
         }
     }
 

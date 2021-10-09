@@ -148,6 +148,12 @@ public class Sismo {
     public double getLongitud() {
         return localizacion.getLongitud();
     }
+     
+    public TProvincia getProvincia() {
+        return localizacion.getProvincia();
+    }
+
+    
     
     /**
      * Devuelve un string con la fecha del sismo
@@ -327,8 +333,9 @@ public class Sismo {
     
     @Override
     public String toString() {
-        return "Sismo{" + "fechaHora=" + fechaHora + ", profundidad=" +
-                profundidad + ", origen=" + origen + ", magnitud=" +
-                magnitud + ", localizacion=" + localizacion + '}';
+        return "Fecha: " + stringFecha() + "\n" + "Hora: " + stringHora() + "\n" + "Magnitud: " + stringMagnitud() + 
+               "\n" + "Profundidad: " + stringProfundidad() + "\n" + "Origen: " + stringOrigen() + "\n" +
+               "Localizacion: " + stringLocalizacion() + "\n" + "Latitud: " + localizacion.getLatitud() + "\n" +
+               "Longitud: " + localizacion.getLongitud();
     }
 }
