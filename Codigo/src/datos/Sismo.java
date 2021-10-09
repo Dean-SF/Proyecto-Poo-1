@@ -232,7 +232,7 @@ public class Sismo {
                 return TOrigen.DEFORMACION_INTERNA;
             case "Intra placa":
                 return TOrigen.INTRA_PLACA;
-            case "Tecnonico por falla local":
+            case "Tectonico por falla local":
                 return TOrigen.TECTONICO_POR_FALLA_LOCAL;
             default:
                 return null;
@@ -303,7 +303,7 @@ public class Sismo {
             case INTRA_PLACA:
                 return "Intra placa";
             case TECTONICO_POR_FALLA_LOCAL:
-                return "Tecnonico por falla local";
+                return "Tectonico por falla local";
             default:
                 return "N/A";
         }
