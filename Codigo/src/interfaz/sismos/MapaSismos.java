@@ -22,7 +22,7 @@ import java.awt.event.WindowAdapter;
 
 public class MapaSismos extends JFrame{
 
-    private ImageIcon icono = new ImageIcon(getClass().getResource("imagenes/earthquake.png")); // Icono del programa
+    private ImageIcon icono = new ImageIcon(getClass().getResource("../imagenes/earthquake.png")); // Icono del programa
 
     //este metodo crea el navegador recibiendo una url
     public MapaSismos(String url){
