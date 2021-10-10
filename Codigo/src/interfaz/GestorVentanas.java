@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import interfaz.sismos.AdminSismos;
-import interfaz.sismos.MenuSismos;
 import interfaz.sismos.MapaSismos;
 import interfaz.estadisticas.MenuGraficos;
 import interfaz.personas.AdminPersonas;
@@ -39,7 +38,6 @@ public class GestorVentanas{
 
     // Todas las ventanas disponibles de la interfaz:
     private static AdminSismos adminSismos = new AdminSismos();
-    private static MenuSismos menuSismos = new MenuSismos();
     private static Menu menu = new Menu();
     private static MenuGraficos menuGraficos = new MenuGraficos();
     private static GraficoBarras barras = new GraficoBarras();
@@ -67,7 +65,6 @@ public class GestorVentanas{
         frame.setLayout(null);      // quita el layout manager (todo debe hacerse manual)
 
         frame.add(menu);    // Agrega la ventana menu
-        frame.add(menuSismos); // Agrega la ventana menu de sismos 
         frame.add(adminSismos);
         frame.add(menuGraficos);
         frame.add(barras);
