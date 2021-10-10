@@ -275,6 +275,11 @@ public class Sismo {
         }
     }
 
+    /**
+     * Metodo para convertir de {@code TProvincia} a su equivalente string
+     * @param provincia tipo {@code TProvincia}
+     * @return un string con su equivalente en string
+     */
     public static String tprovinciaToString(TProvincia provincia) {
         switch (provincia) {
             case ALAJUELA:
@@ -298,6 +303,11 @@ public class Sismo {
         }
     }
 
+    /**
+     * Metodo para convertir de {@code TOrigen} a su equivalente string
+     * @param origen tipo {@code TOrigen}
+     * @return un string con su equivalente en string
+     */
     public static String torigenToString(TOrigen origen) {
         switch (origen) {
             case SUBDUCION:
@@ -315,7 +325,9 @@ public class Sismo {
         }
     }
 
-    
+    /**
+     * Override del metodo equals, compara si dos sismos son iguales segun su ID
+     */
     @Override
     public boolean equals(Object obj) {
         final Sismo other = (Sismo) obj;
@@ -331,6 +343,9 @@ public class Sismo {
         return true;
     }
     
+    /**
+     * Override del metodo toString, converte el sismo y sus datos a una representacion de string
+     */
     @Override
     public String toString() {
         return "Fecha: " + stringFecha() + "\n" + "Hora: " + stringHora() + "\n" + "Magnitud: " + stringMagnitud() + 

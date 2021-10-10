@@ -62,6 +62,9 @@ public class Persona {
         return id;
     }
 
+    /**
+     * Override del metodo equals, compara si dos personas son iguales segun su ID
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -80,6 +83,9 @@ public class Persona {
         return true;
     }
 
+    /**
+     * Override del metodo toString, converte la persona y sus datos a una representacion de string
+     */
     @Override
     public String toString() {
         return "Persona{" + "nombre=" + nombre + ", correo=" +

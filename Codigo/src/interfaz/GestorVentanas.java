@@ -100,7 +100,9 @@ public class GestorVentanas{
         frame.setLocationRelativeTo(null);
         
     }
-
+    /** 
+     * Metodo para abrir la ventana de administracion de sismos
+    */
     static public void abrirAdminSismos(){
         pilaVentanas.push(adminSismos);
         adminSismos.setVisible(true);
@@ -108,11 +110,18 @@ public class GestorVentanas{
         frame.setSize(1280,497);
         frame.setLocationRelativeTo(null);
     }
+
+    /** 
+     * Metodo para abrir un mapa con multiples puntos de de sismos en el año
+    */
     static public void verMapaSismos(){
         String url="https://www.google.com/maps/d/viewer?mid=1cDD46xY41UoTCr6qk8QTrU2fw4YA-rK0&hl=es-419&ll=10.385491939193622%2C-84.29291492944776&z=8";
         MapaSismos.abrirNavegador(url);
     }
     
+    /** 
+     * Metodo para abrir la ventana de menu de graficos
+    */
     static public void abrirMenuGraficos(){
         pilaVentanas.push(menuGraficos);
         menuGraficos.setVisible(true);
@@ -121,6 +130,9 @@ public class GestorVentanas{
         frame.setLocationRelativeTo(null);
     }
     
+    /** 
+     * Metodo para abrir la ventana con el grafico de barras
+    */
     static public void abrirGraficoBarras(){
         pilaVentanas.push(barras);
         barras.setVisible(true);
@@ -129,14 +141,20 @@ public class GestorVentanas{
         frame.setLocationRelativeTo(null);
     }
     
+    /** 
+     * Metodo para abrir la ventana con el grafico tabular
+    */
     static public void abrirGraficoTabular(){
         pilaVentanas.push(tabular);
         tabular.setVisible(true);
         menuGraficos.setVisible(false);
         frame.setSize(700,300);
         frame.setLocationRelativeTo(null);
-    }
+    }   
     
+    /** 
+     * Metodo para abrir la ventana de con el grafico histograma
+    */
     static public void abrirGraficoHistograma(){
         pilaVentanas.push(histograma);
         histograma.setVisible(true);
@@ -145,6 +163,9 @@ public class GestorVentanas{
         frame.setLocationRelativeTo(null);
     }
     
+    /** 
+     * Metodo para abrir la ventana con el grafico pastel
+    */
     static public void abrirGraficoPastel(){
         pilaVentanas.push(pastel);
         pastel.setVisible(true);
@@ -153,6 +174,9 @@ public class GestorVentanas{
         frame.setLocationRelativeTo(null);
     }
     
+    /** 
+     * Metodo para abrir la ventana con el grafico tabular con rango de fechas
+    */
     static public void abrirGraficoTabularFechas(){
         pilaVentanas.push(tabularFechas);
         tabularFechas.setVisible(true);
@@ -161,6 +185,9 @@ public class GestorVentanas{
         frame.setLocationRelativeTo(null);
     }
     
+    /** 
+     * Metodo para abrir la ventana de registo de personas
+    */
     static public void abrirMenuRegistro(){
         pilaVentanas.push(registro);
         registro.setVisible(true);

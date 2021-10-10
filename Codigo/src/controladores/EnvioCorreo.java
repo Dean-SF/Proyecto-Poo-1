@@ -33,6 +33,12 @@ public class EnvioCorreo {
     private static String text;
     private static String destino;
 
+    /**
+     * Metodo para enviar un correo dado un nombre, correo y sismo
+     * @param nombre
+     * @param correo
+     * @param sismo
+     */
     public static void enviar(String nombre, String correo, Sismo sismo) {
 
         text = "Hola, " + nombre + " le informamos que ha temblado en " + sismo.stringProvincia() + 
@@ -74,7 +80,9 @@ public class EnvioCorreo {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Metodo para enviarCorreos segun el ultimo sismo agregado y las personas con la provincia correspondiente
+     */
     public static void envioCorreos() {
         List<Sismo> lista = adminDatos.getSismos();
         List<Persona> personas = adminDatos.getPersonas();

@@ -23,6 +23,9 @@ import datos.TProvincia;
 
 import static principal.Inicializador.adminDatos;
 
+/** 
+ * Constructor de la clase, carga el excel si lo hay, si no, lo crea
+*/
 public class ExcelCreator {
     private File archivo = new File("src/principal/datos.xlsx");
     private XSSFWorkbook excel;
@@ -48,6 +51,9 @@ public class ExcelCreator {
         
     }
 
+    /**
+     * Carga el nombre de las columnas de la pagina de sismos
+     */
     private void cargarCabezaSismos() {
         nuevaFila = sismos.createRow(0);
         String[] cabeza = {"ID","Fecha","Magnitud","Profundidad","Origen","Provincia",
@@ -59,6 +65,9 @@ public class ExcelCreator {
         }
     }
 
+    /**
+     * Carga el nombre de las columnas de la pagina de personas
+     */
     private void cargarCabezaPersonas() {
         nuevaFila = personas.createRow(0);
         String[] cabeza = {"ID","Nombre","Correo","Celular","Provincias"};
@@ -69,7 +78,12 @@ public class ExcelCreator {
         }
     }
 
+    /**
+     * Guarda el archivo excell
+     * @throws IOException
+     */
     private void guardarExcel() throws IOException {
+        // cambia el tamaño de las columnas para que sean del tamaño del contenido
         for(int i = 0; i < 9; i++) {
             sismos.autoSizeColumn(i);
             if(i < 5) {
@@ -81,6 +95,10 @@ public class ExcelCreator {
         salida.close();
     }
 
+    /**
+     * Metodo que agrega un sismo a la ultima fila creada
+     * @param actual
+     */
     private void agregarSismo(Sismo actual) {
         Object[] sismoElementos = new Object[9];
         sismoElementos[0] = actual.getId();
@@ -109,6 +127,10 @@ public class ExcelCreator {
 
     }
 
+    /**
+     * Metodo que agrega una persona a la ultima fila creada
+     * @param actual
+     */
     private void agregarPersona(Persona actual) {
         Object[] personaElementos = new Object[5];
         personaElementos[0] = actual.getID();
@@ -133,7 +155,10 @@ public class ExcelCreator {
         }
     }
 
-
+    /**
+     * Metodo que actualiza la hoja completa de sismos, modificando o eliminando sismos en su camino
+     * @throws IOException
+    */
     public void actualizarHojaSismos() throws IOException {
         int fila = 1;
         ArrayList<Sismo> listaSismos = adminDatos.getSismos();
@@ -145,6 +170,10 @@ public class ExcelCreator {
         guardarExcel();
     }
 
+    /**
+     * Metodo que agrega el ultimo sismo al excel
+     * @throws IOException
+     */
     public void agregarUltimoSismo() throws IOException { 
         ArrayList<Sismo> listaSismos = adminDatos.getSismos();
         Sismo sismo = listaSismos.get((listaSismos.size()-1));
@@ -153,6 +182,10 @@ public class ExcelCreator {
         guardarExcel();
     }
 
+    /**
+     * Metodo que agrega la ultima persona al excel
+     * @throws IOException
+     */
     public void agregarUltimaPersona() throws IOException {
         ArrayList<Persona> listaPeronas = adminDatos.getPersonas();
         Persona persona = listaPeronas.get((listaPeronas.size()-1));
@@ -160,7 +193,9 @@ public class ExcelCreator {
         agregarPersona(persona);
         guardarExcel();
     }
-
+    /**
+     * Metodo que carga la hoja de sismos en memoria
+     */
     private void cargarSismos() {
         for(int i = 1; nuevaFila != null; i++) {
             
@@ -198,6 +233,9 @@ public class ExcelCreator {
         }
     }
 
+    /**
+     * Metodo que carga la hoja de personas en memoria
+     */
     private void cargarPersonas() {
         for(int i = 1; nuevaFila != null; i++) {
             
@@ -226,7 +264,11 @@ public class ExcelCreator {
             adminDatos.agregarPersona(id, nombre, correo, celular, listaProvincias);
         }
     }
-
+    /**
+     * Metodo que se encarga de cargar el excel completo en memoria para trabajar sobre el
+     * @throws InvalidFormatException
+     * @throws IOException
+     */
     private void cargarExcel() throws InvalidFormatException, IOException {
         excel = new XSSFWorkbook(new FileInputStream(archivo));
         formatoFecha = excel.createCellStyle();

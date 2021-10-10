@@ -56,6 +56,9 @@ public class Menu extends JPanel implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * Metodo con las acciones que realizan los botones
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == sismos) {

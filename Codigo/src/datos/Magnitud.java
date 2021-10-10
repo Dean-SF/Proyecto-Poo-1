@@ -13,6 +13,7 @@ public class Magnitud {
     public Magnitud() {
         //Default
     }
+    
     public Magnitud(double magnitud) {
         this.magnitud = magnitud;
         if(magnitud > 6.9) {

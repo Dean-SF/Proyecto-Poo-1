@@ -47,7 +47,7 @@ public class Localizacion {
     public TProvincia getProvincia() {
         return provincia;
     }
-
+    
     @Override
     public String toString() {
         return "Localizacion{" + "latitud=" + latitud + ", longitud=" +

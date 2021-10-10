@@ -149,7 +149,7 @@ public class GraficoBarras extends JPanel implements ActionListener{
     
     /**
      * Contructor de la ventana con los diferentes botones y el 
-     * textField para eegir el años a greficar.
+     * textField para elegir el años a graficar.
      */
     public GraficoBarras(){
         this.setBounds(0, 0, 700, 600);
