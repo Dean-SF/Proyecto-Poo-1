@@ -31,8 +31,8 @@ public class GraficoPastel extends JPanel implements ActionListener {
     
     /**
      * Saca el porcentaje de un numero segun el total
-     * @param dato
-     * @param total
+     * @param dato Tipo {@code int} numero a sacar el porcentaje
+     * @param total Tipo {@code int}
      * @return double
      */
     private double por(int dato, int total){

@@ -24,7 +24,8 @@ import static principal.Inicializador.adminDatos;
 import static principal.Inicializador.excel;
 
 /**
- *
+ * Ventana creada para el registro de las personas a las cuales se les enviara un correo a la hora de
+ * registrar un sismo
  * @author DMV
  */
 public class AdminPersonas extends JPanel implements ActionListener {

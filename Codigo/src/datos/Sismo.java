@@ -224,7 +224,7 @@ public class Sismo {
     /**
      * Metodo que convierte un string ya sea: {@code "Choque de placas"}, {@code "Tectonico Por falla Local"}, 
      * {@code "Subduccion"}, {@code "Intra placa"} y {@code "Deformacion Interna"} a su TOrigen correspondiente
-     * @param string cualquier tipo de string
+     * @param origen cualquier tipo de string
      * @return {@code TOrigen} dependiendo del string de entrada, si este no coincide con ningun caso retorna
      * {@code null}
      */
@@ -248,7 +248,7 @@ public class Sismo {
     /**
      *  Metodo que convierte un string ya sea: {@code "San José"}, {@code "Alajuela"}, {@code "Cartago"}, 
      * {@code "Heredia"}, {@code "Guanacaste"}, {@code "Puntarenas"} y {@code "Limón"} a su TProvincia correspondiente
-     * @param string cualquier tipo de string
+     * @param provincia cualquier tipo de string
      * @return {@code TProvincia} dependiendo del string de entrada, si este no coincide con ningun caso retorna
      * {@code null}
     */

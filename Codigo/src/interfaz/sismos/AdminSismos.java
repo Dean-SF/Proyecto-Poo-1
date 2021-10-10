@@ -33,10 +33,10 @@ import static principal.Inicializador.adminDatos;
 import static principal.Inicializador.excel;
 
 /** 
- * @author Deyan Sanabria
  * Clase que contiene la ventana de administrar sismos, esta ventana provee la funcionalidad e informacion
  * suficiente para poder agregar, eliminar y modificar sismos, ademas de presentar una lista de todos los
  * sismos que hay hasta el momento
+ * @author Deyan Sanabria
 */
 public class AdminSismos extends JPanel implements ActionListener{
     private JLabel presentacion = new JLabel("ADMINISTRACIÓN DE SISMOS");
@@ -318,7 +318,6 @@ public class AdminSismos extends JPanel implements ActionListener{
 
     /** 
      * Metodo que administra la funcionalidad de los botones de la ventana
-     * @return no retorna
     */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -348,8 +347,6 @@ public class AdminSismos extends JPanel implements ActionListener{
     /** 
      * Metodo que carga los elementos de la tabla presente en la ventana, coloca todos
      * los sismos en una tabla
-     * @param no tiene parametros
-     * @return no retorna
     */
     public void cargarTabla() {
         ArrayList<Sismo> sismos = adminDatos.getSismos(); // Se obtiene la lista de sismos

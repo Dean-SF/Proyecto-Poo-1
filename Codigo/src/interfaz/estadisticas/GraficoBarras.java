@@ -24,7 +24,7 @@ import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Crea una ventana para mostrar el grafico de barras segun el año introducido
  * @author Esteban
  */
 public class GraficoBarras extends JPanel implements ActionListener{
@@ -178,7 +178,7 @@ public class GraficoBarras extends JPanel implements ActionListener{
     
     /**
      * Contiene los actionListeners de los botones del panel.
-     * @param e 
+     * @param e Tipo {@code ActionEvent} con el evento detectado
      */
     @Override
     public void actionPerformed(ActionEvent e) {

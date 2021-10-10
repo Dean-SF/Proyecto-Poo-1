@@ -70,7 +70,7 @@ public class MenuGraficos extends JPanel implements ActionListener{
     /**
      * Contiene los actionListeners de los botones del panel
      * que llaman a las funciones del gestorVentanas.
-     * @param e 
+     * @param e Tipo {@code ActionEvent} con el evento detectado
      */
     @Override
     public void actionPerformed(ActionEvent e) {

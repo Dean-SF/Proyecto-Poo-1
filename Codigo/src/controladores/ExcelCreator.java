@@ -97,7 +97,7 @@ public class ExcelCreator {
 
     /**
      * Metodo que agrega un sismo a la ultima fila creada
-     * @param actual
+     * @param actual Tipo {@code Sismo} con el sismo actualmente a agregar
      */
     private void agregarSismo(Sismo actual) {
         Object[] sismoElementos = new Object[9];
@@ -129,7 +129,7 @@ public class ExcelCreator {
 
     /**
      * Metodo que agrega una persona a la ultima fila creada
-     * @param actual
+     * @param actual Tipo {@code Persona} con la persona actualmente a agregar
      */
     private void agregarPersona(Persona actual) {
         Object[] personaElementos = new Object[5];

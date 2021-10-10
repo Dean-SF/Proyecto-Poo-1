@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//Esta es la base para enviar correo, la agrego para tenerla ahi y luego seguir con el resto de mi parte
 package controladores;
 
 import java.util.List;
@@ -22,7 +21,7 @@ import datos.Sismo;
 
 import static principal.Inicializador.adminDatos;
 /**
- *
+ * Clase para enviar correos a la hora de agregar un sismo
  * @author DMV
  */
 public class EnvioCorreo {
@@ -35,9 +34,9 @@ public class EnvioCorreo {
 
     /**
      * Metodo para enviar un correo dado un nombre, correo y sismo
-     * @param nombre
-     * @param correo
-     * @param sismo
+     * @param nombre Tipo {@code String} con el nombre de la persona a la cual enviar el correo
+     * @param correo Tipo {@code String} con el correo de dicha persona
+     * @param sismo Tipo {@code Sismo} con el sismo recien registrado
      */
     public static void enviar(String nombre, String correo, Sismo sismo) {
 

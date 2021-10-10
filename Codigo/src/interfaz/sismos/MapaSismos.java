@@ -18,8 +18,9 @@ import javax.swing.*;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
-//Esta clase crea el mapa de sismos en un ventana de navegador dentro del mismo java
-
+/** 
+ * Esta clase crea el mapa de sismos en una ventana de navegador dentro del mismo java
+*/
 public class MapaSismos extends JFrame{
 
     private ImageIcon icono = new ImageIcon(getClass().getResource("../imagenes/earthquake.png")); // Icono del programa
