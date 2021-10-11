@@ -118,7 +118,7 @@ public class GraficoTabular extends JPanel implements ActionListener {
     
     /**
      * Contiene los actionListeners de los botones del panel.
-     * @param e Tipo {@code ActionEvent} con el evento detectado
+     * @param e 
      */
     @Override
     public void actionPerformed(ActionEvent e) {
