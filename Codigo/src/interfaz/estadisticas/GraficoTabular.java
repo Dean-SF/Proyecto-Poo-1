@@ -26,8 +26,8 @@ public class GraficoTabular extends JPanel implements ActionListener {
     private JButton volver = new JButton("Volver");
     private JButton graficar = new JButton("Graficar");
     private ArrayList<Sismo> sismos = new ArrayList<Sismo>();
-    private String [] titulos = {"Magnitud", "Escala","ID","Descipcion","Ubicacion"};
-    private Object [][] datos = {{null,null,null,null,null}};
+    private String [] titulos = {"Escala", "Magnitud","Tipo magnitud","ID","Descipcion","Ubicacion"};
+    private Object [][] datos = {{null,null,null,null,null,null}};
     private JTable tabla = new JTable(datos,titulos);
     private JScrollPane pane = new JScrollPane(tabla);
     
@@ -41,26 +41,48 @@ public class GraficoTabular extends JPanel implements ActionListener {
             DefaultTableModel modeloTabla = new DefaultTableModel(titulos, sismos.size());
             for(int  i = 0; i<sismos.size(); i++){
                 String texto = "";
+                String tEscala = "";
                 Sismo actual = sismos.get(i);
+                double numMagnitud = actual.getMagnitud().getMagnitud();
                 TEscala escalaActual = actual.getMagnitud().getEscala();
                 if(escalaActual==TEscala.MAGNITUD_DE_MOMENTO){
                     texto = "Magnitud momento";
                 }else{
                     texto = "Magnitud Richter";
                 }
+                
+                if(numMagnitud<2){
+                    tEscala = "Micro";
+                }else if(numMagnitud<4){
+                    tEscala = "Menor";
+                }else if(numMagnitud<5){
+                    tEscala =  "Ligero";
+                }else if(numMagnitud<6){
+                    tEscala = "Moderado";
+                }else if(numMagnitud<7){
+                    tEscala = "Fuerte";
+                }else if(numMagnitud<8){
+                    tEscala = "Mayor";
+                }else if(numMagnitud<10){
+                    tEscala = "Gran";
+                }else{
+                    tEscala = "Epico";
+                }
                 modeloTabla.setValueAt(texto, i, 0);
                 modeloTabla.setValueAt(actual.getMagnitud().getMagnitud(), i, 1); 
-                modeloTabla.setValueAt(actual.getId(), i, 2);
-                modeloTabla.setValueAt(actual.getDescripcion(), i, 3);
-                modeloTabla.setValueAt(actual.getLocalizacion().getProvincia(), i, 4);
+                modeloTabla.setValueAt(tEscala,i,2);
+                modeloTabla.setValueAt(actual.getId(), i, 3);
+                modeloTabla.setValueAt(actual.getDescripcion(), i, 4);
+                modeloTabla.setValueAt(actual.getLocalizacion().getProvincia(), i, 5);
             }
             tabla.setModel(modeloTabla);
 
-            tabla.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tabla.getColumnModel().getColumn(1).setPreferredWidth(10);
+            tabla.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tabla.getColumnModel().getColumn(1).setPreferredWidth(5);
             tabla.getColumnModel().getColumn(2).setPreferredWidth(10);
-            tabla.getColumnModel().getColumn(3).setPreferredWidth(100);
-            tabla.getColumnModel().getColumn(4).setPreferredWidth(40);
+            tabla.getColumnModel().getColumn(3).setPreferredWidth(5);
+            tabla.getColumnModel().getColumn(4).setPreferredWidth(200);
+            tabla.getColumnModel().getColumn(4).setPreferredWidth(60);
         } catch(Exception e){
             JOptionPane.showMessageDialog(this, "Esto no deberia de estar aqui","Error",
             JOptionPane.ERROR_MESSAGE);
